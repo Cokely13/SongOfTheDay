@@ -5,14 +5,11 @@ import { Signup } from './components/AuthForm';
 import { Login } from './components/LogInForm';
 import Home from './components/Home';
 import SongList from './components/SongList';
-import PlaylistCreator from './components/PlaylistCreator';
-import AllPlayLists from './components/AllPlaylists';
 import UserPage from './components/User';
 import Profile from './components/Profile';
-import {me} from './store'
-import PlayListDetails from './components/PlayListDetails';
 import UserDetailPage from './components/UserDetailPage';
-import TopPlaylists from './components/TopPlaylists';
+import {me} from './store'
+
 
 /**
  * COMPONENT
@@ -33,11 +30,7 @@ class Routes extends Component {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/users" component={UserPage} />
             <Route exact path="/users/:userId" component={UserDetailPage} />
-            <Route exact path="/playlists" component={AllPlayLists} />
-            <Route exact path="/top" component={TopPlaylists} />
-            <Route exact path="/playlists/:playlistId" component={PlayListDetails} />
             <Route exact path="/songs" component={SongList} />
-            <Route exact path="/create" component={PlaylistCreator} />
             <Redirect to="/home" />
           </Switch>
         ) : (

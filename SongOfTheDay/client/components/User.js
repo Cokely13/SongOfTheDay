@@ -8,6 +8,8 @@ function UserPage() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.allUsers);
 
+  console.log("users", users)
+
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
@@ -21,7 +23,6 @@ function UserPage() {
             <Link to={`/users/${user.id}`} className="user-link">
               <h2 className="user-card-heading">{user.username}</h2>
             </Link>
-            <p className="user-card-playlists">Number of playlists: {user.playlists.length}</p>
           </div>
         ))}
       </div>

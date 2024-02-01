@@ -1,11 +1,10 @@
 const router = require('express').Router();
-const { models: { User, Playlist } } = require('../db');
+const { models: { User } } = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: ['id', 'username','email','admin'],
-      include: [Playlist],
     });
     res.json(users);
   } catch (err) {
@@ -33,8 +32,7 @@ router.put('/:id', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id, {
-      attributes: ['id', 'username', 'email', 'admin', 'password'],
-      include: [Playlist],
+      attributes: ['id', 'username', 'email', 'admin', 'password']
     });
     res.json(user);
   } catch (err) {

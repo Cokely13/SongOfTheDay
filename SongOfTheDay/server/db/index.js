@@ -9,7 +9,14 @@ const Question = require('./models/Question')
 const User = require('./models/User')
 
 //associations could go here!
+User.hasMany(MySong)
+MySong.belongsTo(User)
 
+User.hasMany(Question)
+Question.belongsTo(User)
+
+Question.hasMany(MySong)
+MySong.belongsTo(Question)
 
 
 

@@ -2,21 +2,19 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import playlistsReducer from './allPlaylistsStore'
 import songsReducer from './allSongsStore'
-import singlePlaylistReducer from './singlePlaylistStore'
 import singleSongReducer from './singleSongStore'
-import psongsReducer from './allPsongsStore'
+import mysongsReducer from './allMysongsStore'
 import auth from './auth'
 import usersReducer from './allUsersStore'
 import singleUserReducer from './singleUserStore'
+import singleMySongReducer from './singleMySongStore'
 
 const reducer = combineReducers({ auth,
-  allPlaylists: playlistsReducer,
   allSongs: songsReducer,
-  singlePlaylist: singlePlaylistReducer,
   singleSong: singleSongReducer,
-  allPsongs: psongsReducer,
+  singleMySong: singleMySongReducer,
+  allMySongs: mysongsReducer,
   allUsers: usersReducer,
   singleUser: singleUserReducer })
 const middleware = composeWithDevTools(

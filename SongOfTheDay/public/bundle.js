@@ -3152,182 +3152,80 @@ const history =  false ? 0 : (0,history__WEBPACK_IMPORTED_MODULE_0__.createBrows
 
 /***/ }),
 
-/***/ "./client/store/allPlaylistsStore.js":
-/*!*******************************************!*\
-  !*** ./client/store/allPlaylistsStore.js ***!
-  \*******************************************/
+/***/ "./client/store/allMysongsStore.js":
+/*!*****************************************!*\
+  !*** ./client/store/allMysongsStore.js ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   createPlaylist: () => (/* binding */ createPlaylist),
-/* harmony export */   "default": () => (/* binding */ playlistsReducer),
-/* harmony export */   deletePlaylist: () => (/* binding */ deletePlaylist),
-/* harmony export */   fetchPlaylists: () => (/* binding */ fetchPlaylists),
-/* harmony export */   setPlaylists: () => (/* binding */ setPlaylists)
+/* harmony export */   createMysong: () => (/* binding */ createMysong),
+/* harmony export */   "default": () => (/* binding */ mysongsReducer),
+/* harmony export */   deleteMysong: () => (/* binding */ deleteMysong),
+/* harmony export */   fetchMysongs: () => (/* binding */ fetchMysongs),
+/* harmony export */   setMysongs: () => (/* binding */ setMysongs)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-const SET_PLAYLISTS = "SET_PLAYLISTS";
-const CREATE_PLAYLIST = "CREATE_PLAYLIST";
-const DELETE_PLAYLIST = "DELETE_PLAYLIST";
-const setPlaylists = playlists => {
+const SET_MYSONGS = "SET_MYSONGS";
+const CREATE_MYSONG = "CREATE_MYSONG";
+const DELETE_MYSONG = "DELETE_MYSONG";
+const setMysongs = mysongs => {
   return {
-    type: SET_PLAYLISTS,
-    playlists
+    type: SET_MYSONGS,
+    mysongs
   };
 };
-const _createPlaylist = playlist => {
+const _createMysong = mysong => {
   return {
-    type: CREATE_PLAYLIST,
-    playlist
+    type: CREATE_MYSONG,
+    mysong
   };
 };
-const _deletePlaylist = playlist => {
+const _deleteMysong = mysong => {
   return {
-    type: DELETE_PLAYLIST,
-    playlist
+    type: DELETE_MYSONG,
+    mysong
   };
 };
-const fetchPlaylists = () => {
+const fetchMysongs = () => {
   return async dispatch => {
     const {
       data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/playlists");
-    dispatch(setPlaylists(data));
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/mysongs");
+    dispatch(setMysongs(data));
   };
 };
-const createPlaylist = playlist => {
+const createMysong = mysong => {
   return async dispatch => {
     const {
       data: created
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/playlists", playlist);
-    dispatch(_createPlaylist(created));
-    // history.push("/playlists");
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/mysongs", mysong);
+    dispatch(_createMysong(created));
+    // history.push("/mysongs");
   };
 };
-const deletePlaylist = id => {
+const deleteMysong = id => {
   return async dispatch => {
     const {
-      data: playlist
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](`/api/playlists/${id}`);
-    dispatch(_deletePlaylist(playlist));
-    // history.push("/playlists");
-  };
-};
-
-// export const deletePlaylistAndSongs = (playlistId) => async (dispatch, getState) => {
-//   try {
-//     // Get all playlistSongs with matching playlistId
-//     const playlistSongs = getState().allPsongs.filter(ps => ps.playlistId === playlistId);
-
-//     // Delete all playlistSongs first
-//     for (const ps of playlistSongs) {
-//       await dispatch(deletePsong(ps.id));
-//     }
-
-//     // Then delete the playlist
-//     await axios.delete(`/api/playlists/${playlistId}`);
-
-//     // Dispatch the delete playlist action
-//     dispatch(deletePlaylistSuccess(playlistId));
-//   } catch (error) {
-//     dispatch(deletePlaylistFailure(error.message));
-//   }
-// };
-
-const initialState = [];
-function playlistsReducer(state = initialState, action) {
-  switch (action.type) {
-    case SET_PLAYLISTS:
-      return action.playlists;
-    case CREATE_PLAYLIST:
-      return [...state, action.playlist];
-    case DELETE_PLAYLIST:
-      return state.filter(playlist => playlist.id !== action.playlist.id);
-    default:
-      return state;
-  }
-}
-
-/***/ }),
-
-/***/ "./client/store/allPsongsStore.js":
-/*!****************************************!*\
-  !*** ./client/store/allPsongsStore.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   createPsong: () => (/* binding */ createPsong),
-/* harmony export */   "default": () => (/* binding */ psongsReducer),
-/* harmony export */   deletePsong: () => (/* binding */ deletePsong),
-/* harmony export */   fetchPsongs: () => (/* binding */ fetchPsongs),
-/* harmony export */   setPsongs: () => (/* binding */ setPsongs)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-const SET_PSONGS = "SET_PSONGS";
-const CREATE_PSONG = "CREATE_PSONG";
-const DELETE_PSONG = "DELETE_PSONG";
-const setPsongs = psongs => {
-  return {
-    type: SET_PSONGS,
-    psongs
-  };
-};
-const _createPsong = psong => {
-  return {
-    type: CREATE_PSONG,
-    psong
-  };
-};
-const _deletePsong = psong => {
-  return {
-    type: DELETE_PSONG,
-    psong
-  };
-};
-const fetchPsongs = () => {
-  return async dispatch => {
-    const {
-      data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/psongs");
-    dispatch(setPsongs(data));
-  };
-};
-const createPsong = psong => {
-  return async dispatch => {
-    const {
-      data: created
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/psongs", psong);
-    dispatch(_createPsong(created));
-    // history.push("/psongs");
-  };
-};
-const deletePsong = id => {
-  return async dispatch => {
-    const {
-      data: psong
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](`/api/psongs/${id}`);
-    dispatch(_deletePsong(psong));
-    // history.push("/psongs");
+      data: mysong
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](`/api/mysongs/${id}`);
+    dispatch(_deleteMysong(mysong));
+    // history.push("/mysongs");
   };
 };
 const initialState = [];
-function psongsReducer(state = initialState, action) {
+function mysongsReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_PSONGS:
-      return action.psongs;
-    case CREATE_PSONG:
-      return [...state, action.psong];
-    case DELETE_PSONG:
-      return state.filter(psong => psong.id !== action.psong.id);
+    case SET_MYSONGS:
+      return action.mysongs;
+    case CREATE_MYSONG:
+      return [...state, action.mysong];
+    case DELETE_MYSONG:
+      return state.filter(mysong => mysong.id !== action.mysong.id);
     default:
       return state;
   }
@@ -3558,24 +3456,23 @@ const logout = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   authenticate: () => (/* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_7__.authenticate),
+/* harmony export */   authenticate: () => (/* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_5__.authenticate),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   logout: () => (/* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_7__.logout),
-/* harmony export */   me: () => (/* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_7__.me)
+/* harmony export */   logout: () => (/* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_5__.logout),
+/* harmony export */   me: () => (/* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_5__.me)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
-/* harmony import */ var _allPlaylistsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./allPlaylistsStore */ "./client/store/allPlaylistsStore.js");
-/* harmony import */ var _allSongsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./allSongsStore */ "./client/store/allSongsStore.js");
-/* harmony import */ var _singlePlaylistStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./singlePlaylistStore */ "./client/store/singlePlaylistStore.js");
-/* harmony import */ var _singleSongStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./singleSongStore */ "./client/store/singleSongStore.js");
-/* harmony import */ var _allPsongsStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./allPsongsStore */ "./client/store/allPsongsStore.js");
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth */ "./client/store/auth.js");
-/* harmony import */ var _allUsersStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./allUsersStore */ "./client/store/allUsersStore.js");
-/* harmony import */ var _singleUserStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./singleUserStore */ "./client/store/singleUserStore.js");
+/* harmony import */ var _allSongsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./allSongsStore */ "./client/store/allSongsStore.js");
+/* harmony import */ var _singleSongStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./singleSongStore */ "./client/store/singleSongStore.js");
+/* harmony import */ var _allMysongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./allMysongsStore */ "./client/store/allMysongsStore.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth */ "./client/store/auth.js");
+/* harmony import */ var _allUsersStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./allUsersStore */ "./client/store/allUsersStore.js");
+/* harmony import */ var _singleUserStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./singleUserStore */ "./client/store/singleUserStore.js");
+/* harmony import */ var _singleMySongStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./singleMySongStore */ "./client/store/singleMySongStore.js");
 
 
 
@@ -3587,100 +3484,98 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_10__.combineReducers)({
-  auth: _auth__WEBPACK_IMPORTED_MODULE_7__["default"],
-  allPlaylists: _allPlaylistsStore__WEBPACK_IMPORTED_MODULE_2__["default"],
-  allSongs: _allSongsStore__WEBPACK_IMPORTED_MODULE_3__["default"],
-  singlePlaylist: _singlePlaylistStore__WEBPACK_IMPORTED_MODULE_4__["default"],
-  singleSong: _singleSongStore__WEBPACK_IMPORTED_MODULE_5__["default"],
-  allPsongs: _allPsongsStore__WEBPACK_IMPORTED_MODULE_6__["default"],
-  allUsers: _allUsersStore__WEBPACK_IMPORTED_MODULE_8__["default"],
-  singleUser: _singleUserStore__WEBPACK_IMPORTED_MODULE_9__["default"]
+const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_9__.combineReducers)({
+  auth: _auth__WEBPACK_IMPORTED_MODULE_5__["default"],
+  allSongs: _allSongsStore__WEBPACK_IMPORTED_MODULE_2__["default"],
+  singleSong: _singleSongStore__WEBPACK_IMPORTED_MODULE_3__["default"],
+  singleMySong: _singleMySongStore__WEBPACK_IMPORTED_MODULE_8__["default"],
+  allMySongs: _allMysongsStore__WEBPACK_IMPORTED_MODULE_4__["default"],
+  allUsers: _allUsersStore__WEBPACK_IMPORTED_MODULE_6__["default"],
+  singleUser: _singleUserStore__WEBPACK_IMPORTED_MODULE_7__["default"]
 });
-const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_10__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_11__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
+const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_9__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_10__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
-const store = (0,redux__WEBPACK_IMPORTED_MODULE_10__.createStore)(reducer, middleware);
+const store = (0,redux__WEBPACK_IMPORTED_MODULE_9__.createStore)(reducer, middleware);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 
 /***/ }),
 
-/***/ "./client/store/singlePlaylistStore.js":
-/*!*********************************************!*\
-  !*** ./client/store/singlePlaylistStore.js ***!
-  \*********************************************/
+/***/ "./client/store/singleMySongStore.js":
+/*!*******************************************!*\
+  !*** ./client/store/singleMySongStore.js ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   _setSinglePlaylist: () => (/* binding */ _setSinglePlaylist),
+/* harmony export */   _setSingleMySong: () => (/* binding */ _setSingleMySong),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   fetchPlaylist: () => (/* binding */ fetchPlaylist),
-/* harmony export */   updateSinglePlaylist: () => (/* binding */ updateSinglePlaylist)
+/* harmony export */   fetchMySong: () => (/* binding */ fetchMySong),
+/* harmony export */   updateSingleMySong: () => (/* binding */ updateSingleMySong)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 
 // Action Types
-const SET_SINGLE_PLAYLIST = "SET_SINGLE_PLAYLIST";
-const UPDATE_SINGLE_PLAYLIST = "UPDATE_SINGLE_PLAYLIST";
+const SET_SINGLE_MYSONG = "SET_SINGLE_MYSONG";
+const UPDATE_SINGLE_MYSONG = "UPDATE_SINGLE_MYSONG";
 const TOKEN = "token";
 
 // Action creators
-const _setSinglePlaylist = playlistdata => {
+const _setSingleMySong = mysongdata => {
   return {
-    type: SET_SINGLE_PLAYLIST,
-    playlistdata
+    type: SET_SINGLE_MYSONG,
+    mysongdata
   };
 };
-const _updateSinglePlaylist = playlistdata => {
+const _updateSingleMySong = mysongdata => {
   return {
-    type: UPDATE_SINGLE_PLAYLIST,
-    playlistdata
+    type: UPDATE_SINGLE_MYSONG,
+    mysongdata
   };
 };
 
 //Thunks
-const fetchPlaylist = id => {
+const fetchMySong = id => {
   return async dispatch => {
     const {
       data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/playlists/${id}`);
-    dispatch(_setSinglePlaylist(data));
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/mysongs/${id}`);
+    dispatch(_setSingleMySong(data));
   };
 };
-const updateSinglePlaylist = (playlist, history) => {
+const updateSingleMySong = (mysong, history) => {
   return async dispatch => {
     try {
-      await axios__WEBPACK_IMPORTED_MODULE_0___default().put(`/api/playlists/${playlist.id}`, playlist);
+      await axios__WEBPACK_IMPORTED_MODULE_0___default().put(`/api/mysongs/${mysong.id}`, mysong);
       const {
-        data: playlistData
-      } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/playlists/${playlist.id}`);
-      dispatch(_updateSinglePlaylist(playlistData));
-      history.push(`/playlists/${playlist.id}`);
+        data: mysongData
+      } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/mysongs/${mysong.id}`);
+      dispatch(_updateSingleMySong(mysongData));
+      history.push(`/mysongs/${mysong.id}`);
     } catch (error) {
-      console.log("PLAYLIST", playlist);
+      console.log("MYSONG", mysong);
     }
   };
 };
 
 // reducer
 const initialState = [];
-const singlePlaylistReducer = (state = initialState, action) => {
+const singleMySongReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_SINGLE_PLAYLIST:
-      return action.playlistdata;
-    case UPDATE_SINGLE_PLAYLIST:
-      return action.playlistdata;
+    case SET_SINGLE_MYSONG:
+      return action.mysongdata;
+    case UPDATE_SINGLE_MYSONG:
+      return action.mysongdata;
     default:
       return state;
   }
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (singlePlaylistReducer);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (singleMySongReducer);
 
 /***/ }),
 

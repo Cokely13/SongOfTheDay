@@ -8,7 +8,7 @@ const Question = db.define('question', {
     },
     userId: {
       type: Sequelize.INTEGER,
-      defaultVaule: 1
+      defaultValue: 1
     },
     active: {
       type: Sequelize.BOOLEAN,
@@ -16,6 +16,7 @@ const Question = db.define('question', {
     },
     date: {
       type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW,
     },
     votes: {
       type: Sequelize.ARRAY(Sequelize.INTEGER), // Array of integers

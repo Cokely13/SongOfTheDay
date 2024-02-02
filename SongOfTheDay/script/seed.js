@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User, Song} } = require('../server/db')
+const {db, models: {User, Song, Question} } = require('../server/db')
 const fetch = require('node-fetch');
 
 /**
@@ -11,11 +11,24 @@ async function seed() {
   await db.sync({ force: true }) // clears db and matches models to tables
   console.log('db synced!')
 
+  const yesterday = new Date();
+yesterday.setDate(yesterday.getDate() - 1);
+
+const twodays = new Date();
+twodays.setDate(twodays.getDate() - 2);
+
+
   // Creating Users
   const users = await Promise.all([
     User.create({ username: 'Ryan', email: "ryan.cokely@gmail.com",  password: '123', admin: true }),
     User.create({ username: 'Matt', email: "mclaise@gmail.com",  password: '123'}),
     // User.create({ username: 'murphy', password: '123' }),
+  ])
+
+  const questions = await Promise.all([
+    Question.create({   }),
+    Question.create({date:yesterday}),
+    Question.create({date:twodays}),
   ])
 
 

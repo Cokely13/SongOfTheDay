@@ -8,6 +8,7 @@ import SongList from './components/SongList';
 import UserPage from './components/User';
 import Profile from './components/Profile';
 import UserDetailPage from './components/UserDetailPage';
+import AnswerQuestion from './components/AnswerQuestion';
 import {me} from './store'
 
 
@@ -31,6 +32,7 @@ class Routes extends Component {
             <Route exact path="/users" component={UserPage} />
             <Route exact path="/users/:userId" component={UserDetailPage} />
             <Route exact path="/songs" component={SongList} />
+            <Route exact path="/answer" component={AnswerQuestion} />
             <Redirect to="/home" />
           </Switch>
         ) : (

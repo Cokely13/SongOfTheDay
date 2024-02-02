@@ -2,21 +2,21 @@
 
 const db = require('./db')
 const Song = require('./models/Song')
-const MySong = require('./models/MySong')
+const VoteSong = require('./models/VoteSong')
 const Question = require('./models/Question')
 
 
 const User = require('./models/User')
 
 //associations could go here!
-User.hasMany(MySong)
-MySong.belongsTo(User)
+User.hasMany(VoteSong)
+VoteSong.belongsTo(User)
 
 User.hasMany(Question)
 Question.belongsTo(User)
 
-Question.hasMany(MySong)
-MySong.belongsTo(Question)
+Question.hasMany(VoteSong)
+VoteSong.belongsTo(Question)
 
 
 
@@ -25,7 +25,7 @@ module.exports = {
   models: {
     User,
     Song,
-    MySong,
+    VoteSong,
     Question,
   },
 }

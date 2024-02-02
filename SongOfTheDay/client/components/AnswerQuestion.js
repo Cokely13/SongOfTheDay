@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';;
 import { fetchSongs } from '../store/allSongsStore';
 // import { deletePlaylist} from '../store/allPlaylistsStore'
 import { fetchQuestions} from '../store/allQuestionsStore'
-import { createMysong } from '../store/allMysongsStore';
+import { createMysong } from '../store/allVoteSongsStore';
+import { fetchMysongs } from '../store/allVoteSongsStore';
 import Pagination from './Pagination'
 
 function AnswerQuestion() {
@@ -13,6 +14,7 @@ function AnswerQuestion() {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.allQuestions);
   const allSongs = useSelector((state) => state.allSongs);
+  const mySongs = useSelector((state) => state.mySongs);
   const currentUser = useSelector((state) => state.auth);
   const user = useSelector((state) => state.auth);
   const [addSongsVisible, setAddSongsVisible] = useState(false);
@@ -30,11 +32,16 @@ function AnswerQuestion() {
     dispatch(fetchSongs());
   }, [dispatch, selectedSong]); // Refetch songs when selectedSong changes
 
+  useEffect(() => {
+    dispatch(fetchMysongs());
+  }, [dispatch]); // Refetch songs when selectedSong changes
+
 
   const toggleAddSongs = () => {
     setAddSongsVisible(!addSongsVisible);
   };
 
+  const question = questions[0]
 
 
   // const handleSelectSong = (song) => {
@@ -74,9 +81,7 @@ function AnswerQuestion() {
   // };
 
   const renderAddSongs = () => {
-    const songsToAdd = allSongs.filter(
-      (song) => !playlistSongs.some((ps) => ps.Song.id === song.id)
-    );
+    const songsToAdd = allSongs
     const filteredSongs = songsToAdd.filter(
       (song) =>
         song.name.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -159,77 +164,16 @@ function AnswerQuestion() {
       <div className="playlist-details-container">
         <h1 className="playlist-details-title">{name}</h1>
         <h2 className="playlist-details-created-by">
-          Created by: {user ? user.username : "No User"}
+          Date: {question ? question.date.slice(0,10): "No User"}
         </h2>
         <div className="playlist-details-stats">
-          <h2 className="playlist-details-wins">Wins: </h2>
+          <h2 className="playlist-details-wins"># of Songs: {question.son} </h2>
           <h2 className="playlist-details-losses">Losses: </h2>
         </div>
-        <div className="playlist-details-buttons">
-          {currentUser.id === user?.id && (
-            <button
-              className="playlist-details-add-button"
-              onClick={toggleAddSongs}
-            >
-              {addSongsVisible ? "Done" : "Edit Playlist"}
-            </button>
-          )}
-        </div>
-        <ol className="playlist-details-song-list">
-          {questions ? (
-            questions.map((question) => (
-              <li
-                key={question.id}
-                className="playlist-details-song-item"
-              >
-                {/* <div className="playlist-details-song-name">
-                  {playlistSong.Song.name}
-                </div>
-                <div className="playlist-details-song-artist">
-                  by {playlistSong.Song.artist}
-                </div>
-                {addSongsVisible && (
-                  <button
-                    className="playlist-details-remove-button"
-                    onClick={() => handleRemoveSong(playlistSong)}
-                  >
-                    Remove
-                  </button>
-                )} */}
-              </li>
-            ))
-          ) : (
-            <div></div>
-          )}
-        </ol>
-        {/* {currentUser.id === user?.id && (
-  <button
-    className="playlist-details-delete-button"
-    onClick={handleDeletePlaylist}
-    style={{ display: addSongsVisible ? "none" : "block", margin: "0 auto", backgroundColor: "red", border: "black" }}
-  >
-    Delete Playlist
-  </button>
-)} */}
-        {/* {addSongsVisible && (
-          <div className="playlist-details-add-songs-container">
-            {playlistSongs.length >= 10 && (
-              <button className="playlist-details-done-button" onClick={toggleAddSongs}>
-                {addSongsVisible ? "Maximum Songs Playlist Done" : "Add Songs"}
-              </button>
-            )}
-            {playlistSongs.length < 10 && (
-              <div className="playlist-details-additional-songs">
-                Add Additional Songs
-              </div>
-            )}
-            {playlistSongs.length < 10 && (
-              <div className="playlist-details-additional-song-list">
+        <div className="playlist-details-additional-song-list">
                 {renderAddSongs()}
               </div>
-            )}
-          </div>
-        )} */}
+
       </div>
     );
 

@@ -2204,7 +2204,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
-/* harmony import */ var _store_allMysongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allMysongsStore */ "./client/store/allMysongsStore.js");
+/* harmony import */ var _store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allVoteSongsStore */ "./client/store/allVoteSongsStore.js");
 /* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Pagination */ "./client/components/Pagination.js");
 
 
@@ -2212,6 +2212,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 // import { deletePlaylist} from '../store/allPlaylistsStore'
+
 
 
 
@@ -2223,6 +2224,7 @@ function AnswerQuestion() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
   const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs);
+  const mySongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.mySongs);
   const currentUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const [addSongsVisible, setAddSongsVisible] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -2239,9 +2241,14 @@ function AnswerQuestion() {
     dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_2__.fetchSongs)());
   }, [dispatch, selectedSong]); // Refetch songs when selectedSong changes
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchMysongs)());
+  }, [dispatch]); // Refetch songs when selectedSong changes
+
   const toggleAddSongs = () => {
     setAddSongsVisible(!addSongsVisible);
   };
+  const question = questions[0];
 
   // const handleSelectSong = (song) => {
   //   if (playlistSongs.length >= 10) {
@@ -2279,7 +2286,7 @@ function AnswerQuestion() {
   // };
 
   const renderAddSongs = () => {
-    const songsToAdd = allSongs.filter(song => !playlistSongs.some(ps => ps.Song.id === song.id));
+    const songsToAdd = allSongs;
     const filteredSongs = songsToAdd.filter(song => song.name.toLowerCase().includes(searchText.toLowerCase()) || song.artist.toLowerCase().includes(searchText.toLowerCase()));
     const pageCount = Math.ceil(filteredSongs.length / pageSize);
     const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
@@ -2330,23 +2337,15 @@ function AnswerQuestion() {
     className: "playlist-details-title"
   }, name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "playlist-details-created-by"
-  }, "Created by: ", user ? user.username : "No User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Date: ", question ? question.date.slice(0, 10) : "No User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "playlist-details-stats"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "playlist-details-wins"
-  }, "Wins: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+  }, "# of Songs: ", question.son, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "playlist-details-losses"
   }, "Losses: ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "playlist-details-buttons"
-  }, currentUser.id === user?.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "playlist-details-add-button",
-    onClick: toggleAddSongs
-  }, addSongsVisible ? "Done" : "Edit Playlist")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ol", {
-    className: "playlist-details-song-list"
-  }, questions ? questions.map(question => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    key: question.id,
-    className: "playlist-details-song-item"
-  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)));
+    className: "playlist-details-additional-song-list"
+  }, renderAddSongs()));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerQuestion);
 
@@ -3457,87 +3456,6 @@ const history =  false ? 0 : (0,history__WEBPACK_IMPORTED_MODULE_0__.createBrows
 
 /***/ }),
 
-/***/ "./client/store/allMysongsStore.js":
-/*!*****************************************!*\
-  !*** ./client/store/allMysongsStore.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   createMysong: () => (/* binding */ createMysong),
-/* harmony export */   "default": () => (/* binding */ mysongsReducer),
-/* harmony export */   deleteMysong: () => (/* binding */ deleteMysong),
-/* harmony export */   fetchMysongs: () => (/* binding */ fetchMysongs),
-/* harmony export */   setMysongs: () => (/* binding */ setMysongs)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-const SET_MYSONGS = "SET_MYSONGS";
-const CREATE_MYSONG = "CREATE_MYSONG";
-const DELETE_MYSONG = "DELETE_MYSONG";
-const setMysongs = mysongs => {
-  return {
-    type: SET_MYSONGS,
-    mysongs
-  };
-};
-const _createMysong = mysong => {
-  return {
-    type: CREATE_MYSONG,
-    mysong
-  };
-};
-const _deleteMysong = mysong => {
-  return {
-    type: DELETE_MYSONG,
-    mysong
-  };
-};
-const fetchMysongs = () => {
-  return async dispatch => {
-    const {
-      data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/mysongs");
-    dispatch(setMysongs(data));
-  };
-};
-const createMysong = mysong => {
-  return async dispatch => {
-    const {
-      data: created
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/mysongs", mysong);
-    dispatch(_createMysong(created));
-    // history.push("/mysongs");
-  };
-};
-const deleteMysong = id => {
-  return async dispatch => {
-    const {
-      data: mysong
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](`/api/mysongs/${id}`);
-    dispatch(_deleteMysong(mysong));
-    // history.push("/mysongs");
-  };
-};
-const initialState = [];
-function mysongsReducer(state = initialState, action) {
-  switch (action.type) {
-    case SET_MYSONGS:
-      return action.mysongs;
-    case CREATE_MYSONG:
-      return [...state, action.mysong];
-    case DELETE_MYSONG:
-      return state.filter(mysong => mysong.id !== action.mysong.id);
-    default:
-      return state;
-  }
-}
-
-/***/ }),
-
 /***/ "./client/store/allQuestionsStore.js":
 /*!*******************************************!*\
   !*** ./client/store/allQuestionsStore.js ***!
@@ -3743,6 +3661,87 @@ function usersReducer(state = initialState, action) {
 
 /***/ }),
 
+/***/ "./client/store/allVoteSongsStore.js":
+/*!*******************************************!*\
+  !*** ./client/store/allVoteSongsStore.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createVoteSong: () => (/* binding */ createVoteSong),
+/* harmony export */   "default": () => (/* binding */ votesongsReducer),
+/* harmony export */   deleteVoteSong: () => (/* binding */ deleteVoteSong),
+/* harmony export */   fetchVoteSongs: () => (/* binding */ fetchVoteSongs),
+/* harmony export */   setVoteSongs: () => (/* binding */ setVoteSongs)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+const SET_VOTESONGS = "SET_VOTESONGS";
+const CREATE_VOTESONG = "CREATE_VOTESONG";
+const DELETE_VOTESONG = "DELETE_VOTESONG";
+const setVoteSongs = votesongs => {
+  return {
+    type: SET_VOTESONGS,
+    votesongs
+  };
+};
+const _createVoteSong = votesong => {
+  return {
+    type: CREATE_VOTESONG,
+    votesong
+  };
+};
+const _deleteVoteSong = votesong => {
+  return {
+    type: DELETE_VOTESONG,
+    votesong
+  };
+};
+const fetchVoteSongs = () => {
+  return async dispatch => {
+    const {
+      data
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/votesongs");
+    dispatch(setVoteSongs(data));
+  };
+};
+const createVoteSong = votesong => {
+  return async dispatch => {
+    const {
+      data: created
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/votesongs", votesong);
+    dispatch(_createVoteSong(created));
+    // history.push("/votesongs");
+  };
+};
+const deleteVoteSong = id => {
+  return async dispatch => {
+    const {
+      data: votesong
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](`/api/votesongs/${id}`);
+    dispatch(_deleteVoteSong(votesong));
+    // history.push("/votesongs");
+  };
+};
+const initialState = [];
+function votesongsReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_VOTESONGS:
+      return action.votesongs;
+    case CREATE_VOTESONG:
+      return [...state, action.votesong];
+    case DELETE_VOTESONG:
+      return state.filter(votesong => votesong.id !== action.votesong.id);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./client/store/auth.js":
 /*!******************************!*\
   !*** ./client/store/auth.js ***!
@@ -3854,11 +3853,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
 /* harmony import */ var _allSongsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./allSongsStore */ "./client/store/allSongsStore.js");
 /* harmony import */ var _singleSongStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./singleSongStore */ "./client/store/singleSongStore.js");
-/* harmony import */ var _allMysongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./allMysongsStore */ "./client/store/allMysongsStore.js");
+/* harmony import */ var _allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./allVoteSongsStore */ "./client/store/allVoteSongsStore.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth */ "./client/store/auth.js");
 /* harmony import */ var _allUsersStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./allUsersStore */ "./client/store/allUsersStore.js");
 /* harmony import */ var _singleUserStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./singleUserStore */ "./client/store/singleUserStore.js");
-/* harmony import */ var _singleMySongStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./singleMySongStore */ "./client/store/singleMySongStore.js");
+/* harmony import */ var _singleVoteSongStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./singleVoteSongStore */ "./client/store/singleVoteSongStore.js");
 /* harmony import */ var _singleQuestionStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./singleQuestionStore */ "./client/store/singleQuestionStore.js");
 /* harmony import */ var _allQuestionsStore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./allQuestionsStore */ "./client/store/allQuestionsStore.js");
 
@@ -3878,8 +3877,8 @@ const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_11__.combineReducers)({
   auth: _auth__WEBPACK_IMPORTED_MODULE_5__["default"],
   allSongs: _allSongsStore__WEBPACK_IMPORTED_MODULE_2__["default"],
   singleSong: _singleSongStore__WEBPACK_IMPORTED_MODULE_3__["default"],
-  singleMySong: _singleMySongStore__WEBPACK_IMPORTED_MODULE_8__["default"],
-  allMySongs: _allMysongsStore__WEBPACK_IMPORTED_MODULE_4__["default"],
+  singleVoteSong: _singleVoteSongStore__WEBPACK_IMPORTED_MODULE_8__["default"],
+  allVoteSongs: _allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__["default"],
   allUsers: _allUsersStore__WEBPACK_IMPORTED_MODULE_6__["default"],
   allQuestions: _allQuestionsStore__WEBPACK_IMPORTED_MODULE_10__["default"],
   singleQuestion: _singleQuestionStore__WEBPACK_IMPORTED_MODULE_9__["default"],
@@ -3891,83 +3890,6 @@ const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.comp
 const store = (0,redux__WEBPACK_IMPORTED_MODULE_11__.createStore)(reducer, middleware);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
-
-/***/ }),
-
-/***/ "./client/store/singleMySongStore.js":
-/*!*******************************************!*\
-  !*** ./client/store/singleMySongStore.js ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   _setSingleMySong: () => (/* binding */ _setSingleMySong),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   fetchMySong: () => (/* binding */ fetchMySong),
-/* harmony export */   updateSingleMySong: () => (/* binding */ updateSingleMySong)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-
-// Action Types
-const SET_SINGLE_MYSONG = "SET_SINGLE_MYSONG";
-const UPDATE_SINGLE_MYSONG = "UPDATE_SINGLE_MYSONG";
-const TOKEN = "token";
-
-// Action creators
-const _setSingleMySong = mysongdata => {
-  return {
-    type: SET_SINGLE_MYSONG,
-    mysongdata
-  };
-};
-const _updateSingleMySong = mysongdata => {
-  return {
-    type: UPDATE_SINGLE_MYSONG,
-    mysongdata
-  };
-};
-
-//Thunks
-const fetchMySong = id => {
-  return async dispatch => {
-    const {
-      data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/mysongs/${id}`);
-    dispatch(_setSingleMySong(data));
-  };
-};
-const updateSingleMySong = (mysong, history) => {
-  return async dispatch => {
-    try {
-      await axios__WEBPACK_IMPORTED_MODULE_0___default().put(`/api/mysongs/${mysong.id}`, mysong);
-      const {
-        data: mysongData
-      } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/mysongs/${mysong.id}`);
-      dispatch(_updateSingleMySong(mysongData));
-      history.push(`/mysongs/${mysong.id}`);
-    } catch (error) {
-      console.log("MYSONG", mysong);
-    }
-  };
-};
-
-// reducer
-const initialState = [];
-const singleMySongReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_SINGLE_MYSONG:
-      return action.mysongdata;
-    case UPDATE_SINGLE_MYSONG:
-      return action.mysongdata;
-    default:
-      return state;
-  }
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (singleMySongReducer);
 
 /***/ }),
 
@@ -4198,6 +4120,83 @@ const singleUserReducer = (state = initialState, action) => {
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (singleUserReducer);
+
+/***/ }),
+
+/***/ "./client/store/singleVoteSongStore.js":
+/*!*********************************************!*\
+  !*** ./client/store/singleVoteSongStore.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   _setSingleVoteSong: () => (/* binding */ _setSingleVoteSong),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   fetchVoteSong: () => (/* binding */ fetchVoteSong),
+/* harmony export */   updateSingleVoteSong: () => (/* binding */ updateSingleVoteSong)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
+// Action Types
+const SET_SINGLE_VOTESONG = "SET_SINGLE_VOTESONG";
+const UPDATE_SINGLE_VOTESONG = "UPDATE_SINGLE_VOTESONG";
+const TOKEN = "token";
+
+// Action creators
+const _setSingleVoteSong = votesongdata => {
+  return {
+    type: SET_SINGLE_VOTESONG,
+    votesongdata
+  };
+};
+const _updateSingleVoteSong = votesongdata => {
+  return {
+    type: UPDATE_SINGLE_VOTESONG,
+    votesongdata
+  };
+};
+
+//Thunks
+const fetchVoteSong = id => {
+  return async dispatch => {
+    const {
+      data
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/votesongs/${id}`);
+    dispatch(_setSingleVoteSong(data));
+  };
+};
+const updateSingleVoteSong = (votesong, history) => {
+  return async dispatch => {
+    try {
+      await axios__WEBPACK_IMPORTED_MODULE_0___default().put(`/api/votesongs/${votesong.id}`, votesong);
+      const {
+        data: votesongData
+      } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/votesongs/${votesong.id}`);
+      dispatch(_updateSingleVoteSong(votesongData));
+      history.push(`/votesongs/${votesong.id}`);
+    } catch (error) {
+      console.log("VOTESONG", votesong);
+    }
+  };
+};
+
+// reducer
+const initialState = [];
+const singleVoteSongReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_SINGLE_VOTESONG:
+      return action.votesongdata;
+    case UPDATE_SINGLE_VOTESONG:
+      return action.votesongdata;
+    default:
+      return state;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (singleVoteSongReducer);
 
 /***/ }),
 

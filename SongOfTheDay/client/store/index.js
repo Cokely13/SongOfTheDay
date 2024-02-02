@@ -4,19 +4,19 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import songsReducer from './allSongsStore'
 import singleSongReducer from './singleSongStore'
-import mysongsReducer from './allMysongsStore'
+import votesongsReducer from './allVoteSongsStore'
 import auth from './auth'
 import usersReducer from './allUsersStore'
 import singleUserReducer from './singleUserStore'
-import singleMySongReducer from './singleMySongStore'
+import singleVoteSongReducer from './singleVoteSongStore'
 import singleQuestionReducer from './singleQuestionStore'
 import questionsReducer from './allQuestionsStore'
 
 const reducer = combineReducers({ auth,
   allSongs: songsReducer,
   singleSong: singleSongReducer,
-  singleMySong: singleMySongReducer,
-  allMySongs: mysongsReducer,
+  singleVoteSong: singleVoteSongReducer,
+  allVoteSongs: votesongsReducer,
   allUsers: usersReducer,
   allQuestions: questionsReducer,
   singleQuestion: singleQuestionReducer,

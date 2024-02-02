@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const MySong = db.define('mySong', {
+const VoteSong = db.define('voteSong', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -17,4 +17,4 @@ const MySong = db.define('mySong', {
   }
 });
 
-module.exports = MySong;
+module.exports = VoteSong;

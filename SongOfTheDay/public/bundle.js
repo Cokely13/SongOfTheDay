@@ -2224,7 +2224,7 @@ function AnswerQuestion() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
   const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs);
-  const mySongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.mySongs);
+  const votesSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allVoteSongs);
   const currentUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const [addSongsVisible, setAddSongsVisible] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -2242,13 +2242,15 @@ function AnswerQuestion() {
   }, [dispatch, selectedSong]); // Refetch songs when selectedSong changes
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchMysongs)());
+    dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchVoteSongs)());
   }, [dispatch]); // Refetch songs when selectedSong changes
 
   const toggleAddSongs = () => {
     setAddSongsVisible(!addSongsVisible);
   };
   const question = questions[0];
+  console.log('hey', votesSongs);
+  const songsOf = votesSongs ? votesSongs.filter(song => song.questionId == question.id) : 0;
 
   // const handleSelectSong = (song) => {
   //   if (playlistSongs.length >= 10) {
@@ -2341,7 +2343,7 @@ function AnswerQuestion() {
     className: "playlist-details-stats"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "playlist-details-wins"
-  }, "# of Songs: ", question.son, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+  }, "# of Songs: ", songsOf.length, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "playlist-details-losses"
   }, "Losses: ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "playlist-details-additional-song-list"

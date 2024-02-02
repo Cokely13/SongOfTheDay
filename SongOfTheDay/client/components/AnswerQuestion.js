@@ -5,7 +5,7 @@ import { fetchSongs } from '../store/allSongsStore';
 // import { deletePlaylist} from '../store/allPlaylistsStore'
 import { fetchQuestions} from '../store/allQuestionsStore'
 import { createMysong } from '../store/allVoteSongsStore';
-import { fetchMysongs } from '../store/allVoteSongsStore';
+import { fetchVoteSongs } from '../store/allVoteSongsStore';
 import Pagination from './Pagination'
 
 function AnswerQuestion() {
@@ -14,7 +14,7 @@ function AnswerQuestion() {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.allQuestions);
   const allSongs = useSelector((state) => state.allSongs);
-  const mySongs = useSelector((state) => state.mySongs);
+  const votesSongs = useSelector((state) => state.allVoteSongs);
   const currentUser = useSelector((state) => state.auth);
   const user = useSelector((state) => state.auth);
   const [addSongsVisible, setAddSongsVisible] = useState(false);
@@ -33,7 +33,7 @@ function AnswerQuestion() {
   }, [dispatch, selectedSong]); // Refetch songs when selectedSong changes
 
   useEffect(() => {
-    dispatch(fetchMysongs());
+    dispatch(fetchVoteSongs());
   }, [dispatch]); // Refetch songs when selectedSong changes
 
 
@@ -42,6 +42,10 @@ function AnswerQuestion() {
   };
 
   const question = questions[0]
+
+  console.log('hey', votesSongs)
+
+  const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId == question.id) : 0
 
 
   // const handleSelectSong = (song) => {
@@ -167,7 +171,7 @@ function AnswerQuestion() {
           Date: {question ? question.date.slice(0,10): "No User"}
         </h2>
         <div className="playlist-details-stats">
-          <h2 className="playlist-details-wins"># of Songs: {question.son} </h2>
+          <h2 className="playlist-details-wins"># of Songs: {songsOf.length} </h2>
           <h2 className="playlist-details-losses">Losses: </h2>
         </div>
         <div className="playlist-details-additional-song-list">

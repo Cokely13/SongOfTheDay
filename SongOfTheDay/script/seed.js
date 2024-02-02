@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User, Song, Question} } = require('../server/db')
+const {db, models: {User, Song, Question, VoteSong} } = require('../server/db')
 const fetch = require('node-fetch');
 
 /**
@@ -29,6 +29,12 @@ twodays.setDate(twodays.getDate() - 2);
     Question.create({   }),
     Question.create({date:yesterday}),
     Question.create({date:twodays}),
+  ])
+
+  const voteSongs = await Promise.all([
+    VoteSong.create({questionId: 1, songId:1, userId:1   }),
+    VoteSong.create({questionId: 1, songId:2, userId:2   }),
+    VoteSong.create({questionId: 2, songId:6, userId:1   }),
   ])
 
 

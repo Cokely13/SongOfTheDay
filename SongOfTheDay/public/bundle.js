@@ -2249,21 +2249,17 @@ function AnswerQuestion() {
     setAddSongsVisible(!addSongsVisible);
   };
   const question = questions[0];
-  console.log('hey', votesSongs);
   const songsOf = votesSongs ? votesSongs.filter(song => song.questionId == question.id) : 0;
-
-  // const handleSelectSong = (song) => {
-  //   if (playlistSongs.length >= 10) {
-  //     alert('Maximum songs reached. Please remove a song to add a new one.');
-  //   } else {
-  //     const newSong = {
-  //       playlistId: id,
-  //       songId: song.id,
-  //     };
-  //     dispatch(createPsong(newSong));
-  //     setSelectedSong(song); // Update selectedSong state
-  //   }
-  // };
+  const hasSongOfUser = songsOf ? songsOf.some(song => song.userId == user.id) : false;
+  const handleSelectSong = song => {
+    const newSong = {
+      questionId: question.id,
+      userId: user.id,
+      songId: song.id
+    };
+    dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.createVoteSong)(newSong));
+    // setSelectedSong(song); //
+  };
 
   // const handleRemoveSong = (song) => {
   //   dispatch(deletePsong(song.id));
@@ -2293,7 +2289,7 @@ function AnswerQuestion() {
     const pageCount = Math.ceil(filteredSongs.length / pageSize);
     const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    return hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already picked a song ") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "playlist-add-songs-container"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
       className: "playlist-add-songs-title"

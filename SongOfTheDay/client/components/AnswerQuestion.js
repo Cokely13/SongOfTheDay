@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';;
 import { fetchSongs } from '../store/allSongsStore';
 // import { deletePlaylist} from '../store/allPlaylistsStore'
 import { fetchQuestions} from '../store/allQuestionsStore'
-import { createMysong } from '../store/allVoteSongsStore';
+import { createMysong, createVoteSong } from '../store/allVoteSongsStore';
 import { fetchVoteSongs } from '../store/allVoteSongsStore';
 import Pagination from './Pagination'
 
@@ -43,23 +43,23 @@ function AnswerQuestion() {
 
   const question = questions[0]
 
-  console.log('hey', votesSongs)
+
 
   const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId == question.id) : 0
 
+  const hasSongOfUser = songsOf ? songsOf.some((song) => song.userId == user.id) : false
 
-  // const handleSelectSong = (song) => {
-  //   if (playlistSongs.length >= 10) {
-  //     alert('Maximum songs reached. Please remove a song to add a new one.');
-  //   } else {
-  //     const newSong = {
-  //       playlistId: id,
-  //       songId: song.id,
-  //     };
-  //     dispatch(createPsong(newSong));
-  //     setSelectedSong(song); // Update selectedSong state
-  //   }
-  // };
+
+  const handleSelectSong = (song) => {
+      const newSong = {
+        questionId: question.id,
+        userId: user.id,
+        songId: song.id,
+      };
+      dispatch(createVoteSong(newSong));
+      // setSelectedSong(song); //
+    }
+
 
   // const handleRemoveSong = (song) => {
   //   dispatch(deletePsong(song.id));
@@ -98,6 +98,7 @@ function AnswerQuestion() {
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     return (
+      hasSongOfUser ? <div>You have already picked a song </div> :
       <div className="playlist-add-songs-container">
         <h3 className="playlist-add-songs-title">Add Songs:</h3>
         <input

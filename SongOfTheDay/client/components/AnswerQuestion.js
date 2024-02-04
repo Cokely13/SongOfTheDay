@@ -121,7 +121,7 @@ function AnswerQuestion() {
                       className="playlist-song-add"
                       onClick={() => handleSelectSong(song)}
                     >
-                      Add to Playlist
+                     Select Song
                     </button>
                   </div>
                 </li>
@@ -166,7 +166,6 @@ function AnswerQuestion() {
 
     return (
       <div className="playlist-details-container">
-        <h1 className="playlist-details-title">{name}</h1>
         <h2 className="playlist-details-created-by">
           Date: {question ? question.date.slice(0,10): "No User"}
         </h2>

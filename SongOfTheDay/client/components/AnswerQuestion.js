@@ -105,7 +105,10 @@ function AnswerQuestion() {
       hasSongOfUser ? <div> <div>You have already picked a song </div>
 
       {userSong ? <div><div>
-        {userSong[0].songId}
+      <div> Name:
+        {userSong[0].song.name}</div>
+        <div> Artist:
+        {userSong[0].song.artist}</div>
         </div>
         {/* { allSongs ? <div>{allSongs.id.find(song => song.id == userSong[0].songId)?.name}</div>: <div></div>} */}
         </div> : <div></div>} </div>

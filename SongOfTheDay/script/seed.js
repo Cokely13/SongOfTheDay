@@ -31,11 +31,7 @@ twodays.setDate(twodays.getDate() - 2);
     Question.create({date:twodays}),
   ])
 
-  const voteSongs = await Promise.all([
-    VoteSong.create({questionId: 1, songId:1, userId:1   }),
-    VoteSong.create({questionId: 1, songId:2, userId:2   }),
-    VoteSong.create({questionId: 2, songId:6, userId:1   }),
-  ])
+
 
 
   const API_KEY = '6e56a81fd7f7f0fb08932517fef4fc86';
@@ -55,6 +51,12 @@ twodays.setDate(twodays.getDate() - 2);
       await Song.create({ name, artist });
     }
   }
+
+  const voteSongs = await Promise.all([
+    VoteSong.create({questionId: 1, songId:1, userId:1   }),
+    VoteSong.create({questionId: 1, songId:2, userId:2   }),
+    VoteSong.create({questionId: 2, songId:6, userId:1   }),
+  ])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)

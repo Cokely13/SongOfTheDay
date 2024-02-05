@@ -11,10 +11,14 @@ import singleUserReducer from './singleUserStore'
 import singleVoteSongReducer from './singleVoteSongStore'
 import singleQuestionReducer from './singleQuestionStore'
 import questionsReducer from './allQuestionsStore'
+import singleVoteReducer from './singleVoteStore'
+import votesReducer from './allVotesStore'
 
 const reducer = combineReducers({ auth,
   allSongs: songsReducer,
   singleSong: singleSongReducer,
+  allVotes: votesReducer,
+  singleVote: singleVoteReducer,
   singleVoteSong: singleVoteSongReducer,
   allVoteSongs: votesongsReducer,
   allUsers: usersReducer,

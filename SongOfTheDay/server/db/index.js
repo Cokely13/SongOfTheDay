@@ -2,6 +2,7 @@
 
 const db = require('./db')
 const Song = require('./models/Song')
+const Vote = require('./models/Vote')
 const VoteSong = require('./models/VoteSong')
 const Question = require('./models/Question')
 
@@ -11,6 +12,14 @@ const User = require('./models/User')
 //associations could go here!
 User.hasMany(VoteSong)
 VoteSong.belongsTo(User)
+User.hasMany(Vote)
+Vote.belongsTo(User)
+
+Question.hasMany(Vote)
+Vote.belongsTo(Question)
+
+VoteSong.hasMany(Vote)
+Vote.belongsTo(VoteSong)
 
 User.hasMany(Question)
 Question.belongsTo(User)
@@ -30,5 +39,6 @@ module.exports = {
     Song,
     VoteSong,
     Question,
+    Vote,
   },
 }

@@ -2090,7 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AuthForm */ "./client/components/AuthForm.js");
 /* harmony import */ var _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/LogInForm */ "./client/components/LogInForm.js");
 /* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Home */ "./client/components/Home.js");
@@ -2099,7 +2099,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Profile */ "./client/components/Profile.js");
 /* harmony import */ var _components_UserDetailPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/UserDetailPage */ "./client/components/UserDetailPage.js");
 /* harmony import */ var _components_AnswerQuestion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/AnswerQuestion */ "./client/components/AnswerQuestion.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+/* harmony import */ var _components_Vote__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Vote */ "./client/components/Vote.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+
 
 
 
@@ -2124,40 +2126,44 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     const {
       isLoggedIn
     } = this.props;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       exact: true,
       path: "/home",
       component: _components_Home__WEBPACK_IMPORTED_MODULE_4__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       exact: true,
       path: "/profile",
       component: _components_Profile__WEBPACK_IMPORTED_MODULE_7__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       exact: true,
       path: "/users",
       component: _components_User__WEBPACK_IMPORTED_MODULE_6__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       exact: true,
       path: "/users/:userId",
       component: _components_UserDetailPage__WEBPACK_IMPORTED_MODULE_8__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       exact: true,
       path: "/songs",
       component: _components_SongList__WEBPACK_IMPORTED_MODULE_5__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       exact: true,
-      path: "/answer",
+      path: "/add",
       component: _components_AnswerQuestion__WEBPACK_IMPORTED_MODULE_9__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Redirect, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      exact: true,
+      path: "/vote",
+      component: _components_Vote__WEBPACK_IMPORTED_MODULE_10__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Redirect, {
       to: "/home"
-    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       path: "/",
       exact: true,
       component: _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       path: "/login",
       component: _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
       path: "/signup",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Signup
     })));
@@ -2177,14 +2183,14 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_10__.me)());
+      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_11__.me)());
     }
   };
 };
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
 
 /***/ }),
 
@@ -2291,7 +2297,7 @@ function AnswerQuestion() {
     const pageCount = Math.ceil(filteredSongs.length / pageSize);
     const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-    return hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already picked a song "), userSong ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, userSong[0].songId)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), " ") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    return hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already picked a song "), userSong ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " Name:", userSong[0].song.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " Artist:", userSong[0].song.artist))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), " ") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "playlist-add-songs-container"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
       className: "playlist-add-songs-title"
@@ -2819,7 +2825,13 @@ const Navbar = ({
 }, "Users"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
   to: "/songs",
   className: "navbar-link"
-}, "Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+}, "Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  to: "/vote",
+  className: "navbar-link"
+}, "Vote"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  to: "/add",
+  className: "navbar-link"
+}, "Add"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
   href: "#",
   onClick: handleClick,
   className: "navbar-link"
@@ -3436,6 +3448,38 @@ function UserDetailPage() {
 
 /***/ }),
 
+/***/ "./client/components/Vote.js":
+/*!***********************************!*\
+  !*** ./client/components/Vote.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
+
+
+
+
+function Vote() {
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const userId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
+  const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
+  console.log("qu", questions);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.fetchQuestions)());
+  }, [dispatch]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Vote");
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vote);
+
+/***/ }),
+
 /***/ "./client/history.js":
 /*!***************************!*\
   !*** ./client/history.js ***!
@@ -3740,6 +3784,87 @@ function votesongsReducer(state = initialState, action) {
 
 /***/ }),
 
+/***/ "./client/store/allVotesStore.js":
+/*!***************************************!*\
+  !*** ./client/store/allVotesStore.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createVote: () => (/* binding */ createVote),
+/* harmony export */   "default": () => (/* binding */ votesReducer),
+/* harmony export */   deleteVote: () => (/* binding */ deleteVote),
+/* harmony export */   fetchVotes: () => (/* binding */ fetchVotes),
+/* harmony export */   setVotes: () => (/* binding */ setVotes)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+const SET_VOTES = "SET_VOTES";
+const CREATE_VOTE = "CREATE_VOTE";
+const DELETE_VOTE = "DELETE_VOTE";
+const setVotes = vote => {
+  return {
+    type: SET_VOTES,
+    vote
+  };
+};
+const _createVote = vote => {
+  return {
+    type: CREATE_VOTE,
+    vote
+  };
+};
+const _deleteVote = vote => {
+  return {
+    type: DELETE_VOTE,
+    vote
+  };
+};
+const fetchVotes = () => {
+  return async dispatch => {
+    const {
+      data
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/votes");
+    dispatch(setVotes(data));
+  };
+};
+const createVote = vote => {
+  return async dispatch => {
+    const {
+      data: created
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/votes", vote);
+    dispatch(_createVote(created));
+    // history.push("/votes");
+  };
+};
+const deleteVote = (id, history) => {
+  return async dispatch => {
+    const {
+      data: vote
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](`/api/votes/${id}`);
+    dispatch(_deleteVote(vote));
+    history.push("/votes");
+  };
+};
+const initialState = [];
+function votesReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_VOTES:
+      return action.vote;
+    case CREATE_VOTE:
+      return [...state, action.vote];
+    case DELETE_VOTE:
+      return state.filter(vote => vote.id !== action.vote.id);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./client/store/auth.js":
 /*!******************************!*\
   !*** ./client/store/auth.js ***!
@@ -3844,10 +3969,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   logout: () => (/* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_5__.logout),
 /* harmony export */   me: () => (/* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_5__.me)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
 /* harmony import */ var _allSongsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./allSongsStore */ "./client/store/allSongsStore.js");
 /* harmony import */ var _singleSongStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./singleSongStore */ "./client/store/singleSongStore.js");
@@ -3858,6 +3983,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _singleVoteSongStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./singleVoteSongStore */ "./client/store/singleVoteSongStore.js");
 /* harmony import */ var _singleQuestionStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./singleQuestionStore */ "./client/store/singleQuestionStore.js");
 /* harmony import */ var _allQuestionsStore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./allQuestionsStore */ "./client/store/allQuestionsStore.js");
+/* harmony import */ var _singleVoteStore__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./singleVoteStore */ "./client/store/singleVoteStore.js");
+/* harmony import */ var _allVotesStore__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./allVotesStore */ "./client/store/allVotesStore.js");
 
 
 
@@ -3871,10 +3998,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_11__.combineReducers)({
+
+
+const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_13__.combineReducers)({
   auth: _auth__WEBPACK_IMPORTED_MODULE_5__["default"],
   allSongs: _allSongsStore__WEBPACK_IMPORTED_MODULE_2__["default"],
   singleSong: _singleSongStore__WEBPACK_IMPORTED_MODULE_3__["default"],
+  allVotes: _allVotesStore__WEBPACK_IMPORTED_MODULE_12__["default"],
+  singleVote: _singleVoteStore__WEBPACK_IMPORTED_MODULE_11__["default"],
   singleVoteSong: _singleVoteSongStore__WEBPACK_IMPORTED_MODULE_8__["default"],
   allVoteSongs: _allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__["default"],
   allUsers: _allUsersStore__WEBPACK_IMPORTED_MODULE_6__["default"],
@@ -3882,10 +4013,10 @@ const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_11__.combineReducers)({
   singleQuestion: _singleQuestionStore__WEBPACK_IMPORTED_MODULE_9__["default"],
   singleUser: _singleUserStore__WEBPACK_IMPORTED_MODULE_7__["default"]
 });
-const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_11__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_12__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
+const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_13__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_14__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
-const store = (0,redux__WEBPACK_IMPORTED_MODULE_11__.createStore)(reducer, middleware);
+const store = (0,redux__WEBPACK_IMPORTED_MODULE_13__.createStore)(reducer, middleware);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 
@@ -4195,6 +4326,83 @@ const singleVoteSongReducer = (state = initialState, action) => {
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (singleVoteSongReducer);
+
+/***/ }),
+
+/***/ "./client/store/singleVoteStore.js":
+/*!*****************************************!*\
+  !*** ./client/store/singleVoteStore.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   _setSingleVote: () => (/* binding */ _setSingleVote),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   fetchVote: () => (/* binding */ fetchVote),
+/* harmony export */   updateSingleVote: () => (/* binding */ updateSingleVote)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
+// Action Types
+const SET_SINGLE_VOTE = "SET_SINGLE_VOTE";
+const UPDATE_SINGLE_VOTE = "UPDATE_SINGLE_VOTE";
+const TOKEN = "token";
+
+// Action creators
+const _setSingleVote = votedata => {
+  return {
+    type: SET_SINGLE_VOTE,
+    votedata
+  };
+};
+const _updateSingleVote = votedata => {
+  return {
+    type: UPDATE_SINGLE_VOTE,
+    votedata
+  };
+};
+
+//Thunks
+const fetchVote = id => {
+  return async dispatch => {
+    const {
+      data
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/votes/${id}`);
+    dispatch(_setSingleVote(data));
+  };
+};
+const updateSingleVote = (vote, history) => {
+  return async dispatch => {
+    try {
+      await axios__WEBPACK_IMPORTED_MODULE_0___default().put(`/api/votes/${vote.id}`, vote);
+      const {
+        data: voteData
+      } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/votes/${vote.id}`);
+      dispatch(_updateSingleVote(voteData));
+      history.push(`/votes/${vote.id}`);
+    } catch (error) {
+      console.log("VOTE", vote);
+    }
+  };
+};
+
+// reducer
+const initialState = [];
+const singleVoteReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_SINGLE_VOTE:
+      return action.votedata;
+    case UPDATE_SINGLE_VOTE:
+      return action.votedata;
+    default:
+      return state;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (singleVoteReducer);
 
 /***/ }),
 

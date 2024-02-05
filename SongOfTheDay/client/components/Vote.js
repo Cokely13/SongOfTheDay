@@ -11,6 +11,12 @@ function Vote() {
 
   console.log("qu", questions)
 
+  const picks = questions ? questions[0] : []
+
+   const currentSongs = picks ? picks.voteSongs ? picks.voteSongs: 0 : 0
+
+   console.log("cur", currentSongs)
+
   useEffect(() => {
     dispatch(fetchQuestions());
   }, [dispatch]);
@@ -19,11 +25,15 @@ function Vote() {
   return (
     <div>
     <div>Vote</div>
-    {questions.map((question) => {
+    {currentSongs ? currentSongs.map((song) => {
       return (
-        <div key={question.id}>{question.song.artist}</div>
+        <div key={song.id}>
+          <div>{song.song.artist}</div>
+          <div>{song.song.name}</div>
+          <button>Vote</button>
+          </div>
       )
-    })}
+    }) : <div>nada</div>}
     </div>
   )
 }

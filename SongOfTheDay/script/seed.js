@@ -17,11 +17,16 @@ yesterday.setDate(yesterday.getDate() - 1);
 const twodays = new Date();
 twodays.setDate(twodays.getDate() - 2);
 
+const threedays = new Date();
+twodays.setDate(twodays.getDate() - 3);
+
 
   // Creating Users
   const users = await Promise.all([
     User.create({ username: 'Ryan', email: "ryan.cokely@gmail.com",  password: '123', admin: true }),
     User.create({ username: 'Matt', email: "mclaise@gmail.com",  password: '123'}),
+    User.create({ username: 'Scott', email: "scottlcokely@gmail.com",  password: '123'}),
+    User.create({ username: 'Jamal', email: "jamalcoston@gmail.com",  password: '123'}),
     // User.create({ username: 'murphy', password: '123' }),
   ])
 
@@ -29,6 +34,7 @@ twodays.setDate(twodays.getDate() - 2);
     Question.create({   }),
     Question.create({date:yesterday}),
     Question.create({date:twodays}),
+    Question.create({date:threedays}),
   ])
 
 

@@ -18,6 +18,9 @@ Question.belongsTo(User)
 Question.hasMany(VoteSong)
 VoteSong.belongsTo(Question)
 
+VoteSong.belongsTo(Song)
+Song.hasMany(VoteSong)
+
 
 
 module.exports = {

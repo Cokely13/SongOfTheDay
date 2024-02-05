@@ -45,12 +45,14 @@ function AnswerQuestion() {
 
 
 
+
+
   const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId == question.id) : 0
 
   const hasSongOfUser = songsOf ? songsOf.some((song) => song.userId == user.id) : false
   const userSong = songsOf ? songsOf.filter((song) => song.userId == user.id) : 0
 
-
+  console.log("all", userSong)
 
   const handleSelectSong = (song) => {
       const newSong = {
@@ -100,11 +102,14 @@ function AnswerQuestion() {
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     return (
-      hasSongOfUser ? <div><div>You have already picked a song </div>
+      hasSongOfUser ? <div> <div>You have already picked a song </div>
 
-      {userSong ? <div>
+      {userSong ? <div><div>
         {userSong[0].songId}
-        </div> : <div></div>}</div> :
+        </div>
+        {/* { allSongs ? <div>{allSongs.id.find(song => song.id == userSong[0].songId)?.name}</div>: <div></div>} */}
+        </div> : <div></div>} </div>
+          :
       <div className="playlist-add-songs-container">
         <h3 className="playlist-add-songs-title">Add Songs:</h3>
         <input

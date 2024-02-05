@@ -10,6 +10,7 @@ import Profile from './components/Profile';
 import UserDetailPage from './components/UserDetailPage';
 import AnswerQuestion from './components/AnswerQuestion';
 import Vote from './components/Vote';
+import Winner from './components/Winner';
 import {me} from './store'
 
 
@@ -35,6 +36,7 @@ class Routes extends Component {
             <Route exact path="/songs" component={SongList} />
             <Route exact path="/add" component={AnswerQuestion} />
             <Route exact path="/vote" component={Vote} />
+            <Route exact path="/winner" component={Winner} />
             <Redirect to="/home" />
           </Switch>
         ) : (

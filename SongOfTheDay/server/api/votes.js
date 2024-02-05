@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const { models: { VoteSong, Question, User, Vote }} = require('../db')
+const { models: { VoteSong, Question,  Vote }} = require('../db')
 module.exports = router
 
 
 router.get('/', async (req, res, next) => {
   try {
-    const votes = await Vote.findAll( {include: [User, VoteSong, Question]}
+    const votes = await Vote.findAll( {include: [VoteSong, Question]}
     );
     res.json(votes);
   } catch (err) {
@@ -34,7 +34,7 @@ router.put('/:id', async (req, res, next) => {
 //Get read all votes
 router.get('/:id', async (req, res, next) => {
   try {
-    const vote = await Vote.findByPk(req.params.id,{include: [User, VoteSong, Question]}
+    const vote = await Vote.findByPk(req.params.id,{include: [ VoteSong, Question]}
     );
     res.json(vote);
   } catch (err) {

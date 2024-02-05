@@ -3462,6 +3462,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
+/* harmony import */ var _store_allVotesStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allVotesStore */ "./client/store/allVotesStore.js");
+
 
 
 
@@ -3474,7 +3476,11 @@ function Vote() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.fetchQuestions)());
   }, [dispatch]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Vote");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Vote"), questions.map(question => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: question.id
+    }, question.song.artist);
+  }));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vote);
 

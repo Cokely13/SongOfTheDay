@@ -36,9 +36,9 @@ module.exports = {
   db,
   models: {
     User,
+    Vote,
     Song,
     VoteSong,
     Question,
-    Vote,
   },
 }

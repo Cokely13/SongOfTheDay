@@ -18,10 +18,6 @@ const Question = db.define('question', {
       type: Sequelize.DATE,
       defaultValue: Sequelize.NOW,
     },
-    votes: {
-      type: Sequelize.ARRAY(Sequelize.INTEGER), // Array of integers
-      defaultValue: []
-    },
     winner: {
       type: Sequelize.INTEGER,
     },

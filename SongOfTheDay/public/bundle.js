@@ -3536,14 +3536,52 @@ function Winner() {
   const handleDateChange = event => {
     setSelectedDate(event.target.value);
   };
+
+  // const findWinningSongs = () => {
+  //   // Find the selected question based on the date
+  //   const selectedQuestion = questions.find((question) => question.date === selectedDate);
+
+  //   console.log("hey", selectedQuestion)
+
+  //   if (selectedQuestion) {
+  //     // Find the voteSongs with the most votes for the selected question
+  //     const maxVotes = Math.max(...selectedQuestion.voteSongs.map((voteSong) => voteSong.votes));
+  //     const winningSongs = selectedQuestion.voteSongs.filter((voteSong) => voteSong.votes === maxVotes);
+  //     setWinningSongs(winningSongs);
+  //   } else {
+  //     setWinningSongs([]);
+  //   }
+  // };
+
   const findWinningSongs = () => {
     // Find the selected question based on the date
     const selectedQuestion = questions.find(question => question.date === selectedDate);
     if (selectedQuestion) {
-      // Find the voteSongs with the most votes for the selected question
-      const maxVotes = Math.max(...selectedQuestion.voteSongs.map(voteSong => voteSong.votes));
-      const winningSongs = selectedQuestion.voteSongs.filter(voteSong => voteSong.votes === maxVotes);
-      setWinningSongs(winningSongs);
+      const voteCounts = {}; // Object to store vote counts for each voteSongId
+
+      // Iterate through selectedQuestion.votes to count votes for each voteSongId
+      selectedQuestion.votes.forEach(vote => {
+        const voteSongId = vote.voteSongId;
+        if (voteCounts[voteSongId]) {
+          voteCounts[voteSongId]++;
+        } else {
+          voteCounts[voteSongId] = 1;
+        }
+      });
+
+      // Find the voteSongId with the most votes
+      let winningVoteSongId = null;
+      let maxVotes = 0;
+      for (const voteSongId in voteCounts) {
+        if (voteCounts[voteSongId] > maxVotes) {
+          maxVotes = voteCounts[voteSongId];
+          winningVoteSongId = voteSongId;
+        }
+      }
+
+      // Now, you have the winningVoteSongId, and you can find the corresponding song
+      const winningSong = selectedQuestion.voteSongs.find(voteSong => voteSong.id === parseInt(winningVoteSongId));
+      setWinningSongs([winningSong]);
     } else {
       setWinningSongs([]);
     }

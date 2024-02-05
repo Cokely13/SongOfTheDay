@@ -3522,37 +3522,131 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
+/* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
+// import React, { useEffect, useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { fetchQuestions } from '../store/allQuestionsStore';
+// import {fetchUsers} from '../store/allUsersStore'
+
+// function Winner() {
+//   const dispatch = useDispatch();
+//   const questions = useSelector((state) => state.allQuestions);
+//   const users = useSelector((state) => state.allUsers);
+//   const [selectedDate, setSelectedDate] = useState('');
+//   const [winningSongs, setWinningSongs] = useState([]);
+
+//   useEffect(() => {
+//     dispatch(fetchQuestions());
+//     dispatch(fetchUsers());
+//   }, [dispatch]);
+
+//   const handleDateChange = (event) => {
+//     setSelectedDate(event.target.value);
+//   };
+
+//   // const findWinningSongs = () => {
+//   //   // Find the selected question based on the date
+//   //   const selectedQuestion = questions.find((question) => question.date === selectedDate);
+
+//   //   console.log("hey", selectedQuestion)
+
+//   //   if (selectedQuestion) {
+//   //     // Find the voteSongs with the most votes for the selected question
+//   //     const maxVotes = Math.max(...selectedQuestion.voteSongs.map((voteSong) => voteSong.votes));
+//   //     const winningSongs = selectedQuestion.voteSongs.filter((voteSong) => voteSong.votes === maxVotes);
+//   //     setWinningSongs(winningSongs);
+//   //   } else {
+//   //     setWinningSongs([]);
+//   //   }
+//   // };
+
+//   const findWinningSongs = () => {
+//     // Find the selected question based on the date
+//     const selectedQuestion = questions.find((question) => question.date === selectedDate);
+
+//     if (selectedQuestion) {
+//       const voteCounts = {}; // Object to store vote counts for each voteSongId
+
+//       // Iterate through selectedQuestion.votes to count votes for each voteSongId
+//       selectedQuestion.votes.forEach((vote) => {
+//         const voteSongId = vote.voteSongId;
+//         if (voteCounts[voteSongId]) {
+//           voteCounts[voteSongId]++;
+//         } else {
+//           voteCounts[voteSongId] = 1;
+//         }
+//       });
+
+//       // Find the voteSongId with the most votes
+//       let winningVoteSongId = null;
+//       let maxVotes = 0;
+
+//       for (const voteSongId in voteCounts) {
+//         if (voteCounts[voteSongId] > maxVotes) {
+//           maxVotes = voteCounts[voteSongId];
+//           winningVoteSongId = voteSongId;
+//         }
+//       }
+
+//       // Now, you have the winningVoteSongId, and you can find the corresponding song
+//       const winningSong = selectedQuestion.voteSongs.find(
+//         (voteSong) => voteSong.id === parseInt(winningVoteSongId)
+//       );
+
+//       setWinningSongs([winningSong]);
+//     } else {
+//       setWinningSongs([]);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <div>Winner</div>
+//       <select onChange={handleDateChange}>
+//         <option value="">Select a date</option>
+//         {questions.map((question) => (
+//           <option key={question.id} value={question.date}>
+//             {question.date}
+//           </option>
+//         ))}
+//       </select>
+//       <button onClick={findWinningSongs}>Find Winning Songs</button>
+//       {winningSongs.length > 0 && (
+//         <div>
+//           <h2>Winning Songs for {selectedDate}:</h2>
+//           <ul>
+//             {winningSongs.map((voteSong) => (
+//               <li key={voteSong.id}>
+//                 {voteSong.song.artist} - {voteSong.song.name}
+//                 {voteSong.userId}
+//               </li>
+//             ))}
+//           </ul>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default Winner;
+
+
 
 
 
 function Winner() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
+  const users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allUsers);
   const [selectedDate, setSelectedDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [winningSongs, setWinningSongs] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.fetchQuestions)());
+    dispatch((0,_store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__.fetchUsers)());
   }, [dispatch]);
   const handleDateChange = event => {
     setSelectedDate(event.target.value);
   };
-
-  // const findWinningSongs = () => {
-  //   // Find the selected question based on the date
-  //   const selectedQuestion = questions.find((question) => question.date === selectedDate);
-
-  //   console.log("hey", selectedQuestion)
-
-  //   if (selectedQuestion) {
-  //     // Find the voteSongs with the most votes for the selected question
-  //     const maxVotes = Math.max(...selectedQuestion.voteSongs.map((voteSong) => voteSong.votes));
-  //     const winningSongs = selectedQuestion.voteSongs.filter((voteSong) => voteSong.votes === maxVotes);
-  //     setWinningSongs(winningSongs);
-  //   } else {
-  //     setWinningSongs([]);
-  //   }
-  // };
-
   const findWinningSongs = () => {
     // Find the selected question based on the date
     const selectedQuestion = questions.find(question => question.date === selectedDate);
@@ -3579,9 +3673,15 @@ function Winner() {
         }
       }
 
-      // Now, you have the winningVoteSongId, and you can find the corresponding song
+      // Now, you have the winningVoteSongId, and you can find the corresponding song and user
       const winningSong = selectedQuestion.voteSongs.find(voteSong => voteSong.id === parseInt(winningVoteSongId));
-      setWinningSongs([winningSong]);
+
+      // Find the user associated with the winningSong.userId
+      const winningUser = users.find(user => user.id === winningSong.userId);
+      setWinningSongs([{
+        song: winningSong,
+        user: winningUser
+      }]);
     } else {
       setWinningSongs([]);
     }
@@ -3595,9 +3695,9 @@ function Winner() {
     value: question.date
   }, question.date))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: findWinningSongs
-  }, "Find Winning Songs"), winningSongs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Songs for ", selectedDate, ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, winningSongs.map(voteSong => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    key: voteSong.id
-  }, voteSong.song.artist, " - ", voteSong.song.name)))));
+  }, "Find Winning Songs"), winningSongs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Songs for ", selectedDate, ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, winningSongs.map(winning => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    key: winning.song.id
+  }, winning.song.song.artist, " - ", winning.song.song.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " ", winning.user.username))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Winner);
 

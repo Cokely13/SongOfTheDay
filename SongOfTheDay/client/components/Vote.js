@@ -10,7 +10,7 @@ function Vote() {
   const questions = useSelector(state =>state.allQuestions)
   const [voted, setVoted] = useState()
 
-  const picks = questions ? questions[1] : []
+  const picks = questions ? questions[0] : []
   console.log('picks', picks)
 
    const currentSongs = picks ? picks.voteSongs ? picks.voteSongs: 0 : 0
@@ -31,22 +31,34 @@ function Vote() {
     setVoted(true)
   }
 
+  const hasUserVoted = picks
+  ? picks.votes.some((vote) => vote.userId === id)
+  : false;
+
+  console.log("has", hasUserVoted)
 
   return (
     <div>
-    <div>Vote</div>
-    {!voted ?
-    currentSongs ? currentSongs.map((song) => {
-      return (
-        <div key={song.id}>
-          <div>{song.song.artist}</div>
-          <div>{song.song.name}</div>
-          <button onClick={() => handleVote(song.id)}>Vote</button>
-          </div>
-      )
-    }) : <div>nada</div> : <div>VOTED</div>}
+      <div>Vote</div>
+      {!voted ? (
+        hasUserVoted ? (
+          <div>VOTED</div>
+        ) : currentSongs.length > 0 ? (
+          currentSongs.map((song) => (
+            <div key={song.id}>
+              <div>{song.song.artist}</div>
+              <div>{song.song.name}</div>
+              <button onClick={() => handleVote(song.id)}>Vote</button>
+            </div>
+          ))
+        ) : (
+          <div>nada</div>
+        )
+      ) : (
+        <div>You have already voted</div>
+      )}
     </div>
-  )
+  );
 }
 
 export default Vote

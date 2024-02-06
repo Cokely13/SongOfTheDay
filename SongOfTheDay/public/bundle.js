@@ -2253,7 +2253,7 @@ function AnswerQuestion() {
   const [showDeletePopup, setShowDeletePopup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__.fetchQuestions)());
-  }, [dispatch]); // Refetch playlist when selectedSong changes
+  }, [dispatch, selectedSong]); // Refetch playlist when selectedSong changes
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_2__.fetchSongs)());
@@ -2267,10 +2267,13 @@ function AnswerQuestion() {
     setAddSongsVisible(!addSongsVisible);
   };
   const question = questions[1];
-  const songsOf = votesSongs ? votesSongs.filter(song => song.questionId == question.id) : 0;
-  const hasSongOfUser = songsOf ? songsOf.some(song => song.userId == user.id) : false;
-  const userSong = songsOf ? songsOf.filter(song => song.userId == user.id) : 0;
-  console.log("all", userSong);
+  const songsIn = question ? question.voteSongs : [];
+  const songsOf = votesSongs ? votesSongs.filter(song => song.questionId === question?.id) : [];
+
+  // const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId == question.id) : 0
+
+  const hasSongOfUser = songsIn ? songsIn.some(song => song.userId == user.id) : false;
+  const userSong = songsIn ? songsIn.filter(song => song.userId == user.id) : 0;
   const handleSelectSong = song => {
     const newSong = {
       questionId: question.id,
@@ -2278,38 +2281,22 @@ function AnswerQuestion() {
       songId: song.id
     };
     dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.createVoteSong)(newSong));
+    history.push('/home');
     // setSelectedSong(song); //
   };
-
-  // const handleRemoveSong = (song) => {
-  //   dispatch(deletePsong(song.id));
-  //   setSelectedSong(song);
-  // };
-
   const handleSearchChange = event => {
     setSearchText(event.target.value);
   };
   const handlePageChange = page => {
     setCurrentPage(page);
   };
-
-  // const handleDeletePlaylist = () => {
-  //   const confirmDelete = window.confirm('Delete Playlist?');
-  //   if (confirmDelete) {
-  //     dispatch(deletePlaylist(playlistId))
-  //     // Dispatch delete action and redirect to home page
-  //     // You may want to change this to redirect to another page depending on your app
-  //     history.push('/playlists');
-  //   }
-  // };
-
   const renderAddSongs = () => {
     const songsToAdd = allSongs;
     const filteredSongs = songsToAdd.filter(song => song.name.toLowerCase().includes(searchText.toLowerCase()) || song.artist.toLowerCase().includes(searchText.toLowerCase()));
     const pageCount = Math.ceil(filteredSongs.length / pageSize);
     const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-    return hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already picked a song "), userSong ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " Name:", userSong[0].song.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " Artist:", userSong[0].song.artist))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), " ") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    return hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already picked a song "), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Name: ", hasSongOfUser ? userSong[0].song.name : ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Artist: ", userSong[0].song.artist))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), " ") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "playlist-add-songs-container"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
       className: "playlist-add-songs-title"
@@ -2327,7 +2314,7 @@ function AnswerQuestion() {
       className: "playlist-song-info"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "playlist-song-name"
-    }, song.name), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    }, song && song.name), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "playlist-song-artist"
     }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "playlist-song-add",
@@ -3490,7 +3477,7 @@ function Vote() {
   } = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
   const [voted, setVoted] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const picks = questions ? questions[1] : [];
+  const picks = questions ? questions[0] : [];
   console.log('picks', picks);
   const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : 0 : 0;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -3505,13 +3492,13 @@ function Vote() {
     dispatch((0,_store_allVotesStore__WEBPACK_IMPORTED_MODULE_3__.createVote)(vote));
     setVoted(true);
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Vote"), !voted ? currentSongs ? currentSongs.map(song => {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      key: song.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, song.song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, song.song.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handleVote(song.id)
-    }, "Vote"));
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "nada") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED"));
+  const hasUserVoted = picks ? picks.votes.some(vote => vote.userId === id) : false;
+  console.log("has", hasUserVoted);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Vote"), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    key: song.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, song.song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, song.song.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: () => handleVote(song.id)
+  }, "Vote"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "nada") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted"));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vote);
 

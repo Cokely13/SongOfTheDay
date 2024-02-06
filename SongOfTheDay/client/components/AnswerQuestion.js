@@ -26,7 +26,7 @@ function AnswerQuestion() {
 
   useEffect(() => {
     dispatch(fetchQuestions());
-  }, [dispatch]); // Refetch playlist when selectedSong changes
+  }, [dispatch, selectedSong]); // Refetch playlist when selectedSong changes
 
   useEffect(() => {
     dispatch(fetchSongs());
@@ -44,15 +44,17 @@ function AnswerQuestion() {
   const question = questions[1]
 
 
+const songsIn = question ? question.voteSongs : []
 
 
+  const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId === question?.id) : [];
 
-  const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId == question.id) : 0
+  // const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId == question.id) : 0
 
-  const hasSongOfUser = songsOf ? songsOf.some((song) => song.userId == user.id) : false
-  const userSong = songsOf ? songsOf.filter((song) => song.userId == user.id) : 0
+  const hasSongOfUser = songsIn ? songsIn.some((song) => song.userId == user.id) : false
+  const userSong = songsIn ? songsIn.filter((song) => song.userId == user.id) : 0
 
-  console.log("all", userSong)
+
 
   const handleSelectSong = (song) => {
       const newSong = {
@@ -61,14 +63,10 @@ function AnswerQuestion() {
         songId: song.id,
       };
       dispatch(createVoteSong(newSong));
+      history.push('/home');
       // setSelectedSong(song); //
     }
 
-
-  // const handleRemoveSong = (song) => {
-  //   dispatch(deletePsong(song.id));
-  //   setSelectedSong(song);
-  // };
 
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
@@ -78,15 +76,6 @@ function AnswerQuestion() {
     setCurrentPage(page);
   };
 
-  // const handleDeletePlaylist = () => {
-  //   const confirmDelete = window.confirm('Delete Playlist?');
-  //   if (confirmDelete) {
-  //     dispatch(deletePlaylist(playlistId))
-  //     // Dispatch delete action and redirect to home page
-  //     // You may want to change this to redirect to another page depending on your app
-  //     history.push('/playlists');
-  //   }
-  // };
 
   const renderAddSongs = () => {
     const songsToAdd = allSongs
@@ -104,14 +93,29 @@ function AnswerQuestion() {
     return (
       hasSongOfUser ? <div> <div>You have already picked a song </div>
 
-      {userSong ? <div><div>
+      {/* {userSong ? <div><div>
       <div> Name:
-        {userSong[0].song.name}</div>
+        {hasSongOfUser ? userSong[0].song.name : ""}</div>
         <div> Artist:
         {userSong[0].song.artist}</div>
         </div>
         {/* { allSongs ? <div>{allSongs.id.find(song => song.id == userSong[0].songId)?.name}</div>: <div></div>} */}
-        </div> : <div></div>} </div>
+        {/* </div> : <div></div>} */}
+
+        {userSong && userSong.length > 0 ? (
+  <div>
+    <div>
+      <div>
+        Name: {hasSongOfUser ? userSong[0].song.name : ""}
+      </div>
+      <div>
+        Artist: {userSong[0].song.artist}
+      </div>
+    </div>
+  </div>
+) : (
+  <div></div>
+)} </div>
           :
       <div className="playlist-add-songs-container">
         <h3 className="playlist-add-songs-title">Add Songs:</h3>
@@ -130,7 +134,7 @@ function AnswerQuestion() {
               {paginatedSongs.map((song) => (
                 <li key={song.id}>
                   <div className="playlist-song-info">
-                    <span className="playlist-song-name">{song.name}</span> by
+                    <span className="playlist-song-name">{song && song.name}</span> by
                     <span className="playlist-song-artist">{song.artist}</span>
                     <button
                       className="playlist-song-add"

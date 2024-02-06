@@ -3484,7 +3484,7 @@ function Vote() {
   } = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
   const [voted, setVoted] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const picks = questions ? questions[0] : [];
+  const picks = questions ? questions[1] : [];
   console.log('picks', picks);
   const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : 0 : 0;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {

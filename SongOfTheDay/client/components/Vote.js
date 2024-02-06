@@ -10,7 +10,7 @@ function Vote() {
   const questions = useSelector(state =>state.allQuestions)
   const [voted, setVoted] = useState()
 
-  const picks = questions ? questions[0] : []
+  const picks = questions ? questions[1] : []
   console.log('picks', picks)
 
    const currentSongs = picks ? picks.voteSongs ? picks.voteSongs: 0 : 0

@@ -14,11 +14,11 @@ async function seed() {
   const yesterday = new Date();
 yesterday.setDate(yesterday.getDate() - 1);
 
-const twodays = new Date();
-twodays.setDate(twodays.getDate() - 2);
+// const twodays = new Date();
+// twodays.setDate(twodays.getDate() - 2);
 
-const threedays = new Date();
-twodays.setDate(twodays.getDate() - 3);
+// const threedays = new Date();
+// twodays.setDate(twodays.getDate() - 3);
 
 
   // Creating Users
@@ -33,8 +33,6 @@ twodays.setDate(twodays.getDate() - 3);
   const questions = await Promise.all([
     Question.create({   }),
     Question.create({date:yesterday}),
-    Question.create({date:twodays}),
-    Question.create({date:threedays}),
   ])
 
 

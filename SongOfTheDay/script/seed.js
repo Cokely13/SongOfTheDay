@@ -13,6 +13,7 @@ async function seed() {
 
   const yesterday = new Date();
 yesterday.setDate(yesterday.getDate() - 1);
+const yesterdayDateOnly = yesterday.toISOString().split('T')[0];
 
 // const twodays = new Date();
 // twodays.setDate(twodays.getDate() - 2);
@@ -32,7 +33,7 @@ yesterday.setDate(yesterday.getDate() - 1);
 
   const questions = await Promise.all([
     Question.create({   }),
-    Question.create({date:yesterday}),
+    Question.create({date:yesterdayDateOnly}),
   ])
 
 

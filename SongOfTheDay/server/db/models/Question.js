@@ -15,8 +15,9 @@ const Question = db.define('question', {
       defaultValue: true
     },
     date: {
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW,
+      type: Sequelize.DATEONLY,
+      defaultValue: Sequelize.fn('now'),
+      unique: true
     },
     winner: {
       type: Sequelize.INTEGER,

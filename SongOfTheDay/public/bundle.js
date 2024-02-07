@@ -3740,6 +3740,330 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
 /* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-google-charts */ "./node_modules/react-google-charts/dist/index.js");
+// import React, { useEffect, useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { fetchQuestions } from '../store/allQuestionsStore';
+// import { fetchUsers } from '../store/allUsersStore';
+// import { fetchSongs } from '../store/allSongsStore';
+// import Chart from 'react-google-charts'; // Assuming you're using Google Charts library for the pie chart
+
+// function WinningSongs() {
+//   const dispatch = useDispatch();
+//   const questions = useSelector((state) => state.allQuestions);
+//   const users = useSelector((state) => state.allUsers);
+//   const allSongs = useSelector((state) => state.allSongs);
+//   const [selectedDate, setSelectedDate] = useState('');
+//   const [voteData, setVoteData] = useState(null);
+
+//   useEffect(() => {
+//     dispatch(fetchQuestions());
+//     dispatch(fetchUsers());
+//     dispatch(fetchSongs())
+//   }, [dispatch]);
+
+//   const handleDateChange = (event) => {
+//     setSelectedDate(event.target.value);
+//     setVoteData(null)
+//   };
+
+//   const handleSeeStats = () => {
+//     if (selectedDate) {
+//       const question = questions.find(q => q.date === selectedDate);
+//       if (question) {
+//         const voteCounts = {};
+//         question.voteSongs.forEach(voteSong => {
+//           const song = allSongs.find(song => song.id === voteSong.songId);
+//           const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
+//           voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
+//         });
+//         const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
+//         setVoteData(data);
+//       }
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <div>Winner</div>
+//       <select onChange={handleDateChange}>
+//         <option value="">Select a date</option>
+//         {questions.map((question) => (
+//           <option key={question.id} value={question.date}>
+//             {question.date}
+//           </option>
+//         ))}
+//       </select>
+
+//       <button onClick={handleSeeStats}>See Stats</button>
+
+//       <div>
+//         <h2>Winning Songs for {selectedDate}:</h2>
+//         {selectedDate ? <div><div> Winner: {users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username}</div><div> Winning Song: {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist}</div>  </div>: "NO Date"}
+//         <div>
+//           {voteData && (
+//             <Chart
+//               width={'500px'}
+//               height={'300px'}
+//               chartType="PieChart"
+//               loader={<div>Loading Chart</div>}
+//               data={[['Song', 'Votes'], ...voteData]}
+//               options={{
+//                 title: 'Vote Distribution',
+//               }}
+//               rootProps={{ 'data-testid': '1' }}
+//             />
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default WinningSongs;
+
+// import React, { useEffect, useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { fetchQuestions } from '../store/allQuestionsStore';
+// import { fetchUsers } from '../store/allUsersStore';
+// import { fetchSongs } from '../store/allSongsStore';
+// import Chart from 'react-google-charts'; // Assuming you're using Google Charts library for the pie chart
+
+// function WinningSongs() {
+//   const dispatch = useDispatch();
+//   const questions = useSelector((state) => state.allQuestions);
+//   const users = useSelector((state) => state.allUsers);
+//   const allSongs = useSelector((state) => state.allSongs);
+//   const [selectedDate, setSelectedDate] = useState('');
+//   const [voteData, setVoteData] = useState(null);
+//   const [songUsers, setSongUsers] = useState(null);
+
+//   useEffect(() => {
+//     dispatch(fetchQuestions());
+//     dispatch(fetchUsers());
+//     dispatch(fetchSongs())
+//   }, [dispatch]);
+
+//   const handleDateChange = (event) => {
+//     setSelectedDate(event.target.value);
+//     setVoteData(null);
+//     setSongUsers(null);
+//   };
+
+// const handleSeeStats = () => {
+//   if (selectedDate) {
+//     const question = questions.find(q => q.date === selectedDate);
+//     if (question) {
+//       const voteCounts = {};
+//       const songUsersMap = {}; // Map to store users who voted for each song
+//       question.votes.forEach(votes => {
+//         const song = allSongs.find(song => song.id === votes.votesSongId);
+//         const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
+//         voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
+//         if (!songUsersMap[songInfo]) {
+//           songUsersMap[songInfo] = [];
+//         }
+//         const user = users.find(user => user.id === voteSong.userId);
+//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
+//       });
+//       const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
+//       setVoteData(data);
+//       setSongUsers(songUsersMap);
+//     }
+//   }
+// };
+
+// const handleSeeStats = () => {
+//   if (selectedDate) {
+//     const question = questions.find((q) => q.date === selectedDate);
+//     if (question) {
+//       const voteCounts = {};
+//       const songUsersMap = {}; // Map to store users who voted for each song
+
+//       // Iterate through all voteSongs associated with the question
+//       question.voteSongs.forEach((voteSong) => {
+//         const song = allSongs.find((song) => song.id === voteSong.songId);
+//         const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
+//         voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
+
+//         if (!songUsersMap[songInfo]) {
+//           songUsersMap[songInfo] = [];
+//         }
+//         const user = users.find((user) => user.id === voteSong.userId);
+//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
+//       });
+
+//       // If a song has no votes, add it to voteCounts with count 0
+//       question.voteSongs.forEach((voteSong) => {
+//         const song = allSongs.find((song) => song.id === voteSong.songId);
+//         const songInfo = `${song.name} by ${song.artist}`;
+//         if (!voteCounts[songInfo]) {
+//           voteCounts[songInfo] = 0;
+//           songUsersMap[songInfo] = [];
+//         }
+//       });
+
+//       const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
+//       setVoteData(data);
+//       setSongUsers(songUsersMap);
+//     }
+//   }
+// };
+
+// const handleSeeStats = () => {
+//   if (selectedDate) {
+//     const question = questions.find((q) => q.date === selectedDate);
+//     if (question) {
+//       // Data for the pie chart
+//       const voteCounts = {};
+//       question.votes.forEach((vote) => {
+//         const voteSong = question.voteSongs.find((vs) => vs.id === vote.voteSongId);
+//         if (voteSong) {
+//           const song = allSongs.find((song) => song.id === voteSong.songId);
+//           const songInfo = `${song.name} by ${song.artist}`;
+//           voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
+//         }
+//       });
+//       const pieChartData = Object.entries(voteCounts).map(([song, count]) => [song, count]);
+//       setPieChartData(pieChartData);
+
+//       // Data for the list below the pie chart
+//       const songUsersMap = {};
+//       question.voteSongs.forEach((voteSong) => {
+//         const song = allSongs.find((song) => song.id === voteSong.songId);
+//         const songInfo = `${song.name} by ${song.artist}`;
+//         if (!songUsersMap[songInfo]) {
+//           songUsersMap[songInfo] = [];
+//         }
+//         const user = users.find((user) => user.id === voteSong.userId);
+//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
+//       });
+//       const listData = Object.entries(songUsersMap).map(([song, users]) => ({ song, users }));
+//       setListData(listData);
+//     }
+//   }
+// };
+
+// const handleSeeStats = () => {
+//   if (selectedDate) {
+//     const question = questions.find((q) => q.date === selectedDate);
+//     if (question) {
+//       const voteCounts = {};
+//       const songUsersMap = {}; // Map to store users who voted for each song
+//       question.votes.forEach((vote) => {
+//         const voteSong = question.voteSongs.find((vs) => vs.id === vote.voteSongId);
+//         if (voteSong) {
+//           const song = allSongs.find((song) => song.id === voteSong.songId);
+//           const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
+//           voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
+//           if (!songUsersMap[songInfo]) {
+//             songUsersMap[songInfo] = [];
+//           }
+//           const user = users.find(user => user.id === voteSong.userId);
+//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
+//         }
+//       });
+//       const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
+//       setVoteData(data);
+//       setSongUsers(songUsersMap);
+//     }
+//   }
+// };
+
+// const handleSeeStats = () => {
+//   if (selectedDate) {
+//     const question = questions.find((q) => q.date === selectedDate);
+//     if (question) {
+//       const voteCounts = {};
+//       const songUsersMap = {}; // Map to store users who voted for each song
+
+//       // Iterate through all voteSongs associated with the question
+//       question.voteSongs.forEach((voteSong) => {
+//         const song = allSongs.find((song) => song.id === voteSong.songId);
+//         const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
+//         voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
+
+//         if (!songUsersMap[songInfo]) {
+//           songUsersMap[songInfo] = [];
+//         }
+//         const user = users.find((user) => user.id === voteSong.userId);
+//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
+//       });
+
+//       // If a song has no votes, add it to voteCounts with count 0
+//       allSongs.forEach((song) => {
+//         const songInfo = `${song.name} by ${song.artist}`;
+//         if (!voteCounts[songInfo]) {
+//           voteCounts[songInfo] = 0;
+//           songUsersMap[songInfo] = [];
+//         }
+//       });
+
+//       const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
+//       setVoteData(data);
+//       setSongUsers(songUsersMap);
+//     }
+//   }
+// };
+
+//   return (
+//     <div>
+//       <div>Winner</div>
+//       <select onChange={handleDateChange}>
+//         <option value="">Select a date</option>
+//         {questions.map((question) => (
+//           <option key={question.id} value={question.date}>
+//             {question.date}
+//           </option>
+//         ))}
+//       </select>
+
+//       <button onClick={handleSeeStats}>See Stats</button>
+
+//       <div>
+//         <h2>Winning Songs for {selectedDate}:</h2>
+//         {selectedDate ? (
+//           <div>
+//             <div> Winner: {users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username}</div>
+//             <div> Winning Song: {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist}</div>
+//           </div>
+//         ) : "NO Date"}
+//         <div>
+//           {voteData && (
+//             <Chart
+//               width={'500px'}
+//               height={'300px'}
+//               chartType="PieChart"
+//               loader={<div>Loading Chart</div>}
+//               data={[['Song', 'Votes'], ...voteData]}
+//               options={{
+//                 title: 'Vote Distribution',
+//               }}
+//               rootProps={{ 'data-testid': '1' }}
+//             />
+//           )}
+//         </div>
+//         {songUsers && (
+//           <div>
+//             <h3>Songs and Users who Picked them:</h3>
+//             {Object.entries(songUsers).map(([song, users]) => (
+//               <div key={song}>
+//                 <div>{song}:</div>
+//                 <ul>
+//                   {users.map(user => (
+//                     <li key={user}>{user}</li>
+//                   ))}
+//                 </ul>
+//               </div>
+//             ))}
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default WinningSongs;
+
 
 
 
@@ -3753,7 +4077,9 @@ function WinningSongs() {
   const users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allUsers);
   const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs);
   const [selectedDate, setSelectedDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [voteData, setVoteData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [pieChartData, setPieChartData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [listData, setListData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null); // Define state for list data
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.fetchQuestions)());
     dispatch((0,_store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__.fetchUsers)());
@@ -3761,20 +4087,42 @@ function WinningSongs() {
   }, [dispatch]);
   const handleDateChange = event => {
     setSelectedDate(event.target.value);
-    setVoteData(null);
+    setPieChartData(null); // Reset pie chart data when date changes
+    setPieChartData(null);
   };
   const handleSeeStats = () => {
     if (selectedDate) {
       const question = questions.find(q => q.date === selectedDate);
       if (question) {
+        // Data for the pie chart
         const voteCounts = {};
+        question.votes.forEach(vote => {
+          const voteSong = question.voteSongs.find(vs => vs.id === vote.voteSongId);
+          if (voteSong) {
+            const song = allSongs.find(song => song.id === voteSong.songId);
+            const songInfo = `${song.name} by ${song.artist}`;
+            voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
+          }
+        });
+        const pieChartData = Object.entries(voteCounts).map(([song, count]) => [song, count]);
+        setPieChartData(pieChartData);
+
+        // Data for the list below the pie chart
+        const songUsersMap = {};
         question.voteSongs.forEach(voteSong => {
           const song = allSongs.find(song => song.id === voteSong.songId);
-          const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
-          voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
+          const songInfo = `${song.name} by ${song.artist}`;
+          if (!songUsersMap[songInfo]) {
+            songUsersMap[songInfo] = [];
+          }
+          const user = users.find(user => user.id === voteSong.userId);
+          songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
         });
-        const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
-        setVoteData(data);
+        const listData = Object.entries(songUsersMap).map(([song, users]) => ({
+          song,
+          users
+        }));
+        setListData(listData);
       }
     }
   };
@@ -3787,19 +4135,23 @@ function WinningSongs() {
     value: question.date
   }, question.date))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleSeeStats
-  }, "See Stats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Songs for ", selectedDate, ":"), selectedDate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " Winner: ", users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " Winning Song: ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name, " By ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist), "  ") : "NO Date", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, voteData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_google_charts__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "See Stats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Songs for ", selectedDate, ":"), selectedDate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner: ", users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song: ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name, " By ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist)) : "NO Date", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, pieChartData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_google_charts__WEBPACK_IMPORTED_MODULE_5__["default"], {
     width: '500px',
     height: '300px',
     chartType: "PieChart",
     loader: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Loading Chart"),
-    data: [['Song', 'Votes'], ...voteData],
+    data: [['Song', 'Votes'], ...pieChartData],
     options: {
-      title: 'Vote Distribution'
+      title: 'Votes'
     },
     rootProps: {
       'data-testid': '1'
     }
-  }))));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, listData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, listData.map((item, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    key: index
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.song), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, item.users.map((user, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    key: index
+  }, user))))))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WinningSongs);
 

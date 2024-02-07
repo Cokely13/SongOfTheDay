@@ -3740,58 +3740,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
 /* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-google-charts */ "./node_modules/react-google-charts/dist/index.js");
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchQuestions } from '../store/allQuestionsStore';
-// import { fetchUsers } from '../store/allUsersStore';
-// import { fetchSongs } from '../store/allSongsStore';
-
-// function WinningSongs() {
-//   const dispatch = useDispatch();
-//   const questions = useSelector((state) => state.allQuestions);
-//   const users = useSelector((state) => state.allUsers);
-//   const allSongs = useSelector((state) => state.allSongs);
-//   const [selectedDate, setSelectedDate] = useState('');
-
-//   useEffect(() => {
-//     dispatch(fetchQuestions());
-//     dispatch(fetchUsers());
-//     dispatch(fetchSongs())
-//   }, [dispatch]);
-
-//   const handleDateChange = (event) => {
-//     setSelectedDate(event.target.value);
-//   };
-
-//   console.log("questions", questions)
-
-//   return (
-//     <div>
-//       <div>Winner</div>
-//       <select onChange={handleDateChange}>
-//         <option value="">Select a date</option>
-//         {questions.map((question) => (
-//           <option key={question.id} value={question.date}>
-//             {question.date}
-//           </option>
-//         ))}
-//       </select>
-
-//         <div>
-//           <h2>Winning Songs for {selectedDate}:</h2>
-//           { selectedDate ? users.find(user => user.id == questions.filter((question)=> question.date == selectedDate)[0].winner)?.username : "NO Date"}
-//          <div> { selectedDate ? allSongs.find(song => song.id ==  questions.filter((question)=> question.date == selectedDate)[0].winningSongId)?.name : ""}</div>
-//          <div> { selectedDate ? allSongs.find(song => song.id ==  questions.filter((question)=> question.date == selectedDate)[0].winningSongId)?.artist : ""}</div>
-//            <div></div>
-
-//           <div></div>
-//     </div>
-//     </div>
-//   );
-// }
-
-// export default WinningSongs;
-
 
 
 
@@ -3813,6 +3761,7 @@ function WinningSongs() {
   }, [dispatch]);
   const handleDateChange = event => {
     setSelectedDate(event.target.value);
+    setVoteData(null);
   };
   const handleSeeStats = () => {
     if (selectedDate) {
@@ -3820,8 +3769,9 @@ function WinningSongs() {
       if (question) {
         const voteCounts = {};
         question.voteSongs.forEach(voteSong => {
-          const songName = allSongs.find(song => song.id === voteSong.songId)?.name;
-          voteCounts[songName] = (voteCounts[songName] || 0) + 1;
+          const song = allSongs.find(song => song.id === voteSong.songId);
+          const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
+          voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
         });
         const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
         setVoteData(data);
@@ -3837,7 +3787,7 @@ function WinningSongs() {
     value: question.date
   }, question.date))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleSeeStats
-  }, "See Stats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Songs for ", selectedDate, ":"), selectedDate ? users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username : "NO Date", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, voteData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_google_charts__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "See Stats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Songs for ", selectedDate, ":"), selectedDate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " Winner: ", users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " Winning Song: ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name, " By ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist), "  ") : "NO Date", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, voteData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_google_charts__WEBPACK_IMPORTED_MODULE_5__["default"], {
     width: '500px',
     height: '300px',
     chartType: "PieChart",

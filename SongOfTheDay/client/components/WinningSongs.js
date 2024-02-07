@@ -1,56 +1,3 @@
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchQuestions } from '../store/allQuestionsStore';
-// import { fetchUsers } from '../store/allUsersStore';
-// import { fetchSongs } from '../store/allSongsStore';
-
-// function WinningSongs() {
-//   const dispatch = useDispatch();
-//   const questions = useSelector((state) => state.allQuestions);
-//   const users = useSelector((state) => state.allUsers);
-//   const allSongs = useSelector((state) => state.allSongs);
-//   const [selectedDate, setSelectedDate] = useState('');
-
-//   useEffect(() => {
-//     dispatch(fetchQuestions());
-//     dispatch(fetchUsers());
-//     dispatch(fetchSongs())
-//   }, [dispatch]);
-
-//   const handleDateChange = (event) => {
-//     setSelectedDate(event.target.value);
-//   };
-
-//   console.log("questions", questions)
-
-
-//   return (
-//     <div>
-//       <div>Winner</div>
-//       <select onChange={handleDateChange}>
-//         <option value="">Select a date</option>
-//         {questions.map((question) => (
-//           <option key={question.id} value={question.date}>
-//             {question.date}
-//           </option>
-//         ))}
-//       </select>
-
-//         <div>
-//           <h2>Winning Songs for {selectedDate}:</h2>
-//           { selectedDate ? users.find(user => user.id == questions.filter((question)=> question.date == selectedDate)[0].winner)?.username : "NO Date"}
-//          <div> { selectedDate ? allSongs.find(song => song.id ==  questions.filter((question)=> question.date == selectedDate)[0].winningSongId)?.name : ""}</div>
-//          <div> { selectedDate ? allSongs.find(song => song.id ==  questions.filter((question)=> question.date == selectedDate)[0].winningSongId)?.artist : ""}</div>
-//            <div></div>
-
-//           <div></div>
-//     </div>
-//     </div>
-//   );
-// }
-
-// export default WinningSongs;
-
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchQuestions } from '../store/allQuestionsStore';
@@ -74,7 +21,9 @@ function WinningSongs() {
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
+    setVoteData(null)
   };
+
 
   const handleSeeStats = () => {
     if (selectedDate) {
@@ -82,8 +31,9 @@ function WinningSongs() {
       if (question) {
         const voteCounts = {};
         question.voteSongs.forEach(voteSong => {
-          const songName = allSongs.find(song => song.id === voteSong.songId)?.name;
-          voteCounts[songName] = (voteCounts[songName] || 0) + 1;
+          const song = allSongs.find(song => song.id === voteSong.songId);
+          const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
+          voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
         });
         const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
         setVoteData(data);
@@ -107,7 +57,7 @@ function WinningSongs() {
 
       <div>
         <h2>Winning Songs for {selectedDate}:</h2>
-        {selectedDate ? users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username : "NO Date"}
+        {selectedDate ? <div><div> Winner: {users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username}</div><div> Winning Song: {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist}</div>  </div>: "NO Date"}
         <div>
           {voteData && (
             <Chart

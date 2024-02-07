@@ -37,35 +37,53 @@ function AnswerQuestion() {
   }, [dispatch]); // Refetch songs when selectedSong changes
 
 
-  const toggleAddSongs = () => {
-    setAddSongsVisible(!addSongsVisible);
-  };
+  // const toggleAddSongs = () => {
+  //   setAddSongsVisible(!addSongsVisible);
+  // };
 
-  const question = questions[1]
-
+  // const question = questions[1]
+  const tomorrow = new Date(); // Create a new Date object
+  tomorrow.setDate(tomorrow.getDate() + 1); // Set the date to tomorrow
+  const tomorrowDateString = tomorrow.toISOString().slice(0, 10); // Get tomorrow's date in 'YYYY-MM-DD' format
+  const question = questions.find(question => question.date.slice(0, 10) === tomorrowDateString);
 
 const songsIn = question ? question.voteSongs : []
 
 
   const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId === question?.id) : [];
 
-  // const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId == question.id) : 0
 
   const hasSongOfUser = songsIn ? songsIn.some((song) => song.userId == user.id) : false
   const userSong = songsIn ? songsIn.filter((song) => song.userId == user.id) : 0
 
+console.log("songsIn", songsIn)
 
+  // const handleSelectSong = (song) => {
+  //     const newSong = {
+  //       questionId: question.id,
+  //       userId: user.id,
+  //       songId: song.id,
+  //     };
+  //     dispatch(createVoteSong(newSong));
+  //     history.push('/home');
+  //     // setSelectedSong(song); //
+  //   }
 
   const handleSelectSong = (song) => {
-      const newSong = {
-        questionId: question.id,
-        userId: user.id,
-        songId: song.id,
-      };
-      dispatch(createVoteSong(newSong));
-      history.push('/home');
-      // setSelectedSong(song); //
+    const songAlreadyPicked = songsIn.some((pickedSong) => pickedSong.songId === song.id);
+    if (songAlreadyPicked) {
+        // Display an error message indicating that the song has already been selected
+        alert("This song has already been selected!");
+    } else {
+        const newSong = {
+            questionId: question.id,
+            userId: user.id,
+            songId: song.id,
+        };
+        dispatch(createVoteSong(newSong));
+        history.push('/home');
     }
+};
 
 
   const handleSearchChange = (event) => {
@@ -93,14 +111,6 @@ const songsIn = question ? question.voteSongs : []
     return (
       hasSongOfUser ? <div> <div>You have already picked a song </div>
 
-      {/* {userSong ? <div><div>
-      <div> Name:
-        {hasSongOfUser ? userSong[0].song.name : ""}</div>
-        <div> Artist:
-        {userSong[0].song.artist}</div>
-        </div>
-        {/* { allSongs ? <div>{allSongs.id.find(song => song.id == userSong[0].songId)?.name}</div>: <div></div>} */}
-        {/* </div> : <div></div>} */}
 
         {userSong && userSong.length > 0 ? (
   <div>

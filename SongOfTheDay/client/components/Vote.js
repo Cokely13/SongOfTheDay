@@ -10,7 +10,9 @@ function Vote() {
   const questions = useSelector(state =>state.allQuestions)
   const [voted, setVoted] = useState()
 
-  const picks = questions ? questions[0] : []
+
+  const today = new Date().toISOString().slice(0, 10); // Get today's date in 'YYYY-MM-DD' format
+  const picks = questions ? questions.find(question => question.date.slice(0, 10) === today): []
   console.log('picks', picks)
 
    const currentSongs = picks ? picks.voteSongs ? picks.voteSongs: 0 : 0

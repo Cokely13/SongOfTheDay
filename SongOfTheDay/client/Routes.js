@@ -13,6 +13,7 @@ import Vote from './components/Vote';
 import Winner from './components/Winner';
 import WinningSongs from './components/WinningSongs';
 import CreateQuestion from './components/CreateQuestion';
+import PastWinners from './components/PastWinners';
 import {me} from './store'
 
 
@@ -41,6 +42,7 @@ class Routes extends Component {
             <Route exact path="/winner" component={Winner} />
             <Route exact path="/winningsongs" component={WinningSongs} />
             <Route exact path="/create" component={CreateQuestion} />
+            <Route exact path="/past" component={PastWinners} />
             <Redirect to="/home" />
           </Switch>
         ) : (

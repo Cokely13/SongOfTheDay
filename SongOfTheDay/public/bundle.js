@@ -2090,7 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AuthForm */ "./client/components/AuthForm.js");
 /* harmony import */ var _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/LogInForm */ "./client/components/LogInForm.js");
 /* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Home */ "./client/components/Home.js");
@@ -2103,7 +2103,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Winner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Winner */ "./client/components/Winner.js");
 /* harmony import */ var _components_WinningSongs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/WinningSongs */ "./client/components/WinningSongs.js");
 /* harmony import */ var _components_CreateQuestion__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/CreateQuestion */ "./client/components/CreateQuestion.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+/* harmony import */ var _components_PastWinners__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/PastWinners */ "./client/components/PastWinners.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+
 
 
 
@@ -2132,56 +2134,60 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     const {
       isLoggedIn
     } = this.props;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/home",
       component: _components_Home__WEBPACK_IMPORTED_MODULE_4__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/profile",
       component: _components_Profile__WEBPACK_IMPORTED_MODULE_7__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/users",
       component: _components_User__WEBPACK_IMPORTED_MODULE_6__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/users/:userId",
       component: _components_UserDetailPage__WEBPACK_IMPORTED_MODULE_8__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/songs",
       component: _components_SongList__WEBPACK_IMPORTED_MODULE_5__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/add",
       component: _components_AnswerQuestion__WEBPACK_IMPORTED_MODULE_9__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/vote",
       component: _components_Vote__WEBPACK_IMPORTED_MODULE_10__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/winner",
       component: _components_Winner__WEBPACK_IMPORTED_MODULE_11__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/winningsongs",
       component: _components_WinningSongs__WEBPACK_IMPORTED_MODULE_12__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/create",
       component: _components_CreateQuestion__WEBPACK_IMPORTED_MODULE_13__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Redirect, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+      exact: true,
+      path: "/past",
+      component: _components_PastWinners__WEBPACK_IMPORTED_MODULE_14__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Redirect, {
       to: "/home"
-    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       path: "/",
       exact: true,
       component: _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       path: "/login",
       component: _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       path: "/signup",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Signup
     })));
@@ -2201,14 +2207,14 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_14__.me)());
+      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_15__.me)());
     }
   };
 };
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_15__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
 
 /***/ }),
 
@@ -2231,203 +2237,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allVoteSongsStore */ "./client/store/allVoteSongsStore.js");
 /* harmony import */ var _store_singleVoteSongStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/singleVoteSongStore */ "./client/store/singleVoteSongStore.js");
 /* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Pagination */ "./client/components/Pagination.js");
-// import React, { useEffect, useState } from 'react';
-// import { useParams, useHistory } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';;
-// import { fetchSongs } from '../store/allSongsStore';
-// // import { deletePlaylist} from '../store/allPlaylistsStore'
-// import { fetchQuestions} from '../store/allQuestionsStore'
-// import { createMysong, createVoteSong } from '../store/allVoteSongsStore';
-// import { fetchVoteSongs } from '../store/allVoteSongsStore';
-// import { updateSingleVoteSong} from '../store/singleVoteSongStore'
-// import Pagination from './Pagination'
-
-// function AnswerQuestion() {
-//   const { playlistId } = useParams();
-//   const [searchText, setSearchText] = useState('');
-//   const dispatch = useDispatch();
-//   const questions = useSelector((state) => state.allQuestions);
-//   const allSongs = useSelector((state) => state.allSongs);
-//   const votesSongs = useSelector((state) => state.allVoteSongs);
-//   const currentUser = useSelector((state) => state.auth);
-//   const user = useSelector((state) => state.auth);
-//   const [addSongsVisible, setAddSongsVisible] = useState(false);
-//   const [selectedSong, setSelectedSong] = useState(null);
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const pageSize = 20;
-//   const history = useHistory();
-//   const [showDeletePopup, setShowDeletePopup] = useState(false);
-
-//   useEffect(() => {
-//     dispatch(fetchQuestions());
-//   }, [dispatch, selectedSong]); // Refetch playlist when selectedSong changes
-
-//   useEffect(() => {
-//     dispatch(fetchSongs());
-//   }, [dispatch, selectedSong]); // Refetch songs when selectedSong changes
-
-//   useEffect(() => {
-//     dispatch(fetchVoteSongs());
-//   }, [dispatch]); // Refetch songs when selectedSong changes
-
-//   // const toggleAddSongs = () => {
-//   //   setAddSongsVisible(!addSongsVisible);
-//   // };
-
-//   // const question = questions[1]
-//   const tomorrow = new Date(); // Create a new Date object
-//   tomorrow.setDate(tomorrow.getDate() + 1); // Set the date to tomorrow
-//   const tomorrowDateString = tomorrow.toISOString().slice(0, 10); // Get tomorrow's date in 'YYYY-MM-DD' format
-//   const question = questions.find(question => question.date.slice(0, 10) === tomorrowDateString);
-
-// const songsIn = question ? question.voteSongs : []
-
-//   const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId === question?.id) : [];
-
-//   const hasSongOfUser = songsIn ? songsIn.some((song) => song.userId == user.id) : false
-//   const userSong = songsIn ? songsIn.filter((song) => song.userId == user.id) : 0
-
-//   const handleSelectSong = (song) => {
-//     const songAlreadyPicked = songsIn.some((pickedSong) => pickedSong.songId === song.id);
-//     if (songAlreadyPicked) {
-//         // Display an error message indicating that the song has already been selected
-//         alert("This song has already been selected!");
-//     } else {
-//         const newSong = {
-//             questionId: question.id,
-//             userId: user.id,
-//             songId: song.id,
-//         };
-//         dispatch(createVoteSong(newSong));
-//         history.push('/home');
-//     }
-// };
-
-//   const handleSearchChange = (event) => {
-//     setSearchText(event.target.value);
-//   };
-
-//   const handlePageChange = (page) => {
-//     setCurrentPage(page);
-//   };
-
-//   const renderAddSongs = () => {
-//     const songsToAdd = allSongs
-//     const filteredSongs = songsToAdd.filter(
-//       (song) =>
-//         song.name.toLowerCase().includes(searchText.toLowerCase()) ||
-//         song.artist.toLowerCase().includes(searchText.toLowerCase())
-//     );
-
-//     const pageCount = Math.ceil(filteredSongs.length / pageSize);
-//     const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
-
-//     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-
-//     return (
-//       hasSongOfUser ? <div> <div>You have already picked a song </div>
-
-//         {userSong && userSong.length > 0 ? (
-//   <div>
-//     <div>
-//       <div>
-//         Name: {hasSongOfUser ? userSong[0].song.name : ""}
-//       </div>
-//       <div>
-//         Artist: {userSong[0].song.artist}
-//       </div>
-//     </div>
-//   </div>
-// ) : (
-//   <div></div>
-// )} </div>
-//           :
-//       <div className="playlist-add-songs-container">
-//         <h3 className="playlist-add-songs-title">Add Songs:</h3>
-//         <input
-//           className="playlist-add-search"
-//           type="text"
-//           placeholder="Search songs..."
-//           value={searchText}
-//           onChange={handleSearchChange}
-//         />
-
-//         {filteredSongs.length === 0 && <div>No Results</div>}
-//         {filteredSongs.length > 0 && (
-//           <div>
-//             <ul className="playlist-add-songs-list">
-//               {paginatedSongs.map((song) => (
-//                 <li key={song.id}>
-//                   <div className="playlist-song-info">
-//                     <span className="playlist-song-name">{song && song.name}</span> by
-//                     <span className="playlist-song-artist">{song.artist}</span>
-//                     <button
-//                       className="playlist-song-add"
-//                       onClick={() => handleSelectSong(song)}
-//                     >
-//                      Select Song
-//                     </button>
-//                   </div>
-//                 </li>
-//               ))}
-//             </ul>
-//             <div className="pagination">
-//   <ul>
-//     {currentPage > 1 && (
-//       <>
-//         <li>
-//           <button onClick={() => handlePageChange(1)}>First</button>
-//         </li>
-//         <li>
-//           <button onClick={() => handlePageChange(currentPage - 1)}>Back</button>
-//         </li>
-//       </>
-//     )}
-
-//     {pageRange.map(page => (
-//       <li key={page} className={currentPage === page ? 'active' : ''}>
-//         <button onClick={() => handlePageChange(page)}>{page}</button>
-//       </li>
-//     )).slice(currentPage - 1, currentPage + 4)}
-
-//     {currentPage < pageCount && (
-//       <>
-//         <li>
-//           <button onClick={() => handlePageChange(currentPage + 1)}>Forward</button>
-//         </li>
-//         <li>
-//           <button onClick={() => handlePageChange(pageCount)}>Last</button>
-//         </li>
-//       </>
-//     )}
-//   </ul>
-// </div>
-//           </div>
-//         )}
-//       </div>
-//     );
-//   }
-
-//     return (
-//       <div className="playlist-details-container">
-//         <h2 className="playlist-details-created-by">
-//           Date: {question ? question.date.slice(0,10): "No User"}
-//         </h2>
-//         <div className="playlist-details-stats">
-//           <h2 className="playlist-details-wins"># of Songs: {songsOf.length} </h2>
-//           <h2 className="playlist-details-losses">Losses: </h2>
-//         </div>
-//         <div className="playlist-details-additional-song-list">
-//                 {renderAddSongs()}
-//               </div>
-
-//       </div>
-//     );
-
-// }
-
-// export default AnswerQuestion;
-
 
 
 
@@ -2471,37 +2280,37 @@ function AnswerQuestion() {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
-  const question = questions.find(question => question.date.slice(0, 10) === tomorrowDateString);
+  // const question = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString);
+
+  const question = questions[3];
   const songsIn = question ? question.voteSongs : [];
   const songsOf = votesSongs ? votesSongs.filter(song => song.questionId === question?.id) : [];
   const hasSongOfUser = songsIn ? songsIn.some(song => song.userId == user.id) : false;
   const userSong = songsIn ? songsIn.filter(song => song.userId == user.id) : [];
   const handleSelectSong = song => {
-    console.log("song", song);
-    console.log("ques", question);
-    const songAlreadyPicked = songsIn.some(pickedSong => pickedSong.songId === song.id);
-    if (songAlreadyPicked) {
-      // Display an error message indicating that the song has already been selected
-      alert('This song has already been selected!');
-    } else {
-      console.log("song", song);
-      // const newSong = {
-      //   questionId: question.id,
-      //   userId: user.id,
-      //   songId: song.id,
-      // };
-      // dispatch(createVoteSong(newSong));
-      // history.push('/home');
-    }
-  };
-  const handleNewSong = song => {
     const songAlreadyPicked = songsIn.some(pickedSong => pickedSong.songId === song.id);
     if (songAlreadyPicked) {
       // Display an error message indicating that the song has already been selected
       alert('This song has already been selected!');
     } else {
       const newSong = {
-        id: songsIn.some(song => song.userId == user.id),
+        questionId: question.id,
+        userId: user.id,
+        songId: song.id
+      };
+      dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.createVoteSong)(newSong));
+      history.push('/home');
+    }
+  };
+  const handleNewSong = song => {
+    const songAlreadyPicked = songsIn.some(pickedSong => pickedSong.songId === song.id);
+    const voteSongId = songsIn.find(song => song.userId === user.id)?.id;
+    if (songAlreadyPicked) {
+      // Display an error message indicating that the song has already been selected
+      alert('This song has already been selected!');
+    } else {
+      const newSong = {
+        id: voteSongId,
         questionId: question.id,
         userId: user.id,
         songId: song.id
@@ -3158,7 +2967,10 @@ const Navbar = ({
 }, "WinningSongs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
   to: "/winner",
   className: "navbar-link"
-}, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+}, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  to: "/past",
+  className: "navbar-link"
+}, "Past"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
   href: "#",
   onClick: handleClick,
   className: "navbar-link"
@@ -3277,6 +3089,73 @@ function Pagination({
   }, "Last")))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Pagination);
+
+/***/ }),
+
+/***/ "./client/components/PastWinners.js":
+/*!******************************************!*\
+  !*** ./client/components/PastWinners.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
+/* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
+/* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
+// import React, { useEffect, useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { fetchQuestions } from '../store/allQuestionsStore';
+// import { fetchUsers } from '../store/allUsersStore';
+// import { fetchSongs } from '../store/allSongsStore';
+// import Chart from 'react-google-charts'; // Assuming you're using Google Charts library for the pie chart
+
+// function PastWinners() {
+//   const dispatch = useDispatch();
+//   const questions = useSelector((state) => state.allQuestions);
+//   const users = useSelector((state) => state.allUsers);
+//   const allSongs = useSelector((state) => state.allSongs);
+
+//   return (
+//     <div>PastWinners</div>
+//   )
+// }
+
+// export default PastWinners
+
+
+
+
+
+
+function PastWinners() {
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
+  const users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allUsers.users);
+  const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs.songs);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.fetchQuestions)());
+    dispatch((0,_store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__.fetchUsers)());
+    dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchSongs)());
+  }, [dispatch]);
+
+  // Filter out questions where question.active === false
+  const filteredQuestions = questions ? questions.filter(question => !question.active) : [];
+  console.log("fil!!", questions);
+  console.log("fil", filteredQuestions);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Past Winners"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "grid-container"
+  }, filteredQuestions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    key: index,
+    className: "grid-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner: ", question.winner), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song ID: ", question.winningSongId)))));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PastWinners);
 
 /***/ }),
 
@@ -4042,330 +3921,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
 /* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-google-charts */ "./node_modules/react-google-charts/dist/index.js");
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchQuestions } from '../store/allQuestionsStore';
-// import { fetchUsers } from '../store/allUsersStore';
-// import { fetchSongs } from '../store/allSongsStore';
-// import Chart from 'react-google-charts'; // Assuming you're using Google Charts library for the pie chart
-
-// function WinningSongs() {
-//   const dispatch = useDispatch();
-//   const questions = useSelector((state) => state.allQuestions);
-//   const users = useSelector((state) => state.allUsers);
-//   const allSongs = useSelector((state) => state.allSongs);
-//   const [selectedDate, setSelectedDate] = useState('');
-//   const [voteData, setVoteData] = useState(null);
-
-//   useEffect(() => {
-//     dispatch(fetchQuestions());
-//     dispatch(fetchUsers());
-//     dispatch(fetchSongs())
-//   }, [dispatch]);
-
-//   const handleDateChange = (event) => {
-//     setSelectedDate(event.target.value);
-//     setVoteData(null)
-//   };
-
-//   const handleSeeStats = () => {
-//     if (selectedDate) {
-//       const question = questions.find(q => q.date === selectedDate);
-//       if (question) {
-//         const voteCounts = {};
-//         question.voteSongs.forEach(voteSong => {
-//           const song = allSongs.find(song => song.id === voteSong.songId);
-//           const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
-//           voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
-//         });
-//         const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
-//         setVoteData(data);
-//       }
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <div>Winner</div>
-//       <select onChange={handleDateChange}>
-//         <option value="">Select a date</option>
-//         {questions.map((question) => (
-//           <option key={question.id} value={question.date}>
-//             {question.date}
-//           </option>
-//         ))}
-//       </select>
-
-//       <button onClick={handleSeeStats}>See Stats</button>
-
-//       <div>
-//         <h2>Winning Songs for {selectedDate}:</h2>
-//         {selectedDate ? <div><div> Winner: {users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username}</div><div> Winning Song: {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist}</div>  </div>: "NO Date"}
-//         <div>
-//           {voteData && (
-//             <Chart
-//               width={'500px'}
-//               height={'300px'}
-//               chartType="PieChart"
-//               loader={<div>Loading Chart</div>}
-//               data={[['Song', 'Votes'], ...voteData]}
-//               options={{
-//                 title: 'Vote Distribution',
-//               }}
-//               rootProps={{ 'data-testid': '1' }}
-//             />
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default WinningSongs;
-
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchQuestions } from '../store/allQuestionsStore';
-// import { fetchUsers } from '../store/allUsersStore';
-// import { fetchSongs } from '../store/allSongsStore';
-// import Chart from 'react-google-charts'; // Assuming you're using Google Charts library for the pie chart
-
-// function WinningSongs() {
-//   const dispatch = useDispatch();
-//   const questions = useSelector((state) => state.allQuestions);
-//   const users = useSelector((state) => state.allUsers);
-//   const allSongs = useSelector((state) => state.allSongs);
-//   const [selectedDate, setSelectedDate] = useState('');
-//   const [voteData, setVoteData] = useState(null);
-//   const [songUsers, setSongUsers] = useState(null);
-
-//   useEffect(() => {
-//     dispatch(fetchQuestions());
-//     dispatch(fetchUsers());
-//     dispatch(fetchSongs())
-//   }, [dispatch]);
-
-//   const handleDateChange = (event) => {
-//     setSelectedDate(event.target.value);
-//     setVoteData(null);
-//     setSongUsers(null);
-//   };
-
-// const handleSeeStats = () => {
-//   if (selectedDate) {
-//     const question = questions.find(q => q.date === selectedDate);
-//     if (question) {
-//       const voteCounts = {};
-//       const songUsersMap = {}; // Map to store users who voted for each song
-//       question.votes.forEach(votes => {
-//         const song = allSongs.find(song => song.id === votes.votesSongId);
-//         const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
-//         voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
-//         if (!songUsersMap[songInfo]) {
-//           songUsersMap[songInfo] = [];
-//         }
-//         const user = users.find(user => user.id === voteSong.userId);
-//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
-//       });
-//       const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
-//       setVoteData(data);
-//       setSongUsers(songUsersMap);
-//     }
-//   }
-// };
-
-// const handleSeeStats = () => {
-//   if (selectedDate) {
-//     const question = questions.find((q) => q.date === selectedDate);
-//     if (question) {
-//       const voteCounts = {};
-//       const songUsersMap = {}; // Map to store users who voted for each song
-
-//       // Iterate through all voteSongs associated with the question
-//       question.voteSongs.forEach((voteSong) => {
-//         const song = allSongs.find((song) => song.id === voteSong.songId);
-//         const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
-//         voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
-
-//         if (!songUsersMap[songInfo]) {
-//           songUsersMap[songInfo] = [];
-//         }
-//         const user = users.find((user) => user.id === voteSong.userId);
-//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
-//       });
-
-//       // If a song has no votes, add it to voteCounts with count 0
-//       question.voteSongs.forEach((voteSong) => {
-//         const song = allSongs.find((song) => song.id === voteSong.songId);
-//         const songInfo = `${song.name} by ${song.artist}`;
-//         if (!voteCounts[songInfo]) {
-//           voteCounts[songInfo] = 0;
-//           songUsersMap[songInfo] = [];
-//         }
-//       });
-
-//       const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
-//       setVoteData(data);
-//       setSongUsers(songUsersMap);
-//     }
-//   }
-// };
-
-// const handleSeeStats = () => {
-//   if (selectedDate) {
-//     const question = questions.find((q) => q.date === selectedDate);
-//     if (question) {
-//       // Data for the pie chart
-//       const voteCounts = {};
-//       question.votes.forEach((vote) => {
-//         const voteSong = question.voteSongs.find((vs) => vs.id === vote.voteSongId);
-//         if (voteSong) {
-//           const song = allSongs.find((song) => song.id === voteSong.songId);
-//           const songInfo = `${song.name} by ${song.artist}`;
-//           voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
-//         }
-//       });
-//       const pieChartData = Object.entries(voteCounts).map(([song, count]) => [song, count]);
-//       setPieChartData(pieChartData);
-
-//       // Data for the list below the pie chart
-//       const songUsersMap = {};
-//       question.voteSongs.forEach((voteSong) => {
-//         const song = allSongs.find((song) => song.id === voteSong.songId);
-//         const songInfo = `${song.name} by ${song.artist}`;
-//         if (!songUsersMap[songInfo]) {
-//           songUsersMap[songInfo] = [];
-//         }
-//         const user = users.find((user) => user.id === voteSong.userId);
-//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
-//       });
-//       const listData = Object.entries(songUsersMap).map(([song, users]) => ({ song, users }));
-//       setListData(listData);
-//     }
-//   }
-// };
-
-// const handleSeeStats = () => {
-//   if (selectedDate) {
-//     const question = questions.find((q) => q.date === selectedDate);
-//     if (question) {
-//       const voteCounts = {};
-//       const songUsersMap = {}; // Map to store users who voted for each song
-//       question.votes.forEach((vote) => {
-//         const voteSong = question.voteSongs.find((vs) => vs.id === vote.voteSongId);
-//         if (voteSong) {
-//           const song = allSongs.find((song) => song.id === voteSong.songId);
-//           const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
-//           voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
-//           if (!songUsersMap[songInfo]) {
-//             songUsersMap[songInfo] = [];
-//           }
-//           const user = users.find(user => user.id === voteSong.userId);
-//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
-//         }
-//       });
-//       const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
-//       setVoteData(data);
-//       setSongUsers(songUsersMap);
-//     }
-//   }
-// };
-
-// const handleSeeStats = () => {
-//   if (selectedDate) {
-//     const question = questions.find((q) => q.date === selectedDate);
-//     if (question) {
-//       const voteCounts = {};
-//       const songUsersMap = {}; // Map to store users who voted for each song
-
-//       // Iterate through all voteSongs associated with the question
-//       question.voteSongs.forEach((voteSong) => {
-//         const song = allSongs.find((song) => song.id === voteSong.songId);
-//         const songInfo = `${song.name} by ${song.artist}`; // Combine song name and artist
-//         voteCounts[songInfo] = (voteCounts[songInfo] || 0) + 1;
-
-//         if (!songUsersMap[songInfo]) {
-//           songUsersMap[songInfo] = [];
-//         }
-//         const user = users.find((user) => user.id === voteSong.userId);
-//         songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
-//       });
-
-//       // If a song has no votes, add it to voteCounts with count 0
-//       allSongs.forEach((song) => {
-//         const songInfo = `${song.name} by ${song.artist}`;
-//         if (!voteCounts[songInfo]) {
-//           voteCounts[songInfo] = 0;
-//           songUsersMap[songInfo] = [];
-//         }
-//       });
-
-//       const data = Object.entries(voteCounts).map(([song, count]) => [song, count]);
-//       setVoteData(data);
-//       setSongUsers(songUsersMap);
-//     }
-//   }
-// };
-
-//   return (
-//     <div>
-//       <div>Winner</div>
-//       <select onChange={handleDateChange}>
-//         <option value="">Select a date</option>
-//         {questions.map((question) => (
-//           <option key={question.id} value={question.date}>
-//             {question.date}
-//           </option>
-//         ))}
-//       </select>
-
-//       <button onClick={handleSeeStats}>See Stats</button>
-
-//       <div>
-//         <h2>Winning Songs for {selectedDate}:</h2>
-//         {selectedDate ? (
-//           <div>
-//             <div> Winner: {users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username}</div>
-//             <div> Winning Song: {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist}</div>
-//           </div>
-//         ) : "NO Date"}
-//         <div>
-//           {voteData && (
-//             <Chart
-//               width={'500px'}
-//               height={'300px'}
-//               chartType="PieChart"
-//               loader={<div>Loading Chart</div>}
-//               data={[['Song', 'Votes'], ...voteData]}
-//               options={{
-//                 title: 'Vote Distribution',
-//               }}
-//               rootProps={{ 'data-testid': '1' }}
-//             />
-//           )}
-//         </div>
-//         {songUsers && (
-//           <div>
-//             <h3>Songs and Users who Picked them:</h3>
-//             {Object.entries(songUsers).map(([song, users]) => (
-//               <div key={song}>
-//                 <div>{song}:</div>
-//                 <ul>
-//                   {users.map(user => (
-//                     <li key={user}>{user}</li>
-//                   ))}
-//                 </ul>
-//               </div>
-//             ))}
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default WinningSongs;
-
 
 
 

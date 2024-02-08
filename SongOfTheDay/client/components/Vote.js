@@ -12,7 +12,8 @@ function Vote() {
 
 
   const today = new Date().toISOString().slice(0, 10); // Get today's date in 'YYYY-MM-DD' format
-  const picks = questions ? questions.find(question => question.date.slice(0, 10) === today): []
+  // const picks = questions ? questions.find(question => question.date.slice(0, 10) === today): []
+  const picks = questions ? questions[4] : []
   console.log('picks', picks)
 
    const currentSongs = picks ? picks.voteSongs ? picks.voteSongs: 0 : 0

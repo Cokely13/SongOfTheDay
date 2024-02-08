@@ -18,7 +18,6 @@ cron.schedule('0 0 * * *', async () => {
 yesterday.setDate(yesterday.getDate() - 1);
 const yesterdayDateOnly = yesterday.toISOString().split('T')[0];
 
-        console.log("yesterday", yesterday);
 
         // Create a new question with tomorrow's date
         const newQuestion = await Question.create({

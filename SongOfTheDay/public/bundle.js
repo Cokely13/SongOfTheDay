@@ -2282,7 +2282,7 @@ function AnswerQuestion() {
   const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
   // const question = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString);
 
-  const question = questions[3];
+  const question = questions[4];
   const songsIn = question ? question.voteSongs : [];
   const songsOf = votesSongs ? votesSongs.filter(song => song.questionId === question?.id) : [];
   const hasSongOfUser = songsIn ? songsIn.some(song => song.userId == user.id) : false;
@@ -3682,7 +3682,8 @@ function Vote() {
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
   const [voted, setVoted] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const today = new Date().toISOString().slice(0, 10); // Get today's date in 'YYYY-MM-DD' format
-  const picks = questions ? questions.find(question => question.date.slice(0, 10) === today) : [];
+  // const picks = questions ? questions.find(question => question.date.slice(0, 10) === today): []
+  const picks = questions ? questions[4] : [];
   console.log('picks', picks);
   const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : 0 : 0;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {

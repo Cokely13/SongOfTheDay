@@ -2090,7 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AuthForm */ "./client/components/AuthForm.js");
 /* harmony import */ var _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/LogInForm */ "./client/components/LogInForm.js");
 /* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Home */ "./client/components/Home.js");
@@ -2102,7 +2102,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Vote__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Vote */ "./client/components/Vote.js");
 /* harmony import */ var _components_Winner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Winner */ "./client/components/Winner.js");
 /* harmony import */ var _components_WinningSongs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/WinningSongs */ "./client/components/WinningSongs.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+/* harmony import */ var _components_CreateQuestion__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/CreateQuestion */ "./client/components/CreateQuestion.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+
 
 
 
@@ -2130,52 +2132,56 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     const {
       isLoggedIn
     } = this.props;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       exact: true,
       path: "/home",
       component: _components_Home__WEBPACK_IMPORTED_MODULE_4__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       exact: true,
       path: "/profile",
       component: _components_Profile__WEBPACK_IMPORTED_MODULE_7__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       exact: true,
       path: "/users",
       component: _components_User__WEBPACK_IMPORTED_MODULE_6__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       exact: true,
       path: "/users/:userId",
       component: _components_UserDetailPage__WEBPACK_IMPORTED_MODULE_8__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       exact: true,
       path: "/songs",
       component: _components_SongList__WEBPACK_IMPORTED_MODULE_5__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       exact: true,
       path: "/add",
       component: _components_AnswerQuestion__WEBPACK_IMPORTED_MODULE_9__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       exact: true,
       path: "/vote",
       component: _components_Vote__WEBPACK_IMPORTED_MODULE_10__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       exact: true,
       path: "/winner",
       component: _components_Winner__WEBPACK_IMPORTED_MODULE_11__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       exact: true,
       path: "/winningsongs",
       component: _components_WinningSongs__WEBPACK_IMPORTED_MODULE_12__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Redirect, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      exact: true,
+      path: "/create",
+      component: _components_CreateQuestion__WEBPACK_IMPORTED_MODULE_13__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Redirect, {
       to: "/home"
-    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       path: "/",
       exact: true,
       component: _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       path: "/login",
       component: _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
       path: "/signup",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Signup
     })));
@@ -2195,14 +2201,14 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_13__.me)());
+      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_14__.me)());
     }
   };
 };
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_14__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_15__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
 
 /***/ }),
 
@@ -2803,6 +2809,60 @@ const mapDispatch = dispatch => {
 };
 const Signup = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapSignup, mapDispatch)(AuthForm);
 // export const Login = connect(mapLogin, mapDispatch)(AuthForm)
+
+/***/ }),
+
+/***/ "./client/components/CreateQuestion.js":
+/*!*********************************************!*\
+  !*** ./client/components/CreateQuestion.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
+
+
+
+function CreateQuestion() {
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const {
+    id
+  } = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
+  const {
+    admin
+  } = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
+  const [date, setDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [name, setName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const handleCreateQuestion = () => {
+    const newQuestion = {
+      userId: id,
+      // You'll need to define id somewhere in your component or fetch it from Redux store
+      date: date,
+      name: name
+    };
+    dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.createQuestion)(newQuestion));
+    setDate("");
+    setName("");
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Create Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "date",
+    value: date,
+    onChange: e => setDate(e.target.value)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    value: name,
+    onChange: e => setName(e.target.value)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: handleCreateQuestion
+  }, "Create Question")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Not Admin"));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateQuestion);
 
 /***/ }),
 

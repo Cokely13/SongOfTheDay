@@ -349,7 +349,7 @@ function WinningSongs() {
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
     setPieChartData(null); // Reset pie chart data when date changes
-    setPieChartData(null);
+    setListData(null);
   };
 
   const handleSeeStats = () => {
@@ -380,7 +380,7 @@ function WinningSongs() {
           const user = users.find((user) => user.id === voteSong.userId);
           songUsersMap[songInfo].push(user ? user.username : 'Unknown User');
         });
-        const listData = Object.entries(songUsersMap).map(([song, users]) => ({ song, users }));
+        const listData = Object.entries(songUsersMap).map(([song, users]) => ({  song, users }));
         setListData(listData);
       }
     }
@@ -401,14 +401,14 @@ function WinningSongs() {
       <button onClick={handleSeeStats}>See Stats</button>
 
       <div>
-        <h2>Winning Songs for {selectedDate}:</h2>
+        <h2>Winning Song for {selectedDate}:</h2>
         {selectedDate ? (
           <div>
             <div>Winner: {users.find((user) => user.id === questions.find((q) => q.date === selectedDate)?.winner)?.username}</div>
             <div>Winning Song: {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.artist}</div>
           </div>
         ) : (
-          "NO Date"
+          ""
         )}
         <div>
           {pieChartData && (
@@ -427,14 +427,16 @@ function WinningSongs() {
         </div>
         <div>
           {listData && (
+
             <ul>
+              <h1>Selected Songs</h1>
               {listData.map((item, index) => (
                 <li key={index}>
-                  <div>{item.song}</div>
+                  <div>Song: {item.song}</div>
                   <div>
                     <ul>
                       {item.users.map((user, index) => (
-                        <li key={index}>{user}</li>
+                        <li key={index}>Selected By: {user}</li>
                       ))}
                     </ul>
                   </div>

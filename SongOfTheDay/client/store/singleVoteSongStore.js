@@ -28,13 +28,13 @@ export const fetchVoteSong = (id) => {
   };
 };
 
-export const updateSingleVoteSong = (votesong, history) => {
+export const updateSingleVoteSong = (votesong) => {
   return async (dispatch) => {
     try {
         await axios.put(`/api/votesongs/${votesong.id}`, votesong);
         const { data: votesongData } = await axios.get(`/api/votesongs/${votesong.id}`);
         dispatch(_updateSingleVoteSong(votesongData));
-        history.push(`/votesongs/${votesong.id}`)
+        // history.push(`/votesongs/${votesong.id}`)
       }
      catch (error) {
       console.log("VOTESONG", votesong)

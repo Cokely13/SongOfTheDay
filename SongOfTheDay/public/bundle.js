@@ -2231,6 +2231,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
@@ -2280,9 +2281,7 @@ function AnswerQuestion() {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
-  // const question = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString);
-
-  const question = questions[4];
+  const question = questions.find(question => question.date.slice(0, 10) === tomorrowDateString);
   const songsIn = question ? question.voteSongs : [];
   const songsOf = votesSongs ? votesSongs.filter(song => song.questionId === question?.id) : [];
   const hasSongOfUser = songsIn ? songsIn.some(song => song.userId == user.id) : false;
@@ -2299,7 +2298,7 @@ function AnswerQuestion() {
         songId: song.id
       };
       dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.createVoteSong)(newSong));
-      history.push('/home');
+      history.push('/vote');
     }
   };
   const handleNewSong = song => {
@@ -2421,11 +2420,11 @@ function AnswerQuestion() {
     className: "playlist-details-stats"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "playlist-details-wins"
-  }, "# of Songs: ", songsOf.length, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-    className: "playlist-details-losses"
-  }, "Losses: ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "# of Songs: ", songsOf.length, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "playlist-details-additional-song-list"
-  }, renderAddSongs()));
+  }, renderAddSongs()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+    to: `/vote`
+  }, "Go Vote!"));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerQuestion);
 
@@ -2812,6 +2811,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _Question__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Question */ "./client/components/Question.js");
+/* harmony import */ var _AnswerQuestion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AnswerQuestion */ "./client/components/AnswerQuestion.js");
+
 
 
 
@@ -2823,7 +2824,7 @@ const Home = props => {
   const {
     username
   } = props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "YO"));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AnswerQuestion__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 };
 
 /**

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';;
 import { fetchSongs } from '../store/allSongsStore';
 // import { deletePlaylist} from '../store/allPlaylistsStore'
@@ -40,9 +40,9 @@ function AnswerQuestion() {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
-  // const question = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString);
+  const question = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString);
 
-  const question = questions[4]
+
 
   const songsIn = question ? question.voteSongs : [];
   const songsOf = votesSongs ? votesSongs.filter((song) => song.questionId === question?.id) : [];
@@ -64,7 +64,7 @@ function AnswerQuestion() {
         songId: song.id,
       };
       dispatch(createVoteSong(newSong));
-      history.push('/home');
+      history.push('/vote');
     }
   };
 
@@ -259,9 +259,9 @@ function AnswerQuestion() {
       <h2 className="playlist-details-created-by">Date: {question ? question.date.slice(0, 10) : 'No User'}</h2>
       <div className="playlist-details-stats">
         <h2 className="playlist-details-wins"># of Songs: {songsOf.length} </h2>
-        <h2 className="playlist-details-losses">Losses: </h2>
       </div>
       <div className="playlist-details-additional-song-list">{renderAddSongs()}</div>
+      <Link to={`/vote`}>Go Vote!</Link>
     </div>
   );
 }

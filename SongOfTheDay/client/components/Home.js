@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Question from './Question'
+import AnswerQuestion from './AnswerQuestion'
 
 /**
  * COMPONENT
@@ -11,7 +12,9 @@ export const Home = props => {
   return (
     <div>
       {/* <h3>Welcome, {username}</h3> */}
-   <div>YO</div>
+   <div>
+    <AnswerQuestion/>
+   </div>
     </div>
   )
 }

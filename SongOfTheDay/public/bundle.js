@@ -2334,9 +2334,7 @@ function AnswerQuestion() {
     const pageCount = Math.ceil(filteredSongs.length / pageSize);
     const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "playlist-add-songs-container"
-    }, question ? hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already picked a song"), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Name: ", hasSongOfUser ? userSong[0].song.name : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Artist: ", userSong[0].song.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, question ? hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Your Song:"), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song Name: ", hasSongOfUser ? userSong[0].song.name : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "By: ", userSong[0].song.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: handleChangeSong
     }, "Change Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
       className: "playlist-add-songs-title"
@@ -2376,7 +2374,7 @@ function AnswerQuestion() {
       onClick: () => handlePageChange(pageCount)
     }, "Last"))))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Question yet"), changeSong ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
       className: "playlist-add-songs-title"
-    }, "Add Songs:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    }, "Select Your Song of the Day:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       className: "playlist-add-search",
       type: "text",
       placeholder: "Search songs...",
@@ -2416,14 +2414,15 @@ function AnswerQuestion() {
     className: "playlist-details-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "playlist-details-created-by"
-  }, "Date: ", question ? question.date.slice(0, 10) : 'No User'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Song of the Day for ", question ? question.date.slice(0, 10) : 'No User'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "playlist-details-stats"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "playlist-details-wins"
-  }, "# of Songs: ", songsOf.length, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "# of Songs Selected: ", songsOf.length, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "playlist-details-additional-song-list"
   }, renderAddSongs()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-    to: `/vote`
+    to: `/vote`,
+    className: "go-vote-link"
   }, "Go Vote!"));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerQuestion);
@@ -2824,7 +2823,7 @@ const Home = props => {
   const {
     username
   } = props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AnswerQuestion__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AnswerQuestion__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
 
 /**
@@ -3670,6 +3669,63 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allVotesStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allVotesStore */ "./client/store/allVotesStore.js");
+// import React, { useEffect, useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useParams } from 'react-router-dom';
+// import { fetchQuestions } from '../store/allQuestionsStore';
+// import { createVote } from '../store/allVotesStore';
+
+// function Vote() {
+//   const dispatch = useDispatch();
+//   const { id } = useSelector(state => state.auth);
+//   const questions = useSelector(state => state.allQuestions);
+//   const [voted, setVoted] = useState(false);
+
+//   const today = new Date().toISOString().slice(0, 10);
+//   const picks = questions ? questions.find(question => question.date.slice(0, 10) === today) : [];
+//   const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : [] : [];
+
+//   useEffect(() => {
+//     dispatch(fetchQuestions());
+//   }, [dispatch]);
+
+//   const handleVote = (songId) => {
+//     const vote = {
+//       userId: id,
+//       questionId: picks.id,
+//       voteSongId: songId
+//     };
+//     dispatch(createVote(vote));
+//     setVoted(true);
+//   };
+
+//   const hasUserVoted = picks ? picks.votes.some((vote) => vote.userId === id) : false;
+
+//   return (
+//     <div>
+//       <div>Vote</div>
+//       {!voted ? (
+//         hasUserVoted ? (
+//           <div>VOTED</div>
+//         ) : currentSongs.length > 0 ? (
+//           currentSongs.map((song) => (
+//             <div key={song.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
+//               <div>{song.song.name} by {song.song.artist}</div>
+//               <button style={{ marginLeft: '10px' }} onClick={() => handleVote(song.id)}>Vote</button>
+//             </div>
+//           ))
+//         ) : (
+//           <div>nada</div>
+//         )
+//       ) : (
+//         <div>You have already voted</div>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default Vote;
+
 
 
 
@@ -3681,12 +3737,10 @@ function Vote() {
     id
   } = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
-  const [voted, setVoted] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const today = new Date().toISOString().slice(0, 10); // Get today's date in 'YYYY-MM-DD' format
-  // const picks = questions ? questions.find(question => question.date.slice(0, 10) === today): []
-  const picks = questions ? questions[4] : [];
-  console.log('picks', picks);
-  const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : 0 : 0;
+  const [voted, setVoted] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const today = new Date().toISOString().slice(0, 10);
+  const picks = questions ? questions.find(question => question.date.slice(0, 10) === today) : [];
+  const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : [] : [];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.fetchQuestions)());
   }, [dispatch]);
@@ -3700,12 +3754,26 @@ function Vote() {
     setVoted(true);
   };
   const hasUserVoted = picks ? picks.votes.some(vote => vote.userId === id) : false;
-  console.log("has", hasUserVoted);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Vote"), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    key: song.id
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, song.song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, song.song.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Vote"), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    key: song.id,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: '10px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, song.song.name, " by ", song.song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    style: {
+      marginLeft: '10px'
+    },
     onClick: () => handleVote(song.id)
-  }, "Vote"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "nada") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted"));
+  }, "Vote"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "nada") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vote);
 
@@ -3985,7 +4053,12 @@ function WinningSongs() {
       }
     }
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: {
+      textAlign: "center",
+      marginTop: "10%"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     onChange: handleDateChange
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: ""
@@ -3995,6 +4068,9 @@ function WinningSongs() {
   }, question.date))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleSeeStats
   }, "See Stats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Song for ", selectedDate, ":"), selectedDate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner: ", users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song: ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name, " By ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist)) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, pieChartData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_google_charts__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    style: {
+      margin: '0 auto'
+    },
     width: '500px',
     height: '300px',
     chartType: "PieChart",

@@ -114,16 +114,16 @@ function AnswerQuestion() {
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     return (
-      <div className="playlist-add-songs-container">
+      <div  >
         {question ?
         hasSongOfUser ? (
-          <div>
-            <div>You have already picked a song</div>
+          <div >
+            <div>Your Song:</div>
             {userSong && userSong.length > 0 ? (
               <div>
                 <div>
-                  <div>Name: {hasSongOfUser ? userSong[0].song.name : ''}</div>
-                  <div>Artist: {userSong[0].song.artist}</div>
+                  <div>Song Name: {hasSongOfUser ? userSong[0].song.name : ''}</div>
+                  <div>By: {userSong[0].song.artist}</div>
                 </div>
                 <button onClick={handleChangeSong}>Change Song</button>
               </div>
@@ -193,7 +193,7 @@ function AnswerQuestion() {
 
         {changeSong ? (
           <div>
-            <h3 className="playlist-add-songs-title">Add Songs:</h3>
+            <h3 className="playlist-add-songs-title">Select Your Song of the Day:</h3>
             <input
               className="playlist-add-search"
               type="text"
@@ -255,13 +255,13 @@ function AnswerQuestion() {
   };
 
   return (
-    <div className="playlist-details-container">
-      <h2 className="playlist-details-created-by">Date: {question ? question.date.slice(0, 10) : 'No User'}</h2>
+    <div className="playlist-details-container" >
+      <h2 className="playlist-details-created-by">Song of the Day for {question ? question.date.slice(0, 10) : 'No User'}</h2>
       <div className="playlist-details-stats">
-        <h2 className="playlist-details-wins"># of Songs: {songsOf.length} </h2>
+        <h2 className="playlist-details-wins"># of Songs Selected: {songsOf.length} </h2>
       </div>
       <div className="playlist-details-additional-song-list">{renderAddSongs()}</div>
-      <Link to={`/vote`}>Go Vote!</Link>
+      <Link to={`/vote`} className="go-vote-link">Go Vote!</Link>
     </div>
   );
 }

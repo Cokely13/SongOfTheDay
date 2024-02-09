@@ -15,6 +15,10 @@ async function seed() {
 yesterday.setDate(yesterday.getDate() - 1);
 const yesterdayDateOnly = yesterday.toISOString().split('T')[0];
 
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+const tomorrowDateOnly = tomorrow.toISOString().split('T')[0];
+
 // const twodays = new Date();
 // twodays.setDate(twodays.getDate() - 2);
 
@@ -33,7 +37,7 @@ const yesterdayDateOnly = yesterday.toISOString().split('T')[0];
 
   const questions = await Promise.all([
     Question.create({   }),
-    Question.create({date:yesterdayDateOnly}),
+    Question.create({date:tomorrowDateOnly}),
   ])
 
 
@@ -41,7 +45,7 @@ const yesterdayDateOnly = yesterday.toISOString().split('T')[0];
 
   const API_KEY = '6e56a81fd7f7f0fb08932517fef4fc86';
   const PAGE_SIZE = 1000
-  const TOTAL_TRACKS = 1000
+  const TOTAL_TRACKS = 1000000
   const url = `http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=${API_KEY}&format=json&limit=${PAGE_SIZE}`;
 
   for (let page = 1; page <= TOTAL_TRACKS / PAGE_SIZE; page++) {

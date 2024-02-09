@@ -61,8 +61,7 @@ function WinningSongs() {
   };
 
   return (
-    <div>
-      <div>Winner</div>
+    <div style={{textAlign: "center", marginTop: "10%"}}>
       <select onChange={handleDateChange}>
         <option value="">Select a date</option>
         {questions.map((question) => (
@@ -87,6 +86,7 @@ function WinningSongs() {
         <div>
           {pieChartData && (
             <Chart
+            style={{ margin: '0 auto' }}
               width={'500px'}
               height={'300px'}
               chartType="PieChart"

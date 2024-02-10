@@ -105,7 +105,7 @@ function Vote() {
             <div>nada</div>
           )
         ) : (
-          <div>You have already voted</div>
+          <div>You have already voted!!!</div>
         )}
       </div>
     </div>

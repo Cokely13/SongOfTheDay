@@ -51,9 +51,9 @@ const tomorrowDateOnly = tomorrow.toISOString().split('T')[0];
   for (let page = 1; page <= TOTAL_TRACKS / PAGE_SIZE; page++) {
     const pageUrl = `${url}&page=${page}`;
     const response = await axios.get(pageUrl);
-    const data = await response.json();
+    // const data = await response.json();
 
-    for (const track of data.tracks.track) {
+    for (const track of response.data.tracks.track) {
       const name = track.name;
       const artist = track.artist.name;
 

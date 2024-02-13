@@ -99,5 +99,5 @@ const mapDispatch = dispatch => {
 }
 
 export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
-// export const Login = connect(mapLogin, mapDispatch)(AuthForm)
+
 

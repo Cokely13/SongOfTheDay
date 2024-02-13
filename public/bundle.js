@@ -2543,7 +2543,6 @@ const mapDispatch = dispatch => {
   };
 };
 const Signup = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapSignup, mapDispatch)(AuthForm);
-// export const Login = connect(mapLogin, mapDispatch)(AuthForm)
 
 /***/ }),
 

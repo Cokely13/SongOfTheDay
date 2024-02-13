@@ -1,8 +1,8 @@
 'use strict'
 
 const {db, models: {User, Song, Question, VoteSong} } = require('../server/db')
-const fetch = require('node-fetch');
-
+// const fetch = require('node-fetch');
+const axios = require('axios');
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -50,7 +50,7 @@ const tomorrowDateOnly = tomorrow.toISOString().split('T')[0];
 
   for (let page = 1; page <= TOTAL_TRACKS / PAGE_SIZE; page++) {
     const pageUrl = `${url}&page=${page}`;
-    const response = await fetch(pageUrl);
+    const response = await axios.get(pageUrl);
     const data = await response.json();
 
     for (const track of data.tracks.track) {

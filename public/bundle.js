@@ -2809,9 +2809,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './Question'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _AnswerQuestion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AnswerQuestion */ "./client/components/AnswerQuestion.js");
-
+/* harmony import */ var _AnswerQuestion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AnswerQuestion */ "./client/components/AnswerQuestion.js");
 
 
 
@@ -2823,7 +2821,7 @@ const Home = props => {
   const {
     username
   } = props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AnswerQuestion__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AnswerQuestion__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /**

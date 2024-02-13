@@ -2809,7 +2809,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _Question__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Question */ "./client/components/Question.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './Question'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 /* harmony import */ var _AnswerQuestion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AnswerQuestion */ "./client/components/AnswerQuestion.js");
 
 
@@ -3293,52 +3293,6 @@ function Profile() {
   }, playlist.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, playlist.wins), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, playlist.losses)))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
-
-/***/ }),
-
-/***/ "./client/components/Question.js":
-/*!***************************************!*\
-  !*** ./client/components/Question.js ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-function Question() {
-  const [question, setQuestion] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    // Function to fetch a new question from the backend
-    const fetchNewQuestion = async () => {
-      try {
-        const response = await fetch('/api/questions/new'); // Replace with your actual API endpoint
-        const data = await response.json();
-        if (response.ok) {
-          setQuestion(data.question);
-        } else {
-          console.error('Failed to fetch a new question');
-        }
-      } catch (error) {
-        console.error('Error while fetching a new question', error);
-      }
-    };
-
-    // Fetch a new question when the component mounts
-    fetchNewQuestion();
-
-    // Refresh the question every 24 hours (adjust the time interval as needed)
-    const intervalId = setInterval(fetchNewQuestion, 24 * 60 * 60 * 1000);
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Question of the Day"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, question));
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Question);
 
 /***/ }),
 

@@ -71,6 +71,8 @@ function Vote() {
   const picks = questions ? questions.find(question => question.date.slice(0, 10) === today) : [];
   const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : [] : [];
 
+  console.log("date", picks)
+
   useEffect(() => {
     dispatch(fetchQuestions());
   }, [dispatch]);
@@ -91,6 +93,7 @@ function Vote() {
     <div className="voting" >
       <div className="voting-block">
         <h1>Vote</h1>
+        <h1>{picks ? picks.date: ""}</h1>
         {!voted ? (
           hasUserVoted ? (
             <div>VOTED</div>

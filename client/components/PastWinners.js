@@ -49,7 +49,7 @@ function PastWinners() {
         {filteredQuestions.map((question, index) => (
           <div key={index} className="grid-item">
             <div>Date: {question.date}</div>
-            <div>Winner: {question.winner}</div>
+            <div>Winner: {question.winner ? question.winner : "None"}</div>
             <div>Winning Song ID: {question.winningSongId}</div>
           </div>
         ))}

@@ -3073,12 +3073,14 @@ function PastWinners() {
   const filteredQuestions = questions ? questions.filter(question => !question.active) : [];
   console.log("fil!!", questions);
   console.log("fil", filteredQuestions);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Past Winners"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "past"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Past Winners"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "grid-container"
   }, filteredQuestions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     key: index,
     className: "grid-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner: ", question.winner ? question.winner : "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song ID: ", question.winningSongId)))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner: ", question.winner ? question.winner : "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song ID: ", question.winningSongId))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PastWinners);
 
@@ -3617,8 +3619,12 @@ function Vote() {
   } = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
   const [voted, setVoted] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const test = new Date();
+  const tomorrow = new Date(test);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowString = tomorrow.toISOString().slice(0, 10);
   const today = new Date().toISOString().slice(0, 10);
-  const picks = questions ? questions.find(question => question.date.slice(0, 10) === today) : [];
+  const picks = questions ? questions.find(question => question.date.slice(0, 10) === tomorrowString) : [];
   const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : [] : [];
   console.log("date", picks);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {

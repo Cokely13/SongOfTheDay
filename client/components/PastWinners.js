@@ -43,7 +43,8 @@ function PastWinners() {
   console.log("fil", filteredQuestions)
 
   return (
-    <div>
+    <div className="past">
+    <div >
       <h2>Past Winners</h2>
       <div className="grid-container">
         {filteredQuestions.map((question, index) => (
@@ -53,6 +54,7 @@ function PastWinners() {
             <div>Winning Song ID: {question.winningSongId}</div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

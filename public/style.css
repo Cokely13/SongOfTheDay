@@ -36,6 +36,12 @@ justify-content: center;
 margin: 10px 0;
 }
 
+.grid-container{
+  border: 3px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .navbar-link {
 margin: 0 10px;
 color: #F7DC6F;
@@ -1029,19 +1035,6 @@ button[type='submit']:hover {
   font-size: xx-large;
 }
 
-/* .playlist-details-done-button{
-  background-color: grey;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  font-size: 36px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  border-radius: 5px;
-  text-align: center
-
-} */
 
 .playlist-details-add-songs-container{
   text-align: center;
@@ -1112,4 +1105,14 @@ button[type='submit']:hover {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .past {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }

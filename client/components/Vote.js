@@ -67,9 +67,17 @@ function Vote() {
   const questions = useSelector(state => state.allQuestions);
   const [voted, setVoted] = useState(false);
 
+  const test = new Date();
+  const tomorrow = new Date(test);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const tomorrowString = tomorrow.toISOString().slice(0, 10);
+
   const today = new Date().toISOString().slice(0, 10);
-  const picks = questions ? questions.find(question => question.date.slice(0, 10) === today) : [];
+  const picks = questions ? questions.find(question => question.date.slice(0, 10) === tomorrowString) : [];
   const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : [] : [];
+
+
 
   console.log("date", picks)
 

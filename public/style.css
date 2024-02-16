@@ -104,7 +104,32 @@ padding: 10px;
 margin: 5px 0;
 }
 
+/* .voting-block{
+  border: 3px solid #2C3E50;
+  border-radius: 10px;
+  padding: 10px;
+  background-color:#2C3E50;
+  color: #F7DC6F;
+}
+
+
+.voting-row{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 3px solid #2C3E50;
+  border-radius: 10px;
+  padding: 10px;
+  color: #2C3E50;
+  background-color: #F7DC6F;
+} */
+
 .user-page-container {
+  border: 3px solid #2C3E50;
+  border-radius: 10px;
+  padding: 10px;
+  color: #2C3E50;
+  background-color: #F7DC6F;
 margin: 20px auto;
 max-width: 800px;
 }
@@ -123,9 +148,7 @@ justify-content: center;
 margin: 10px;
 padding: 10px;
 /* border: 1px solid #ccc; */
-border: 3px solid black;
-/* border-color: #000000;
-border: 2px solid; */
+border: 3px solid #2C3E50;
 border-radius: 10px;
 width: 250px;
 text-align: center;
@@ -1095,9 +1118,11 @@ button[type='submit']:hover {
   }
 
   .voting-block{
-    border: 3px solid black;
+    border: 3px solid #2C3E50;
     border-radius: 10px;
     padding: 10px;
+    background-color:#2C3E50;
+    color: #F7DC6F;
   }
 
 
@@ -1105,9 +1130,11 @@ button[type='submit']:hover {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    border: 3px solid black;
+    border: 3px solid #2C3E50;
     border-radius: 10px;
     padding: 10px;
+    color: #2C3E50;
+    background-color: #F7DC6F;
   }
 
   .past {

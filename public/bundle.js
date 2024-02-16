@@ -3033,26 +3033,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchQuestions } from '../store/allQuestionsStore';
-// import { fetchUsers } from '../store/allUsersStore';
-// import { fetchSongs } from '../store/allSongsStore';
-// import Chart from 'react-google-charts'; // Assuming you're using Google Charts library for the pie chart
-
-// function PastWinners() {
-//   const dispatch = useDispatch();
-//   const questions = useSelector((state) => state.allQuestions);
-//   const users = useSelector((state) => state.allUsers);
-//   const allSongs = useSelector((state) => state.allSongs);
-
-//   return (
-//     <div>PastWinners</div>
-//   )
-// }
-
-// export default PastWinners
-
 
 
 
@@ -3072,7 +3052,6 @@ function PastWinners() {
   // Filter out questions where question.active === false
   const filteredQuestions = questions ? questions.filter(question => !question.active) : [];
   console.log("fil!!", questions);
-  console.log("fil", filteredQuestions);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "past"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Past Winners"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3080,7 +3059,10 @@ function PastWinners() {
   }, filteredQuestions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     key: index,
     className: "grid-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner: ", question.winner ? question.winner : "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song ID: ", question.winningSongId))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner: ", question.winner ? question.winner : "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song ID: ", question.winningSongId))), filteredQuestions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    key: index,
+    className: "grid-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner: ", question.winner ? users ? question.winner : "None" : "this"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song ID: ", question.winningSongId))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PastWinners);
 
@@ -3550,6 +3532,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allVotesStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allVotesStore */ "./client/store/allVotesStore.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 // import React, { useEffect, useState } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 // import { useParams } from 'react-router-dom';
@@ -3561,6 +3544,12 @@ __webpack_require__.r(__webpack_exports__);
 //   const { id } = useSelector(state => state.auth);
 //   const questions = useSelector(state => state.allQuestions);
 //   const [voted, setVoted] = useState(false);
+
+//   const test = new Date();
+//   const tomorrow = new Date(test);
+//   tomorrow.setDate(tomorrow.getDate() + 1);
+
+//   const tomorrowString = tomorrow.toISOString().slice(0, 10);
 
 //   const today = new Date().toISOString().slice(0, 10);
 //   const picks = questions ? questions.find(question => question.date.slice(0, 10) === today) : [];
@@ -3583,24 +3572,27 @@ __webpack_require__.r(__webpack_exports__);
 //   const hasUserVoted = picks ? picks.votes.some((vote) => vote.userId === id) : false;
 
 //   return (
-//     <div>
-//       <div>Vote</div>
-//       {!voted ? (
-//         hasUserVoted ? (
-//           <div>VOTED</div>
-//         ) : currentSongs.length > 0 ? (
-//           currentSongs.map((song) => (
-//             <div key={song.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
-//               <div>{song.song.name} by {song.song.artist}</div>
-//               <button style={{ marginLeft: '10px' }} onClick={() => handleVote(song.id)}>Vote</button>
-//             </div>
-//           ))
+//     <div className="voting" >
+//       <div className="voting-block">
+//         <h1>Vote</h1>
+//         <h1>{picks ? picks.date: ""}</h1>
+//         {!voted ? (
+//           hasUserVoted ? (
+//             <div>VOTED</div>
+//           ) : currentSongs.length > 0 ? (
+//             currentSongs.map((song) => (
+//               <div key={song.id}  className="voting-row">
+//                 <h2>{song.song.name} by {song.song.artist}</h2>
+//                 <button style={{ marginLeft: '10px' }} onClick={() => handleVote(song.id)}>Vote</button>
+//               </div>
+//             ))
+//           ) : (
+//             <div>nada</div>
+//           )
 //         ) : (
-//           <div>nada</div>
-//         )
-//       ) : (
-//         <div>You have already voted</div>
-//       )}
+//           <div>You have already voted!!!</div>
+//         )}
+//       </div>
 //     </div>
 //   );
 // }
@@ -3618,15 +3610,8 @@ function Vote() {
     id
   } = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
+  const [selectedDate, setSelectedDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [voted, setVoted] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const test = new Date();
-  const tomorrow = new Date(test);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const tomorrowString = tomorrow.toISOString().slice(0, 10);
-  const today = new Date().toISOString().slice(0, 10);
-  const picks = questions ? questions.find(question => question.date.slice(0, 10) === tomorrowString) : [];
-  const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : [] : [];
-  console.log("date", picks);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.fetchQuestions)());
   }, [dispatch]);
@@ -3639,12 +3624,29 @@ function Vote() {
     dispatch((0,_store_allVotesStore__WEBPACK_IMPORTED_MODULE_3__.createVote)(vote));
     setVoted(true);
   };
+  const handleDateChange = event => {
+    setSelectedDate(event.target.value);
+    setVoted(false); // Reset voted state when date changes
+  };
+
+  // Filter out questions where active is false
+  const activeQuestions = questions ? questions.filter(question => question.active) : [];
+  const picks = selectedDate ? activeQuestions.find(question => question.date.slice(0, 10) === selectedDate) : null;
+  const currentSongs = picks ? picks.voteSongs || [] : [];
   const hasUserVoted = picks ? picks.votes.some(vote => vote.userId === id) : false;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "voting"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "voting-block"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Vote"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, picks ? picks.date : ""), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Vote"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    value: selectedDate,
+    onChange: handleDateChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: ""
+  }, "Select Date"), activeQuestions.map(question => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    key: question.id,
+    value: question.date.slice(0, 10)
+  }, question.date))), picks && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, picks.date), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     key: song.id,
     className: "voting-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, song.song.name, " by ", song.song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -3652,7 +3654,11 @@ function Vote() {
       marginLeft: '10px'
     },
     onClick: () => handleVote(song.id)
-  }, "Vote"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "nada") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted!!!")));
+  }, "Vote"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "voting-row"
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+    to: `/add`
+  }, "Add Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted!!!"))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vote);
 

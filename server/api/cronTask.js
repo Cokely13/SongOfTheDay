@@ -84,18 +84,39 @@ async function updateQuestions() {
     const yesterdayDateOnly = yesterday.toISOString().split('T')[0];
 
     const previousQuestion = await Question.findOne({
-      where: { date: yesterdayDateOnly },
+      order: [['id', 'DESC']], // Sort by id in descending order
+      offset: 1, // Skip the first question (latest)
       include: [VoteSong, Vote],
     });
 
+    console.log("previous!!", previousQuestion)
+
     // Create a new question for today
+    // const today = new Date();
+    // const todayDateOnly = today.toISOString().split('T')[0];
+    // const newQuestion = await Question.create({
+    //   date: todayDateOnly,
+    //   // Add other properties as needed
+    // });
+    // console.log('New Question created:', newQuestion);
+
     const today = new Date();
-    const todayDateOnly = today.toISOString().split('T')[0];
-    const newQuestion = await Question.create({
-      date: todayDateOnly,
-      // Add other properties as needed
-    });
-    console.log('New Question created:', newQuestion);
+
+// Get the date representing a month ago
+const oneMonthAgo = new Date();
+oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+// Extract the date part only
+const oneMonthAgoDateOnly = oneMonthAgo.toISOString().split('T')[0];
+
+// Create a new question with the date one month ago
+const newQuestion = await Question.create({
+  date: oneMonthAgoDateOnly,
+  // Add other properties as needed
+});
+
+// Log the newly created question
+console.log('New Question created:', newQuestion);
 
     if (previousQuestion) {
       const voteCounts = {};

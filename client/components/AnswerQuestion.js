@@ -24,6 +24,13 @@ function AnswerQuestion() {
   const pageSize = 20;
   const history = useHistory();
   const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
+  const [selectedDate, setSelectedDate] = useState(tomorrowDateString);
+  // const [selectedDate, setSelectedDate] = useState("");
+
+
 
   useEffect(() => {
     dispatch(fetchQuestions());
@@ -37,11 +44,15 @@ function AnswerQuestion() {
     dispatch(fetchVoteSongs());
   }, [dispatch]); // Refetch songs when selectedSong changes
 
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
-  const question = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString);
+  // const tomorrow = new Date();
+  // tomorrow.setDate(tomorrow.getDate() + 1);
+  // const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
+  // const current = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString)
+  const question = questions.find((question) => question.date.slice(0, 10) === selectedDate)
 
+
+
+  const activeQuestions = questions ? questions.filter(question => question.active) : [];
 
 
   const songsIn = question ? question.voteSongs : [];
@@ -92,6 +103,10 @@ function AnswerQuestion() {
     setChangeSong(true) // Reset selectedSong state to null to allow the user to select a new song
   };
 
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
+
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
   };
@@ -115,6 +130,12 @@ function AnswerQuestion() {
 
     return (
       <div  >
+                <select value={selectedDate} onChange={handleDateChange}>
+          <option value="">Select Date</option>
+          {activeQuestions.map(question => (
+            <option key={question.id} value={question.date.slice(0, 10)}>{question.date}</option>
+          ))}
+        </select>
         {question ?
         hasSongOfUser ? (
           <div >
@@ -267,3 +288,4 @@ function AnswerQuestion() {
 }
 
 export default AnswerQuestion;
+

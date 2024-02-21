@@ -2272,6 +2272,12 @@ function AnswerQuestion() {
   const pageSize = 20;
   const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
   const [showDeletePopup, setShowDeletePopup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
+  const [selectedDate, setSelectedDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(tomorrowDateString);
+  // const [selectedDate, setSelectedDate] = useState("");
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__.fetchQuestions)());
   }, [dispatch, selectedSong]); // Refetch playlist when selectedSong changes
@@ -2284,10 +2290,12 @@ function AnswerQuestion() {
     dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchVoteSongs)());
   }, [dispatch]); // Refetch songs when selectedSong changes
 
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
-  const question = questions.find(question => question.date.slice(0, 10) === tomorrowDateString);
+  // const tomorrow = new Date();
+  // tomorrow.setDate(tomorrow.getDate() + 1);
+  // const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
+  // const current = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString)
+  const question = questions.find(question => question.date.slice(0, 10) === selectedDate);
+  const activeQuestions = questions ? questions.filter(question => question.active) : [];
   const songsIn = question ? question.voteSongs : [];
   const songsOf = votesSongs ? votesSongs.filter(song => song.questionId === question?.id) : [];
   const hasSongOfUser = songsIn ? songsIn.some(song => song.userId == user.id) : false;
@@ -2328,6 +2336,9 @@ function AnswerQuestion() {
     setSelectedSong(null);
     setChangeSong(true); // Reset selectedSong state to null to allow the user to select a new song
   };
+  const handleDateChange = event => {
+    setSelectedDate(event.target.value);
+  };
   const handleSearchChange = event => {
     setSearchText(event.target.value);
   };
@@ -2340,7 +2351,15 @@ function AnswerQuestion() {
     const pageCount = Math.ceil(filteredSongs.length / pageSize);
     const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, question ? hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Your Song:"), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song Name: ", hasSongOfUser ? userSong[0].song.name : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "By: ", userSong[0].song.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+      value: selectedDate,
+      onChange: handleDateChange
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      value: ""
+    }, "Select Date"), activeQuestions.map(question => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      key: question.id,
+      value: question.date.slice(0, 10)
+    }, question.date))), question ? hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Your Song:"), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song Name: ", hasSongOfUser ? userSong[0].song.name : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "By: ", userSong[0].song.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: handleChangeSong
     }, "Change Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
       className: "playlist-add-songs-title"

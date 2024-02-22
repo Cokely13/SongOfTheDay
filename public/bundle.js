@@ -3263,10 +3263,99 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/singleUserStore */ "./client/store/singleUserStore.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _EditProfile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditProfile */ "./client/components/EditProfile.js");
+/* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
+/* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
+/* harmony import */ var _EditProfile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditProfile */ "./client/components/EditProfile.js");
+// import React, { useState, useEffect } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useParams, useHistory } from 'react-router-dom';
+// import { fetchSingleUser } from '../store/singleUserStore';
+// import { Link } from 'react-router-dom';
+// import EditProfile from './EditProfile';
+
+// function Profile() {
+//   const dispatch = useDispatch();
+//   const history = useHistory();
+//   const userId = useSelector(state => state.auth);
+//   const [sortBy, setSortBy] = useState("");
+//   const user = useSelector(state => state.singleUser);
+//   const [showPlaylists, setShowPlaylists] = useState();
+//   const [searchQuery, setSearchQuery] = useState('');
+//   const [sortOrder, setSortOrder] = useState(null);
+//   const [showEdit, setShowEdit] = useState(false);
+
+//   useEffect(() => {
+//     dispatch(fetchSingleUser(userId.id));
+//   }, [dispatch, userId]);
+
+//   const handleSearch = (e) => {
+//     setSearchQuery(e.target.value.toLowerCase());
+//   };
+
+//   const handleSort = (e) => {
+//     const order = e.target.value;
+//     setSortOrder(order !== '' ? order : null);
+//   };
+
+//   const handleShowPlaylists = () => {
+//     setShowPlaylists(1);
+//   };
+
+//   const handleHidePlaylists = () => {
+//     setShowPlaylists();
+//   };
+
+//   const getTotalWins = () => {
+//     if (user && user.playlists) {
+//       return user.playlists.reduce((acc, playlist) => acc + playlist.wins, 0);
+//     }
+//     return 0;
+//   };
+
+//   const getTotalLosses = () => {
+//     if (user && user.playlists) {
+//       return user.playlists.reduce((acc, playlist) => acc + playlist.losses, 0);
+//     }
+//     return 0;
+//   };
+
+//   const handleEditProfile = () => {
+//     history.push('/edit-profile');
+//   };
+
+//   return (
+//     <div className="playlists-container">
+//       {showEdit ? (
+//         <EditProfile setShowEdit={setShowEdit} user={user} fetchUser={fetchSingleUser} />
+//       ) : (
+//         <div className="playlists-header">
+//           {user ? (
+//             <div className="user-details">
+//               <div className="user-name">
+//                 <h1>
+//                   <u>{user.username}</u>
+//                 </h1>
+//                 <button onClick={() => setShowEdit(true)}>Edit Profile</button>
+//               </div>
+//               <h1 className="user-email">{user.email}</h1>
+//               {user.admin ? <h1>ADMIN</h1> : <div></div>}
+
+//             </div>
+//           ) : (
+//             <div></div>
+//           )}
+//         </div>
+//       )}
+//     </div>
+//   );
+
+// }
+// export default Profile;
+
+
+
 
 
 
@@ -3275,7 +3364,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Profile() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useHistory)();
+  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
   const userId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const [sortBy, setSortBy] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.singleUser);
@@ -3283,8 +3372,13 @@ function Profile() {
   const [searchQuery, setSearchQuery] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [sortOrder, setSortOrder] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [showEdit, setShowEdit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
+  const users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allUsers);
+  const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__.fetchSingleUser)(userId.id));
+    dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__.fetchQuestions)());
+    dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchSongs)());
   }, [dispatch, userId]);
   const handleSearch = e => {
     setSearchQuery(e.target.value.toLowerCase());
@@ -3314,26 +3408,9 @@ function Profile() {
   const handleEditProfile = () => {
     history.push('/edit-profile');
   };
-  const sortedPlaylists = user && user.playlists ? user.playlists.slice().sort((a, b) => {
-    if (!sortOrder) {
-      return 0;
-    }
-    if (sortOrder === 'name') {
-      return a.name.localeCompare(b.name);
-    }
-    if (sortOrder === 'wins') {
-      return b.wins - a.wins;
-    }
-    if (sortOrder === 'losses') {
-      return b.losses - a.losses;
-    }
-  }) : [];
-  const filteredPlaylists = sortedPlaylists.filter(playlist => {
-    return playlist.name.toLowerCase().includes(searchQuery);
-  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "playlists-container"
-  }, showEdit ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EditProfile__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, showEdit ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EditProfile__WEBPACK_IMPORTED_MODULE_5__["default"], {
     setShowEdit: setShowEdit,
     user: user,
     fetchUser: _store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__.fetchSingleUser
@@ -3347,41 +3424,10 @@ function Profile() {
     onClick: () => setShowEdit(true)
   }, "Edit Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "user-email"
-  }, user.email), user.admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "ADMIN") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), showPlaylists !== 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: handleShowPlaylists
-  }, "Show Playlists") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: handleHidePlaylists
-  }, "Hide Playlists")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), showPlaylists == 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "user-stats"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "total-wins"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Total Wins: "), " ", getTotalWins()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Total Losses: "), " ", getTotalLosses())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "search-sort"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    type: "text",
-    value: searchQuery,
-    onChange: handleSearch,
-    placeholder: "Search playlists by name"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-    value: sortOrder,
-    onChange: handleSort
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: ""
-  }, "Sort by..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: "name"
-  }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: "wins"
-  }, "Wins"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: "losses"
-  }, "Losses"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
-    className: "playlists-table"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Wins"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Losses"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, filteredPlaylists.map(playlist => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
-    key: playlist.id,
-    className: "playlist-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
-    to: `/playlists/${playlist.id}`,
-    className: "playlist-name"
-  }, playlist.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, playlist.wins), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, playlist.losses)))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)));
+  }, user.email), user.admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "ADMIN") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Information:"), questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    key: index,
+    className: "grid-item"
+  }, question.winner === user.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song: ", allSongs.find(song => song.id === question.winningSongId)?.name, " By ", allSongs.find(song => song.id === question.winningSongId)?.artist)) : null)), questions.every(question => question.winner !== user.id) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
 
@@ -3550,7 +3596,6 @@ __webpack_require__.r(__webpack_exports__);
 function UserPage() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
   const users = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(state => state.allUsers);
-  console.log("users", users);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     dispatch((0,_store_allUsersStore__WEBPACK_IMPORTED_MODULE_2__.fetchUsers)());
   }, [dispatch]);

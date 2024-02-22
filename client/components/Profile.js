@@ -11,15 +11,10 @@ function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userId = useSelector(state => state.auth);
-  const [sortBy, setSortBy] = useState("");
   const user = useSelector(state => state.singleUser);
-  const [showPlaylists, setShowPlaylists] = useState();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortOrder, setSortOrder] = useState(null);
+  const questions = useSelector(state => state.allQuestions);
+  const allSongs = useSelector(state => state.allSongs);
   const [showEdit, setShowEdit] = useState(false);
-  const questions = useSelector((state) => state.allQuestions);
-  const users = useSelector((state) => state.allUsers);
-  const allSongs = useSelector((state) => state.allSongs);
 
   useEffect(() => {
     dispatch(fetchSingleUser(userId.id));
@@ -27,42 +22,10 @@ function Profile() {
     dispatch(fetchSongs());
   }, [dispatch, userId]);
 
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value.toLowerCase());
-  };
-
-  const handleSort = (e) => {
-    const order = e.target.value;
-    setSortOrder(order !== '' ? order : null);
-  };
-
-  const handleShowPlaylists = () => {
-    setShowPlaylists(1);
-  };
-
-  const handleHidePlaylists = () => {
-    setShowPlaylists();
-  };
-
-  const getTotalWins = () => {
-    if (user && user.playlists) {
-      return user.playlists.reduce((acc, playlist) => acc + playlist.wins, 0);
-    }
-    return 0;
-  };
-
-  const getTotalLosses = () => {
-    if (user && user.playlists) {
-      return user.playlists.reduce((acc, playlist) => acc + playlist.losses, 0);
-    }
-    return 0;
-  };
-
   const handleEditProfile = () => {
     history.push('/edit-profile');
   };
 
-  // Function to count the number of wins for the user
   const getNumberOfWins = () => {
     return questions.reduce((count, question) => {
       if (question.winner === user.id) {
@@ -87,27 +50,38 @@ function Profile() {
                 <button onClick={() => setShowEdit(true)}>Edit Profile</button>
               </div>
               <h1 className="user-email">{user.email}</h1>
-              {user.admin ? <h1>ADMIN</h1> : <div></div>}
-              <div>
-                <h2>Winning Information:</h2>
-                {questions.map((question, index) => (
-                  <div key={index} className="grid-item">
-                    {question.winner === user.id ? (
-                      <>
-                        <div>Date: {question.date}</div>
-                        <div>Winning Song: {allSongs.find((song) => song.id === question.winningSongId)?.name} By {allSongs.find((song) => song.id === question.winningSongId)?.artist}</div>
-                      </>
-                    ) : null}
-                  </div>
-                ))}
-                {questions.every((question) => question.winner !== user.id) && (
+              {user.admin ? <h1>ADMIN</h1> : null}
+              <div>Number of Wins: {getNumberOfWins()}</div>
+              <div style={{ textAlign: "center" }}>
+                <h2>List of Wins:</h2>
+                {questions.some(question => question.winner === user.id) ? (
+                  <table style={{ margin: "auto", borderCollapse: "collapse" }}>
+                    <thead>
+                      <tr>
+                        <th style={{ padding: "10px", border: "1px solid black" }}>Date</th>
+                        <th style={{ padding: "10px", border: "1px solid black" }}>Winning Song</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {questions.map((question, index) => (
+                        question.winner === user.id && (
+                          <tr key={index}>
+                            <td style={{ padding: "10px", border: "1px solid black" }}>{question.date}</td>
+                            <td style={{ padding: "10px", border: "1px solid black" }}>
+                              {allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown"} By {allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown"}
+                            </td>
+                          </tr>
+                        )
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
                   <div>No Wins</div>
                 )}
-                <div>Number of Wins: {getNumberOfWins()}</div>
               </div>
             </div>
           ) : (
-            <div></div>
+            <div>Loading...</div>
           )}
         </div>
       )}

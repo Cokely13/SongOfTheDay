@@ -129,14 +129,8 @@ function AnswerQuestion() {
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     return (
-      <div  >
-                {/* <select value={selectedDate} onChange={handleDateChange}>
-          <option value="">Select Date</option>
-          {activeQuestions.map(question => (
-            <option key={question.id} value={question.date.slice(0, 10)}>{question.date}</option>
-          ))}
-        </select> */}
-        {question ?
+      <div>
+      {question ?
         hasSongOfUser ? (
           <div >
             <div>Your Song:</div>
@@ -212,66 +206,66 @@ function AnswerQuestion() {
           </div>
         ) : <div>No Question yet</div>}
 
-        {changeSong ? (
-          <div>
-            <h3 className="playlist-add-songs-title">Select Your Song of the Day:</h3>
-            <input
-              className="playlist-add-search"
-              type="text"
-              placeholder="Search songs..."
-              value={searchText}
-              onChange={handleSearchChange}
-            />
-            {filteredSongs.length === 0 && <div>No Results</div>}
-            {filteredSongs.length > 0 && (
-              <div>
-                <ul className="playlist-add-songs-list">
-                  {paginatedSongs.map((song) => (
-                    <li key={song.id}>
-                      <div className="playlist-song-info">
-                        <span className="playlist-song-name">{song && song.name}</span> by
-                        <span className="playlist-song-artist">{song.artist}</span>
-                        <button className="playlist-song-add" onClick={() => handleNewSong(song)}>
-                          Select Song
-                        </button>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-                <div className="pagination">
-                  <ul>
-                    {currentPage > 1 && (
-                      <>
-                        <li>
-                          <button onClick={() => handlePageChange(1)}>First</button>
-                        </li>
-                        <li>
-                          <button onClick={() => handlePageChange(currentPage - 1)}>Back</button>
-                        </li>
-                      </>
-                    )}
-                    {pageRange.map((page) => (
-                      <li key={page} className={currentPage === page ? 'active' : ''}>
-                        <button onClick={() => handlePageChange(page)}>{page}</button>
+      {changeSong ? (
+        <div>
+          <h3 className="playlist-add-songs-title">Select Your Song of the Day:</h3>
+          <input
+            className="playlist-add-search"
+            type="text"
+            placeholder="Search songs..."
+            value={searchText}
+            onChange={handleSearchChange}
+          />
+          {filteredSongs.length === 0 && <div>No Results</div>}
+          {filteredSongs.length > 0 && (
+            <div>
+              <ul className="playlist-add-songs-list">
+                {paginatedSongs.map((song) => (
+                  <li key={song.id}>
+                    <div className="playlist-song-info">
+                      <span className="playlist-song-name">{song && song.name}</span> by
+                      <span className="playlist-song-artist">{song.artist}</span>
+                      <button className="playlist-song-add" onClick={() => handleNewSong(song)}>
+                        Select Song
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <div className="pagination">
+                <ul>
+                  {currentPage > 1 && (
+                    <>
+                      <li>
+                        <button onClick={() => handlePageChange(1)}>First</button>
                       </li>
-                    )).slice(currentPage - 1, currentPage + 4)}
-                    {currentPage < pageCount && (
-                      <>
-                        <li>
-                          <button onClick={() => handlePageChange(currentPage + 1)}>Forward</button>
-                        </li>
-                        <li>
-                          <button onClick={() => handlePageChange(pageCount)}>Last</button>
-                        </li>
-                      </>
-                    )}
-                  </ul>
-                </div>
+                      <li>
+                        <button onClick={() => handlePageChange(currentPage - 1)}>Back</button>
+                      </li>
+                    </>
+                  )}
+                  {pageRange.map((page) => (
+                    <li key={page} className={currentPage === page ? 'active' : ''}>
+                      <button onClick={() => handlePageChange(page)}>{page}</button>
+                    </li>
+                  )).slice(currentPage - 1, currentPage + 4)}
+                  {currentPage < pageCount && (
+                    <>
+                      <li>
+                        <button onClick={() => handlePageChange(currentPage + 1)}>Forward</button>
+                      </li>
+                      <li>
+                        <button onClick={() => handlePageChange(pageCount)}>Last</button>
+                      </li>
+                    </>
+                  )}
+                </ul>
               </div>
-            )}
-          </div>
-        ) : <div></div>}
-      </div>
+            </div>
+          )}
+        </div>
+      ) : <div></div>}
+    </div>
     );
   };
 
@@ -281,7 +275,7 @@ function AnswerQuestion() {
       <div className="playlist-details-stats">
         <h2 className="playlist-details-wins"># of Songs Selected: {songsOf.length} </h2>
       </div>
-      <div className="playlist-details-additional-song-list">{renderAddSongs()}</div>
+      <div className="user-song-container">{renderAddSongs()}</div>
       <Link to={`/vote`} className="go-vote-link">Go Vote!</Link>
     </div>
   );

@@ -2437,7 +2437,7 @@ function AnswerQuestion() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "playlist-details-wins"
   }, "# of Songs Selected: ", songsOf.length, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "playlist-details-additional-song-list"
+    className: "user-song-container"
   }, renderAddSongs()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
     to: `/vote`,
     className: "go-vote-link"
@@ -3092,133 +3092,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
-// // import React, { useEffect } from 'react';
-// // import { useSelector, useDispatch } from 'react-redux';
-// // import { fetchQuestions } from '../store/allQuestionsStore';
-// // import { fetchUsers } from '../store/allUsersStore';
-// // import { fetchSongs } from '../store/allSongsStore';
-
-// // function PastWinners() {
-// //   const dispatch = useDispatch();
-// //   const questions = useSelector((state) => state.allQuestions);
-// //   const users = useSelector((state) => state.allUsers.users);
-// //   const allSongs = useSelector((state) => state.allSongs.songs);
-
-// //   useEffect(() => {
-// //     dispatch(fetchQuestions());
-// //     dispatch(fetchUsers());
-// //     dispatch(fetchSongs());
-// //   }, [dispatch]);
-
-// //   // Filter out questions where question.active === false
-// //   const filteredQuestions = questions ? questions.filter(question => !question.active) : []
-// //   console.log("fil!!", questions)
-
-// //   return (
-// //     <div className="past">
-// //     <div >
-// //       <h2>Past Winners</h2>
-// //       <div className="grid-container">
-// //         {filteredQuestions.map((question, index) => (
-// //           <div key={index} className="grid-item">
-// //             <div>Date: {question.date}</div>
-// //             <div>Winner: {question.winner ? question.winner : "None"}</div>
-// //             <div>Winning Song ID: {question.winningSongId}</div>
-// //           </div>
-// //         ))}
-// //     {filteredQuestions.map((question, index) => (
-// //           <div key={index} className="grid-item">
-// //             <div>Date: {question.date}</div>
-// //             <div>Winner: {question.winner  ? users ? question.winner : "None" : "this"}</div>
-// //             <div>Winning Song ID: {question.winningSongId}</div>
-// //           </div>
-// //         ))}
-// //       </div>
-// //       </div>
-// //     </div>
-// //   );
-// // }
-
-// // export default PastWinners;
-
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchQuestions } from '../store/allQuestionsStore';
-// import { fetchUsers } from '../store/allUsersStore';
-// import { fetchSongs } from '../store/allSongsStore';
-
-// function PastWinners() {
-//   const dispatch = useDispatch();
-//   const questions = useSelector((state) => state.allQuestions);
-//   const users = useSelector((state) => state.allUsers);
-//   const allSongs = useSelector((state) => state.allSongs);
-//   const [selectedDate, setSelectedDate] = useState('');
-//   const [listData, setListData] = useState(null); // Define state for list data
-
-//   useEffect(() => {
-//     dispatch(fetchQuestions());
-//     dispatch(fetchUsers());
-//     dispatch(fetchSongs());
-//   }, [dispatch]);
-
-//   const handleDateChange = (event) => {
-//     setSelectedDate(event.target.value);
-//     // setPieChartData(null); // Reset pie chart data when date changes
-//     setListData(null);
-//   };
-
-//   return (
-//     <div style={{textAlign: "center", marginTop: "10%"}}>
-//       <select onChange={handleDateChange}>
-//         <option value="">Select a date</option>
-//         {questions.map((question) => (
-//           <option key={question.id} value={question.date}>
-//             {question.date}
-//           </option>
-//         ))}
-//       </select>
-
-//       {/* <button onClick={handleSeeStats}>See Stats</button> */}
-
-//       <div>
-//         <h2>Winning Song for {selectedDate}:</h2>
-//         {selectedDate ? (
-//           <div>
-//             <div>Winner: {users.find((user) => user.id === questions.find((q) => q.date === selectedDate)?.winner)?.username}</div>
-//             <div>Winning Song: {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.artist}</div>
-//           </div>
-//         ) : (
-//           ""
-//         )}
-//         <div>
-//         </div>
-//         <div>
-//           {listData && (
-
-//             <ul>
-//               <h1>Selected Songs</h1>
-//               {listData.map((item, index) => (
-//                 <li key={index}>
-//                   <div>Song: {item.song}</div>
-//                   <div>
-//                     <ul>
-//                       {item.users.map((user, index) => (
-//                         <li key={index}>Selected By: {user}</li>
-//                       ))}
-//                     </ul>
-//                   </div>
-//                 </li>
-//               ))}
-//             </ul>
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default PastWinners;
-
 
 
 
@@ -3239,12 +3112,44 @@ function PastWinners() {
       textAlign: "center",
       marginTop: "10%"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Past Winners"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "grid-container"
-  }, questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    key: index,
-    className: "grid-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner: ", users.find(user => user.id === question.winner)?.username || "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song: ", allSongs.find(song => song.id === question.winningSongId)?.name, " By ", allSongs.find(song => song.id === question.winningSongId)?.artist || "None"))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Past Winners"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
+    style: {
+      margin: "auto",
+      borderCollapse: "collapse"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
+    key: index
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, users.find(user => user.id === question.winner)?.username || "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, question.winningSongId ? `${allSongs.find(song => song.id === question.winningSongId)?.name} By ${allSongs.find(song => song.id === question.winningSongId)?.artist}` : "None")))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PastWinners);
 
@@ -3280,50 +3185,18 @@ function Profile() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
   const userId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
-  const [sortBy, setSortBy] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
   const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.singleUser);
-  const [showPlaylists, setShowPlaylists] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const [searchQuery, setSearchQuery] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [sortOrder, setSortOrder] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [showEdit, setShowEdit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
-  const users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allUsers);
   const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs);
+  const [showEdit, setShowEdit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__.fetchSingleUser)(userId.id));
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__.fetchQuestions)());
     dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchSongs)());
   }, [dispatch, userId]);
-  const handleSearch = e => {
-    setSearchQuery(e.target.value.toLowerCase());
-  };
-  const handleSort = e => {
-    const order = e.target.value;
-    setSortOrder(order !== '' ? order : null);
-  };
-  const handleShowPlaylists = () => {
-    setShowPlaylists(1);
-  };
-  const handleHidePlaylists = () => {
-    setShowPlaylists();
-  };
-  const getTotalWins = () => {
-    if (user && user.playlists) {
-      return user.playlists.reduce((acc, playlist) => acc + playlist.wins, 0);
-    }
-    return 0;
-  };
-  const getTotalLosses = () => {
-    if (user && user.playlists) {
-      return user.playlists.reduce((acc, playlist) => acc + playlist.losses, 0);
-    }
-    return 0;
-  };
   const handleEditProfile = () => {
     history.push('/edit-profile');
   };
-
-  // Function to count the number of wins for the user
   const getNumberOfWins = () => {
     return questions.reduce((count, question) => {
       if (question.winner === user.id) {
@@ -3348,10 +3221,38 @@ function Profile() {
     onClick: () => setShowEdit(true)
   }, "Edit Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "user-email"
-  }, user.email), user.admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "ADMIN") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Information:"), questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    key: index,
-    className: "grid-item"
-  }, question.winner === user.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song: ", allSongs.find(song => song.id === question.winningSongId)?.name, " By ", allSongs.find(song => song.id === question.winningSongId)?.artist)) : null)), questions.every(question => question.winner !== user.id) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Number of Wins: ", getNumberOfWins()))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)));
+  }, user.email), user.admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "ADMIN") : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Number of Wins: ", getNumberOfWins()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: {
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "List of Wins:"), questions.some(question => question.winner === user.id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
+    style: {
+      margin: "auto",
+      borderCollapse: "collapse"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => question.winner === user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
+    key: index
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown", " By ", allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown"))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Loading...")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
 
@@ -3560,6 +3461,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/singleUserStore */ "./client/store/singleUserStore.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
+// // import React, { useState, useEffect } from 'react';
+// // import { useSelector, useDispatch } from 'react-redux';
+// // import { useParams } from 'react-router-dom';
+// // import { fetchSingleUser } from '../store/singleUserStore';
+// // import { fetchQuestions } from '../store/allQuestionsStore';
+// // import { fetchSongs } from '../store/allSongsStore';
+// // import { Link } from 'react-router-dom';
+
+// // function UserDetailPage() {
+// //   const dispatch = useDispatch();
+// //   const { userId } = useParams();
+// //   const user = useSelector(state => state.singleUser);
+// //   const questions = useSelector((state) => state.allQuestions);
+// //   const allSongs = useSelector((state) => state.allSongs);
+
+// //   useEffect(() => {
+// //     dispatch(fetchSingleUser(userId));
+// //     dispatch(fetchQuestions());
+// //     dispatch(fetchSongs());
+// //   }, [dispatch, userId]);
+
+// //   // Function to count the number of wins for the user
+// //   const getNumberOfWins = () => {
+// //     if (questions && user) {
+// //       return questions.reduce((count, question) => {
+// //         if (question.winner === user.id) {
+// //           return count + 1;
+// //         }
+// //         return count;
+// //       }, 0);
+// //     }
+// //     return 0;
+// //   };
+
+// //   return (
+// //     <div className="user-detail-page">
+// //       <div className="user-header">
+// //         <div className="user-info">
+// //           {user ? (
+// //             <>
+// //               <div className="user-test">
+// //                 <h1 className="user-name">{user.username}</h1>
+// //                 <div className="user-stats">
+// //                   <p className="user-stat">
+// //                     <strong>Number of Wins:</strong> {getNumberOfWins()}
+// //                   </p>
+// //                 </div>
+// //               </div>
+// //             </>
+// //           ) : (
+// //             <div className="loading-message">Loading...</div>
+// //           )}
+// //         </div>
+// //       </div>
+
+// //     </div>
+// //   );
+// // }
+
+// // export default UserDetailPage;
+
 // import React, { useState, useEffect } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 // import { useParams } from 'react-router-dom';
@@ -3574,6 +3536,7 @@ __webpack_require__.r(__webpack_exports__);
 //   const user = useSelector(state => state.singleUser);
 //   const questions = useSelector((state) => state.allQuestions);
 //   const allSongs = useSelector((state) => state.allSongs);
+//   const [showWins, setShowWins] = useState(false);
 
 //   useEffect(() => {
 //     dispatch(fetchSingleUser(userId));
@@ -3594,6 +3557,11 @@ __webpack_require__.r(__webpack_exports__);
 //     return 0;
 //   };
 
+//   // Function to toggle the display of winning information
+//   const handleShowWins = () => {
+//     setShowWins(!showWins);
+//   };
+
 //   return (
 //     <div className="user-detail-page">
 //       <div className="user-header">
@@ -3606,6 +3574,7 @@ __webpack_require__.r(__webpack_exports__);
 //                   <p className="user-stat">
 //                     <strong>Number of Wins:</strong> {getNumberOfWins()}
 //                   </p>
+//                   <button onClick={handleShowWins}>{showWins ? "Hide Wins" : "Show Wins"}</button>
 //                 </div>
 //               </div>
 //             </>
@@ -3614,7 +3583,20 @@ __webpack_require__.r(__webpack_exports__);
 //           )}
 //         </div>
 //       </div>
-
+//       {/* Display winning information if showWins is true */}
+//       {showWins && (
+//         <div className="winning-info">
+//           <h2>Winning Information:</h2>
+//           {questions.map((question, index) => (
+//             question.winner === user.id && (
+//               <div key={index} className="winning-item">
+//                 <div>Date: {question.date}</div>
+//                 <div>Winning Song: {allSongs.find((song) => song.id === question.winningSongId)?.name} By {allSongs.find((song) => song.id === question.winningSongId)?.artist}</div>
+//               </div>
+//             )
+//           ))}
+//         </div>
+//       )}
 //     </div>
 //   );
 // }
@@ -3671,19 +3653,56 @@ function UserDetailPage() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "user-name"
   }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "user-stats"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "user-stat"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Number of Wins:"), " ", getNumberOfWins()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: handleShowWins
+    className: "user-stat",
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Number of Wins:"), " ", getNumberOfWins()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "user-stat",
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: handleShowWins,
+    style: {
+      display: 'block',
+      margin: 'auto'
+    }
   }, showWins ? "Hide Wins" : "Show Wins")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "loading-message"
   }, "Loading..."))), showWins && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "winning-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Information:"), questions.map((question, index) => question.winner === user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    key: index,
-    className: "winning-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song: ", allSongs.find(song => song.id === question.winningSongId)?.name, " By ", allSongs.find(song => song.id === question.winningSongId)?.artist)))));
+    className: "winning-info",
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Information:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
+    style: {
+      margin: "auto",
+      borderCollapse: "collapse"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => question.winner === user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
+    key: index
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    style: {
+      padding: "10px",
+      border: "1px solid black"
+    }
+  }, allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown", " By ", allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown")))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserDetailPage);
 

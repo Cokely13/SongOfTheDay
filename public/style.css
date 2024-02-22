@@ -189,6 +189,10 @@ margin-bottom: 20px;
 margin-right: 5px;
 }
 
+.user-song-container {
+  border: 1px solid black;
+  padding: 10px;
+}
 
 
 

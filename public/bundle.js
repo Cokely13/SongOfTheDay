@@ -3268,92 +3268,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
 /* harmony import */ var _EditProfile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditProfile */ "./client/components/EditProfile.js");
-// import React, { useState, useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { useParams, useHistory } from 'react-router-dom';
-// import { fetchSingleUser } from '../store/singleUserStore';
-// import { Link } from 'react-router-dom';
-// import EditProfile from './EditProfile';
-
-// function Profile() {
-//   const dispatch = useDispatch();
-//   const history = useHistory();
-//   const userId = useSelector(state => state.auth);
-//   const [sortBy, setSortBy] = useState("");
-//   const user = useSelector(state => state.singleUser);
-//   const [showPlaylists, setShowPlaylists] = useState();
-//   const [searchQuery, setSearchQuery] = useState('');
-//   const [sortOrder, setSortOrder] = useState(null);
-//   const [showEdit, setShowEdit] = useState(false);
-
-//   useEffect(() => {
-//     dispatch(fetchSingleUser(userId.id));
-//   }, [dispatch, userId]);
-
-//   const handleSearch = (e) => {
-//     setSearchQuery(e.target.value.toLowerCase());
-//   };
-
-//   const handleSort = (e) => {
-//     const order = e.target.value;
-//     setSortOrder(order !== '' ? order : null);
-//   };
-
-//   const handleShowPlaylists = () => {
-//     setShowPlaylists(1);
-//   };
-
-//   const handleHidePlaylists = () => {
-//     setShowPlaylists();
-//   };
-
-//   const getTotalWins = () => {
-//     if (user && user.playlists) {
-//       return user.playlists.reduce((acc, playlist) => acc + playlist.wins, 0);
-//     }
-//     return 0;
-//   };
-
-//   const getTotalLosses = () => {
-//     if (user && user.playlists) {
-//       return user.playlists.reduce((acc, playlist) => acc + playlist.losses, 0);
-//     }
-//     return 0;
-//   };
-
-//   const handleEditProfile = () => {
-//     history.push('/edit-profile');
-//   };
-
-//   return (
-//     <div className="playlists-container">
-//       {showEdit ? (
-//         <EditProfile setShowEdit={setShowEdit} user={user} fetchUser={fetchSingleUser} />
-//       ) : (
-//         <div className="playlists-header">
-//           {user ? (
-//             <div className="user-details">
-//               <div className="user-name">
-//                 <h1>
-//                   <u>{user.username}</u>
-//                 </h1>
-//                 <button onClick={() => setShowEdit(true)}>Edit Profile</button>
-//               </div>
-//               <h1 className="user-email">{user.email}</h1>
-//               {user.admin ? <h1>ADMIN</h1> : <div></div>}
-
-//             </div>
-//           ) : (
-//             <div></div>
-//           )}
-//         </div>
-//       )}
-//     </div>
-//   );
-
-// }
-// export default Profile;
-
 
 
 
@@ -3408,6 +3322,16 @@ function Profile() {
   const handleEditProfile = () => {
     history.push('/edit-profile');
   };
+
+  // Function to count the number of wins for the user
+  const getNumberOfWins = () => {
+    return questions.reduce((count, question) => {
+      if (question.winner === user.id) {
+        return count + 1;
+      }
+      return count;
+    }, 0);
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "playlists-container"
   }, showEdit ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EditProfile__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -3427,7 +3351,7 @@ function Profile() {
   }, user.email), user.admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "ADMIN") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Information:"), questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     key: index,
     className: "grid-item"
-  }, question.winner === user.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song: ", allSongs.find(song => song.id === question.winningSongId)?.name, " By ", allSongs.find(song => song.id === question.winningSongId)?.artist)) : null)), questions.every(question => question.winner !== user.id) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)));
+  }, question.winner === user.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song: ", allSongs.find(song => song.id === question.winningSongId)?.name, " By ", allSongs.find(song => song.id === question.winningSongId)?.artist)) : null)), questions.every(question => question.winner !== user.id) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Number of Wins: ", getNumberOfWins()))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
 

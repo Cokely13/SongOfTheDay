@@ -47,8 +47,8 @@ function AnswerQuestion() {
   // const tomorrow = new Date();
   // tomorrow.setDate(tomorrow.getDate() + 1);
   // const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
-  // const current = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString)
-  const question = questions.find((question) => question.date.slice(0, 10) === selectedDate)
+  const question = questions.find((question) => question.date.slice(0, 10) === tomorrowDateString)
+  // const question = questions.find((question) => question.date.slice(0, 10) === selectedDate)
 
 
 
@@ -130,12 +130,12 @@ function AnswerQuestion() {
 
     return (
       <div  >
-                <select value={selectedDate} onChange={handleDateChange}>
+                {/* <select value={selectedDate} onChange={handleDateChange}>
           <option value="">Select Date</option>
           {activeQuestions.map(question => (
             <option key={question.id} value={question.date.slice(0, 10)}>{question.date}</option>
           ))}
-        </select>
+        </select> */}
         {question ?
         hasSongOfUser ? (
           <div >

@@ -15,9 +15,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/users" className="navbar-link">Users</Link>
           <Link to="/songs" className="navbar-link">Songs</Link>
           <Link to="/vote" className="navbar-link">Vote</Link>
-          <Link to="/add" className="navbar-link">Add</Link>
+          <Link to="/add" className="navbar-link">Answer</Link>
           <Link to="/winningsongs" className="navbar-link">WinningSongs</Link>
-          <Link to="/winner" className="navbar-link">Winner</Link>
+          {/* <Link to="/winner" className="navbar-link">Winner</Link> */}
           <Link to="/past" className="navbar-link">Past</Link>
           <a href="#" onClick={handleClick} className="navbar-link">
             Logout

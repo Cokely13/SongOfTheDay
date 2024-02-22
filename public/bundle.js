@@ -3556,9 +3556,73 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/singleUserStore */ "./client/store/singleUserStore.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
+/* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
+// import React, { useState, useEffect } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useParams } from 'react-router-dom';
+// import { fetchSingleUser } from '../store/singleUserStore';
+// import { fetchQuestions } from '../store/allQuestionsStore';
+// import { fetchSongs } from '../store/allSongsStore';
+// import { Link } from 'react-router-dom';
+
+// function UserDetailPage() {
+//   const dispatch = useDispatch();
+//   const { userId } = useParams();
+//   const user = useSelector(state => state.singleUser);
+//   const questions = useSelector((state) => state.allQuestions);
+//   const allSongs = useSelector((state) => state.allSongs);
+
+//   useEffect(() => {
+//     dispatch(fetchSingleUser(userId));
+//     dispatch(fetchQuestions());
+//     dispatch(fetchSongs());
+//   }, [dispatch, userId]);
+
+//   // Function to count the number of wins for the user
+//   const getNumberOfWins = () => {
+//     if (questions && user) {
+//       return questions.reduce((count, question) => {
+//         if (question.winner === user.id) {
+//           return count + 1;
+//         }
+//         return count;
+//       }, 0);
+//     }
+//     return 0;
+//   };
+
+//   return (
+//     <div className="user-detail-page">
+//       <div className="user-header">
+//         <div className="user-info">
+//           {user ? (
+//             <>
+//               <div className="user-test">
+//                 <h1 className="user-name">{user.username}</h1>
+//                 <div className="user-stats">
+//                   <p className="user-stat">
+//                     <strong>Number of Wins:</strong> {getNumberOfWins()}
+//                   </p>
+//                 </div>
+//               </div>
+//             </>
+//           ) : (
+//             <div className="loading-message">Loading...</div>
+//           )}
+//         </div>
+//       </div>
+
+//     </div>
+//   );
+// }
+
+// export default UserDetailPage;
+
+
+
 
 
 
@@ -3568,50 +3632,34 @@ function UserDetailPage() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const {
     userId
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)();
-  const [sortBy, setSortBy] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)();
   const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.singleUser);
-  const [searchQuery, setSearchQuery] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [sortOrder, setSortOrder] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
+  const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs);
+  const [showWins, setShowWins] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__.fetchSingleUser)(userId));
+    dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__.fetchQuestions)());
+    dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchSongs)());
   }, [dispatch, userId]);
-  const handleSearch = e => {
-    setSearchQuery(e.target.value.toLowerCase());
-  };
-  const handleSort = e => {
-    const order = e.target.value;
-    setSortOrder(order !== '' ? order : null);
-  };
-  const getTotalWins = () => {
-    if (user && user.playlists) {
-      return user.playlists.reduce((acc, playlist) => acc + playlist.wins, 0);
+
+  // Function to count the number of wins for the user
+  const getNumberOfWins = () => {
+    if (questions && user) {
+      return questions.reduce((count, question) => {
+        if (question.winner === user.id) {
+          return count + 1;
+        }
+        return count;
+      }, 0);
     }
     return 0;
   };
-  const getTotalLosses = () => {
-    if (user && user.playlists) {
-      return user.playlists.reduce((acc, playlist) => acc + playlist.losses, 0);
-    }
-    return 0;
+
+  // Function to toggle the display of winning information
+  const handleShowWins = () => {
+    setShowWins(!showWins);
   };
-  const sortedPlaylists = user && user.playlists ? user.playlists.slice().sort((a, b) => {
-    if (!sortOrder) {
-      return 0;
-    }
-    if (sortOrder === 'name') {
-      return a.name.localeCompare(b.name);
-    }
-    if (sortOrder === 'wins') {
-      return b.wins - a.wins;
-    }
-    if (sortOrder === 'losses') {
-      return b.losses - a.losses;
-    }
-  }) : [];
-  const filteredPlaylists = sortedPlaylists.filter(playlist => {
-    return playlist.name.toLowerCase().includes(searchQuery);
-  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "user-detail-page"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3626,43 +3674,16 @@ function UserDetailPage() {
     className: "user-stats"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "user-stat"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Total Wins:"), " ", getTotalWins()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "user-stat"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Total Losses:"), " ", getTotalLosses())))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Number of Wins:"), " ", getNumberOfWins()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: handleShowWins
+  }, showWins ? "Hide Wins" : "Show Wins")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "loading-message"
-  }, "Loading..."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "user-controls"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "search-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    type: "text",
-    value: searchQuery,
-    onChange: handleSearch,
-    placeholder: "Search playlists by name",
-    className: "search-input"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "sort-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-    value: sortOrder,
-    onChange: handleSort,
-    className: "sort-select"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: ""
-  }, "Sort by..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: "name"
-  }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: "wins"
-  }, "Wins"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: "losses"
-  }, "Losses")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
-    className: "playlists-table"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Wins"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Losses"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, filteredPlaylists.map(playlist => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
-    key: playlist.id,
-    className: "playlist-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-    to: `/playlists/${playlist.id}`,
-    className: "playlist-name"
-  }, playlist.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, playlist.wins), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, playlist.losses))))));
+  }, "Loading..."))), showWins && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "winning-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Information:"), questions.map((question, index) => question.winner === user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    key: index,
+    className: "winning-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Date: ", question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winning Song: ", allSongs.find(song => song.id === question.winningSongId)?.name, " By ", allSongs.find(song => song.id === question.winningSongId)?.artist)))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserDetailPage);
 

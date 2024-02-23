@@ -23,15 +23,15 @@ function PastWinners() {
         <table style={{ margin: "auto", borderCollapse: "collapse" }}>
           <thead>
             <tr>
-              <th style={{ padding: "10px", border: "1px solid black" }}>Date</th>
-              <th style={{ padding: "10px", border: "1px solid black" }}>Winner</th>
-              <th style={{ padding: "10px", border: "1px solid black" }}>Winning Song</th>
+              <th style={{ padding: "10px", border: "3px solid black" }}>Date</th>
+              <th style={{ padding: "10px", border: "3px solid black" }}>Winner</th>
+              <th style={{ padding: "10px", border: "3px solid black" }}>Winning Song</th>
             </tr>
           </thead>
           <tbody>
             {questions.map((question, index) => (
               <tr key={index}>
-                <td style={{ padding: "10px", border: "1px solid black" }}>{question.date}</td>
+                <td style={{ padding: "10px", border: "1px solid black", }}>{question.date}</td>
                 <td style={{ padding: "10px", border: "1px solid black" }}>
                   {users.find((user) => user.id === question.winner)?.username || "None"}
                 </td>

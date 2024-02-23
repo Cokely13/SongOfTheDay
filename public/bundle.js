@@ -3120,17 +3120,17 @@ function PastWinners() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
     style: {
       padding: "10px",
-      border: "1px solid black"
+      border: "3px solid black"
     }
   }, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
     style: {
       padding: "10px",
-      border: "1px solid black"
+      border: "3px solid black"
     }
   }, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
     style: {
       padding: "10px",
-      border: "1px solid black"
+      border: "3px solid black"
     }
   }, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
     key: index

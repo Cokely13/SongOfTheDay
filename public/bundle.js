@@ -3108,48 +3108,12 @@ function PastWinners() {
     dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchSongs)());
   }, [dispatch]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    style: {
-      textAlign: "center",
-      marginTop: "10%"
-    }
+    className: "past-winners-table"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Past Winners"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
-    style: {
-      margin: "auto",
-      borderCollapse: "collapse"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
-    style: {
-      padding: "10px",
-      border: "3px solid black"
-    }
-  }, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
-    style: {
-      padding: "10px",
-      border: "3px solid black"
-    }
-  }, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
-    style: {
-      padding: "10px",
-      border: "3px solid black"
-    }
-  }, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
+    className: "custom-table"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
     key: index
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-    style: {
-      padding: "10px",
-      border: "1px solid black"
-    }
-  }, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-    style: {
-      padding: "10px",
-      border: "1px solid black"
-    }
-  }, users.find(user => user.id === question.winner)?.username || "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-    style: {
-      padding: "10px",
-      border: "1px solid black"
-    }
-  }, question.winningSongId ? `${allSongs.find(song => song.id === question.winningSongId)?.name} By ${allSongs.find(song => song.id === question.winningSongId)?.artist}` : "None")))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, users.find(user => user.id === question.winner)?.username || "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.winningSongId ? `${allSongs.find(song => song.id === question.winningSongId)?.name} By ${allSongs.find(song => song.id === question.winningSongId)?.artist}` : "None")))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PastWinners);
 

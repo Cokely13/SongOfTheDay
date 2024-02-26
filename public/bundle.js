@@ -2799,6 +2799,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _AnswerQuestion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AnswerQuestion */ "./client/components/AnswerQuestion.js");
+/* harmony import */ var _Vote__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Vote */ "./client/components/Vote.js");
+
 
 
 
@@ -2810,7 +2812,7 @@ const Home = props => {
   const {
     username
   } = props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AnswerQuestion__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Vote__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
 
 /**
@@ -3688,72 +3690,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allVotesStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allVotesStore */ "./client/store/allVotesStore.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { useParams } from 'react-router-dom';
-// import { fetchQuestions } from '../store/allQuestionsStore';
-// import { createVote } from '../store/allVotesStore';
-
-// function Vote() {
-//   const dispatch = useDispatch();
-//   const { id } = useSelector(state => state.auth);
-//   const questions = useSelector(state => state.allQuestions);
-//   const [voted, setVoted] = useState(false);
-
-//   const test = new Date();
-//   const tomorrow = new Date(test);
-//   tomorrow.setDate(tomorrow.getDate() + 1);
-
-//   const tomorrowString = tomorrow.toISOString().slice(0, 10);
-
-//   const today = new Date().toISOString().slice(0, 10);
-//   const picks = questions ? questions.find(question => question.date.slice(0, 10) === today) : [];
-//   const currentSongs = picks ? picks.voteSongs ? picks.voteSongs : [] : [];
-
-//   useEffect(() => {
-//     dispatch(fetchQuestions());
-//   }, [dispatch]);
-
-//   const handleVote = (songId) => {
-//     const vote = {
-//       userId: id,
-//       questionId: picks.id,
-//       voteSongId: songId
-//     };
-//     dispatch(createVote(vote));
-//     setVoted(true);
-//   };
-
-//   const hasUserVoted = picks ? picks.votes.some((vote) => vote.userId === id) : false;
-
-//   return (
-//     <div className="voting" >
-//       <div className="voting-block">
-//         <h1>Vote</h1>
-//         <h1>{picks ? picks.date: ""}</h1>
-//         {!voted ? (
-//           hasUserVoted ? (
-//             <div>VOTED</div>
-//           ) : currentSongs.length > 0 ? (
-//             currentSongs.map((song) => (
-//               <div key={song.id}  className="voting-row">
-//                 <h2>{song.song.name} by {song.song.artist}</h2>
-//                 <button style={{ marginLeft: '10px' }} onClick={() => handleVote(song.id)}>Vote</button>
-//               </div>
-//             ))
-//           ) : (
-//             <div>nada</div>
-//           )
-//         ) : (
-//           <div>You have already voted!!!</div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Vote;
-
 
 
 
@@ -3786,22 +3722,19 @@ function Vote() {
 
   // Filter out questions where active is false
   const activeQuestions = questions ? questions.filter(question => question.active) : [];
-  const picks = selectedDate ? activeQuestions.find(question => question.date.slice(0, 10) === selectedDate) : null;
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayDateOnly = yesterday.toISOString().split('T')[0];
+  const today = new Date();
+  const todayDateOnly = today.toISOString().split('T')[0];
+  const picks = activeQuestions.find(question => question.date.slice(0, 10) === todayDateOnly);
   const currentSongs = picks ? picks.voteSongs || [] : [];
   const hasUserVoted = picks ? picks.votes.some(vote => vote.userId === id) : false;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "voting"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "voting-block"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Vote"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-    value: selectedDate,
-    onChange: handleDateChange
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: ""
-  }, "Select Date"), activeQuestions.map(question => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    key: question.id,
-    value: question.date.slice(0, 10)
-  }, question.date))), picks && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, picks.date), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Vote"), picks && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, picks.date), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     key: song.id,
     className: "voting-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, song.song.name, " by ", song.song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {

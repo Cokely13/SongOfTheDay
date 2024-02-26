@@ -22,6 +22,17 @@ async function updateQuestions() {
     const todayDateOnly = today.toISOString().split('T')[0];
     const existingQuestion = await Question.findOne({ where: { date: todayDateOnly } });
 
+    const challengesToUpdate = await Question.findAll({
+      where: {
+          date: {
+          [Sequelize.Op.lte]: yesterdayDateOnly, // Challenges with endDate today or in the past
+      },
+      active: true
+    }
+    });
+
+    console.log("challenge", challengesToUpdate)
+
     // If a question for today already exists, skip creating a new one
     if (existingQuestion) {
       console.log('Question for today already exists. Skipping creation.');

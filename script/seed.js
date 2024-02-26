@@ -37,7 +37,7 @@ const tomorrowDateOnly = tomorrow.toISOString().split('T')[0];
 
   const questions = await Promise.all([
     Question.create({   }),
-    Question.create({date:tomorrowDateOnly}),
+    // Question.create({date:tomorrowDateOnly}),
   ])
 
 
@@ -64,7 +64,7 @@ const tomorrowDateOnly = tomorrow.toISOString().split('T')[0];
   const voteSongs = await Promise.all([
     VoteSong.create({questionId: 1, songId:1, userId:1   }),
     VoteSong.create({questionId: 1, songId:2, userId:2   }),
-    VoteSong.create({questionId: 2, songId:6, userId:1   }),
+    // VoteSong.create({questionId: 2, songId:6, userId:1   }),
   ])
 
   console.log(`seeded ${users.length} users`)

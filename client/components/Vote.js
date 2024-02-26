@@ -58,7 +58,7 @@ function Vote() {
             <option key={question.id} value={question.date.slice(0, 10)}>{question.date}</option>
           ))}
         </select> */}
-        {picks && (
+        {picks ? (
           <React.Fragment>
             <h1>{picks.date}</h1>
             {!voted ? (
@@ -80,7 +80,7 @@ function Vote() {
               <div>You have already voted!!!</div>
             )}
           </React.Fragment>
-        )}
+        ) : <div>Check Back Tomorrow</div>}
       </div>
     </div>
   );

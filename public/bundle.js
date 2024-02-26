@@ -3734,7 +3734,7 @@ function Vote() {
     className: "voting"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "voting-block"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Vote"), picks && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, picks.date), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Vote"), picks ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, picks.date), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     key: song.id,
     className: "voting-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, song.song.name, " by ", song.song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -3746,7 +3746,7 @@ function Vote() {
     className: "voting-row"
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     to: `/add`
-  }, "Add Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted!!!"))));
+  }, "Add Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted!!!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Check Back Tomorrow")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vote);
 

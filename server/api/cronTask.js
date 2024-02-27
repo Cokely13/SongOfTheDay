@@ -105,7 +105,6 @@ async function updateQuestions() {
         const todayDateOnly = today.toISOString().split('T')[0];
         const existingQuestion = await Question.findOne({ where: { date: tomorrowDateOnly } });
 
-        User.create({ username: 'Dee', email: "d@gmail.com",  password: '123'})
 
 
 

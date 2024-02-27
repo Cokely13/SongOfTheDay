@@ -62,14 +62,16 @@ function WinningSongs() {
 
   return (
     <div style={{textAlign: "center", marginTop: "10%"}}>
-      <select onChange={handleDateChange}>
-        <option value="">Select a date</option>
-        {questions.map((question) => (
-          <option key={question.id} value={question.date}>
-            {question.date}
-          </option>
-        ))}
-      </select>
+     <select onChange={handleDateChange}>
+  <option value="">Select a date</option>
+  {questions
+    .filter(question => !question.active) // Filter questions where active is false
+    .map((question) => (
+      <option key={question.id} value={question.date}>
+        {question.date}
+      </option>
+    ))}
+</select>
 
       <button onClick={handleSeeStats}>See Stats</button>
 

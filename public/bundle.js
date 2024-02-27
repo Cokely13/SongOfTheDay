@@ -2090,7 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AuthForm */ "./client/components/AuthForm.js");
 /* harmony import */ var _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/LogInForm */ "./client/components/LogInForm.js");
 /* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Home */ "./client/components/Home.js");
@@ -2100,13 +2100,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UserDetailPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/UserDetailPage */ "./client/components/UserDetailPage.js");
 /* harmony import */ var _components_AnswerQuestion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/AnswerQuestion */ "./client/components/AnswerQuestion.js");
 /* harmony import */ var _components_Vote__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Vote */ "./client/components/Vote.js");
-/* harmony import */ var _components_Winner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Winner */ "./client/components/Winner.js");
-/* harmony import */ var _components_WinningSongs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/WinningSongs */ "./client/components/WinningSongs.js");
-/* harmony import */ var _components_CreateQuestion__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/CreateQuestion */ "./client/components/CreateQuestion.js");
-/* harmony import */ var _components_PastWinners__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/PastWinners */ "./client/components/PastWinners.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
-/* harmony import */ var _components_CloseQuestion__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/CloseQuestion */ "./client/components/CloseQuestion.js");
-
+/* harmony import */ var _components_WinningSongs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/WinningSongs */ "./client/components/WinningSongs.js");
+/* harmony import */ var _components_CreateQuestion__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/CreateQuestion */ "./client/components/CreateQuestion.js");
+/* harmony import */ var _components_PastWinners__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/PastWinners */ "./client/components/PastWinners.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+/* harmony import */ var _components_CloseQuestion__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/CloseQuestion */ "./client/components/CloseQuestion.js");
 
 
 
@@ -2136,64 +2134,60 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     const {
       isLoggedIn
     } = this.props;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/home",
       component: _components_Home__WEBPACK_IMPORTED_MODULE_4__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/profile",
       component: _components_Profile__WEBPACK_IMPORTED_MODULE_7__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/users",
       component: _components_User__WEBPACK_IMPORTED_MODULE_6__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/users/:userId",
       component: _components_UserDetailPage__WEBPACK_IMPORTED_MODULE_8__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/songs",
       component: _components_SongList__WEBPACK_IMPORTED_MODULE_5__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/add",
       component: _components_AnswerQuestion__WEBPACK_IMPORTED_MODULE_9__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/vote",
       component: _components_Vote__WEBPACK_IMPORTED_MODULE_10__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
-      exact: true,
-      path: "/winner",
-      component: _components_Winner__WEBPACK_IMPORTED_MODULE_11__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/winningsongs",
-      component: _components_WinningSongs__WEBPACK_IMPORTED_MODULE_12__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+      component: _components_WinningSongs__WEBPACK_IMPORTED_MODULE_11__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/create",
-      component: _components_CreateQuestion__WEBPACK_IMPORTED_MODULE_13__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+      component: _components_CreateQuestion__WEBPACK_IMPORTED_MODULE_12__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/close",
-      component: _components_CloseQuestion__WEBPACK_IMPORTED_MODULE_16__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+      component: _components_CloseQuestion__WEBPACK_IMPORTED_MODULE_15__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/past",
-      component: _components_PastWinners__WEBPACK_IMPORTED_MODULE_14__["default"]
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Redirect, {
+      component: _components_PastWinners__WEBPACK_IMPORTED_MODULE_13__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Redirect, {
       to: "/home"
-    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       path: "/",
       exact: true,
       component: _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       path: "/login",
       component: _components_LogInForm__WEBPACK_IMPORTED_MODULE_3__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       path: "/signup",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Signup
     })));
@@ -2213,14 +2207,14 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_15__.me)());
+      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_14__.me)());
     }
   };
 };
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_17__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
 
 /***/ }),
 
@@ -3115,7 +3109,7 @@ function PastWinners() {
     className: "custom-table"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
     key: index
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, users.find(user => user.id === question.winner)?.username || "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.winningSongId ? `${allSongs.find(song => song.id === question.winningSongId)?.name} By ${allSongs.find(song => song.id === question.winningSongId)?.artist}` : "None")))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, users.find(user => user.id === question.winner)?.username || ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.winningSongId ? `${allSongs.find(song => song.id === question.winningSongId)?.name} By ${allSongs.find(song => song.id === question.winningSongId)?.artist}` : "")))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PastWinners);
 
@@ -3752,201 +3746,6 @@ function Vote() {
 
 /***/ }),
 
-/***/ "./client/components/Winner.js":
-/*!*************************************!*\
-  !*** ./client/components/Winner.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
-/* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchQuestions } from '../store/allQuestionsStore';
-// import {fetchUsers} from '../store/allUsersStore'
-
-// function Winner() {
-//   const dispatch = useDispatch();
-//   const questions = useSelector((state) => state.allQuestions);
-//   const users = useSelector((state) => state.allUsers);
-//   const [selectedDate, setSelectedDate] = useState('');
-//   const [winningSongs, setWinningSongs] = useState([]);
-
-//   useEffect(() => {
-//     dispatch(fetchQuestions());
-//     dispatch(fetchUsers());
-//   }, [dispatch]);
-
-//   const handleDateChange = (event) => {
-//     setSelectedDate(event.target.value);
-//   };
-
-//   // const findWinningSongs = () => {
-//   //   // Find the selected question based on the date
-//   //   const selectedQuestion = questions.find((question) => question.date === selectedDate);
-
-//   //   console.log("hey", selectedQuestion)
-
-//   //   if (selectedQuestion) {
-//   //     // Find the voteSongs with the most votes for the selected question
-//   //     const maxVotes = Math.max(...selectedQuestion.voteSongs.map((voteSong) => voteSong.votes));
-//   //     const winningSongs = selectedQuestion.voteSongs.filter((voteSong) => voteSong.votes === maxVotes);
-//   //     setWinningSongs(winningSongs);
-//   //   } else {
-//   //     setWinningSongs([]);
-//   //   }
-//   // };
-
-//   const findWinningSongs = () => {
-//     // Find the selected question based on the date
-//     const selectedQuestion = questions.find((question) => question.date === selectedDate);
-
-//     if (selectedQuestion) {
-//       const voteCounts = {}; // Object to store vote counts for each voteSongId
-
-//       // Iterate through selectedQuestion.votes to count votes for each voteSongId
-//       selectedQuestion.votes.forEach((vote) => {
-//         const voteSongId = vote.voteSongId;
-//         if (voteCounts[voteSongId]) {
-//           voteCounts[voteSongId]++;
-//         } else {
-//           voteCounts[voteSongId] = 1;
-//         }
-//       });
-
-//       // Find the voteSongId with the most votes
-//       let winningVoteSongId = null;
-//       let maxVotes = 0;
-
-//       for (const voteSongId in voteCounts) {
-//         if (voteCounts[voteSongId] > maxVotes) {
-//           maxVotes = voteCounts[voteSongId];
-//           winningVoteSongId = voteSongId;
-//         }
-//       }
-
-//       // Now, you have the winningVoteSongId, and you can find the corresponding song
-//       const winningSong = selectedQuestion.voteSongs.find(
-//         (voteSong) => voteSong.id === parseInt(winningVoteSongId)
-//       );
-
-//       setWinningSongs([winningSong]);
-//     } else {
-//       setWinningSongs([]);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <div>Winner</div>
-//       <select onChange={handleDateChange}>
-//         <option value="">Select a date</option>
-//         {questions.map((question) => (
-//           <option key={question.id} value={question.date}>
-//             {question.date}
-//           </option>
-//         ))}
-//       </select>
-//       <button onClick={findWinningSongs}>Find Winning Songs</button>
-//       {winningSongs.length > 0 && (
-//         <div>
-//           <h2>Winning Songs for {selectedDate}:</h2>
-//           <ul>
-//             {winningSongs.map((voteSong) => (
-//               <li key={voteSong.id}>
-//                 {voteSong.song.artist} - {voteSong.song.name}
-//                 {voteSong.userId}
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default Winner;
-
-
-
-
-
-function Winner() {
-  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
-  const users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allUsers);
-  const [selectedDate, setSelectedDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [winningSongs, setWinningSongs] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.fetchQuestions)());
-    dispatch((0,_store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__.fetchUsers)());
-  }, [dispatch]);
-  const handleDateChange = event => {
-    setSelectedDate(event.target.value);
-  };
-  const findWinningSongs = () => {
-    // Find the selected question based on the date
-    const selectedQuestion = questions.find(question => question.date === selectedDate);
-    if (selectedQuestion) {
-      const voteCounts = {}; // Object to store vote counts for each voteSongId
-
-      // Iterate through selectedQuestion.votes to count votes for each voteSongId
-      selectedQuestion.votes.forEach(vote => {
-        const voteSongId = vote.voteSongId;
-        if (voteCounts[voteSongId]) {
-          voteCounts[voteSongId]++;
-        } else {
-          voteCounts[voteSongId] = 1;
-        }
-      });
-
-      // Find the voteSongId with the most votes
-      let winningVoteSongId = null;
-      let maxVotes = 0;
-      for (const voteSongId in voteCounts) {
-        if (voteCounts[voteSongId] > maxVotes) {
-          maxVotes = voteCounts[voteSongId];
-          winningVoteSongId = voteSongId;
-        }
-      }
-
-      // Now, you have the winningVoteSongId, and you can find the corresponding song and user
-      const winningSong = selectedQuestion.voteSongs.find(voteSong => voteSong.id === parseInt(winningVoteSongId));
-
-      // Find the user associated with the winningSong.userId
-      const winningUser = users.find(user => user.id === winningSong.userId);
-      setWinningSongs([{
-        song: winningSong,
-        user: winningUser
-      }]);
-    } else {
-      setWinningSongs([]);
-    }
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-    onChange: handleDateChange
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    value: ""
-  }, "Select a date"), questions.map(question => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-    key: question.id,
-    value: question.date
-  }, question.date))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    onClick: findWinningSongs
-  }, "Find Winning Songs"), winningSongs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Songs for ", selectedDate, ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, winningSongs.map(winning => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    key: winning.song.id
-  }, winning.song.song.artist, " - ", winning.song.song.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, " ", winning.user.username))))));
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Winner);
-
-/***/ }),
-
 /***/ "./client/components/WinningSongs.js":
 /*!*******************************************!*\
   !*** ./client/components/WinningSongs.js ***!
@@ -4035,7 +3834,8 @@ function WinningSongs() {
     onChange: handleDateChange
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: ""
-  }, "Select a date"), questions.map(question => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+  }, "Select a date"), questions.filter(question => !question.active) // Filter questions where active is false
+  .map(question => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     key: question.id,
     value: question.date
   }, question.date))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {

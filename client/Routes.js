@@ -10,7 +10,6 @@ import Profile from './components/Profile';
 import UserDetailPage from './components/UserDetailPage';
 import AnswerQuestion from './components/AnswerQuestion';
 import Vote from './components/Vote';
-import Winner from './components/Winner';
 import WinningSongs from './components/WinningSongs';
 import CreateQuestion from './components/CreateQuestion';
 import PastWinners from './components/PastWinners';
@@ -40,7 +39,6 @@ class Routes extends Component {
             <Route exact path="/songs" component={SongList} />
             <Route exact path="/add" component={AnswerQuestion} />
             <Route exact path="/vote" component={Vote} />
-            <Route exact path="/winner" component={Winner} />
             <Route exact path="/winningsongs" component={WinningSongs} />
             <Route exact path="/create" component={CreateQuestion} />
             <Route exact path="/close" component={CloseQuestion} />

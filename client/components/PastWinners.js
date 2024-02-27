@@ -32,11 +32,11 @@ function PastWinners() {
         {questions.map((question, index) => (
           <tr key={index}>
             <td>{question.date}</td>
-            <td>{users.find((user) => user.id === question.winner)?.username || "None"}</td>
+            <td>{users.find((user) => user.id === question.winner)?.username || ""}</td>
             <td>
               {question.winningSongId ?
                 `${allSongs.find((song) => song.id === question.winningSongId)?.name} By ${allSongs.find((song) => song.id === question.winningSongId)?.artist}` :
-                "None"
+                ""
               }
             </td>
           </tr>

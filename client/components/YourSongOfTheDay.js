@@ -145,8 +145,8 @@ function YourSongOfTheDay() {
             {userSong && userSong.length > 0 ? (
               <div className='yoursong' >
                 <div>
-                  <div>Song Name: {hasSongOfUser ? userSong[0].song.name : ''}</div>
-                  <div>By: {userSong[0].song.artist}</div>
+                  <h2>Song Name: {hasSongOfUser ? userSong[0].song.name : ''}</h2>
+                  <h2>By: {userSong[0].song.artist}</h2>
                 </div>
                {!cancelChange ? <button  onClick={handleChangeSong}>Change Song</button> : <button className="cancel-change-button"  onClick={handleCancelSong}> Cancel Change </button> }
               </div>
@@ -284,7 +284,7 @@ function YourSongOfTheDay() {
         <h2 className="playlist-details-wins"># of Songs Selected: {songsOf.length} </h2>
       </div>
       <div className="user-song-container">{renderAddSongs()}</div>
-      <Link to={`/vote`} className="go-vote-link" >Go Vote!</Link>
+      <h1><Link to={`/vote`} className="go-vote-link" >Go Vote!</Link></h1>
     </div>
   );
 }

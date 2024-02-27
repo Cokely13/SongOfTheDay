@@ -125,7 +125,7 @@ margin: 5px 0;
 } */
 
 .user-page-container {
-  border: 3px solid #2C3E50;
+  border: 10px solid #2C3E50;
   border-radius: 10px;
   padding: 10px;
   color: #2C3E50;
@@ -148,7 +148,7 @@ justify-content: center;
 margin: 10px;
 padding: 10px;
 /* border: 1px solid #ccc; */
-border: 3px solid #2C3E50;
+border: 5px solid #2C3E50;
 border-radius: 10px;
 width: 250px;
 text-align: center;
@@ -190,7 +190,7 @@ margin-right: 5px;
 }
 
 .user-song-container {
-  border: 1px solid black;
+  border: 10px solid #2C3E50;
   padding: 10px;
   border-radius: 10px; /* Adjust the value as needed */
   flex-direction: column;

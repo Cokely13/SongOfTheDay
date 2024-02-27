@@ -192,6 +192,22 @@ margin-right: 5px;
 .user-song-container {
   border: 1px solid black;
   padding: 10px;
+  border-radius: 10px; /* Adjust the value as needed */
+  flex-direction: column;
+  /* Center the content horizontally and vertically */
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+}
+
+/* .centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.user-song-container button {
+  margin-top: 10px; /* Adjust button spacing */
 }
 
 
@@ -595,6 +611,19 @@ button:hover {
 .lets-vote-button:hover {
   background-color: #6c3483;
 }
+
+.cancel-change-button {
+  background-color: red; /* Change the background color to red */
+  color: white; /* Change the text color to white */
+  border: none; /* Remove the button border */
+  padding: 8px 16px; /* Adjust padding as needed */
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+.cancel-change-button:hover {
+  background-color: darkred; /* Darken the background color on hover */
+}
+
 
 .playlist-comparison {
   margin-top: 40px;
@@ -1110,6 +1139,11 @@ button[type='submit']:hover {
   }
 
   .go-vote-link {
+    display: block; /* Change the display property to block to center the link */
+    text-align: center; /* Center the text horizontally */
+  }
+
+  .yoursong {
     display: block; /* Change the display property to block to center the link */
     text-align: center; /* Center the text horizontally */
   }

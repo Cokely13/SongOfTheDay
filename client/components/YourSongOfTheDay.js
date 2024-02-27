@@ -18,6 +18,7 @@ function YourSongOfTheDay() {
   const currentUser = useSelector((state) => state.auth);
   const user = useSelector((state) => state.auth);
   const [selectedSong, setSelectedSong] = useState(null);
+  const [cancelChange, setCancelChange] = useState(null);
   const [changeSong, setChangeSong] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 20;
@@ -99,7 +100,15 @@ function YourSongOfTheDay() {
 
   const handleChangeSong = () => {
     setSelectedSong(null);
-    setChangeSong(true) // Reset selectedSong state to null to allow the user to select a new song
+    setChangeSong(true)
+    setCancelChange(true)
+   // Reset selectedSong state to null to allow the user to select a new song
+  };
+
+  const handleCancelSong = () => {
+    setChangeSong(false)
+    setCancelChange(false)
+  // Reset selectedSong state to null to allow the user to select a new song
   };
 
   const handleDateChange = (event) => {
@@ -131,15 +140,15 @@ function YourSongOfTheDay() {
       <div>
       {question ?
         hasSongOfUser ? (
-          <div >
-            <div>Your Song:</div>
+          <div>
+            <h1><u>Your Song </u></h1>
             {userSong && userSong.length > 0 ? (
-              <div>
+              <div className='yoursong' >
                 <div>
                   <div>Song Name: {hasSongOfUser ? userSong[0].song.name : ''}</div>
                   <div>By: {userSong[0].song.artist}</div>
                 </div>
-                <button onClick={handleChangeSong}>Change Song</button>
+               {!cancelChange ? <button  onClick={handleChangeSong}>Change Song</button> : <button className="cancel-change-button"  onClick={handleCancelSong}> Cancel Change </button> }
               </div>
             ) : (
               <div></div>
@@ -275,7 +284,7 @@ function YourSongOfTheDay() {
         <h2 className="playlist-details-wins"># of Songs Selected: {songsOf.length} </h2>
       </div>
       <div className="user-song-container">{renderAddSongs()}</div>
-      <Link to={`/vote`} className="go-vote-link">Go Vote!</Link>
+      <Link to={`/vote`} className="go-vote-link" >Go Vote!</Link>
     </div>
   );
 }

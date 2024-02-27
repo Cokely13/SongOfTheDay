@@ -3684,6 +3684,7 @@ function YourSongOfTheDay() {
   const currentUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const [selectedSong, setSelectedSong] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [cancelChange, setCancelChange] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [changeSong, setChangeSong] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
   const pageSize = 20;
@@ -3752,7 +3753,14 @@ function YourSongOfTheDay() {
   };
   const handleChangeSong = () => {
     setSelectedSong(null);
-    setChangeSong(true); // Reset selectedSong state to null to allow the user to select a new song
+    setChangeSong(true);
+    setCancelChange(true);
+    // Reset selectedSong state to null to allow the user to select a new song
+  };
+  const handleCancelSong = () => {
+    setChangeSong(false);
+    setCancelChange(false);
+    // Reset selectedSong state to null to allow the user to select a new song
   };
   const handleDateChange = event => {
     setSelectedDate(event.target.value);
@@ -3769,9 +3777,14 @@ function YourSongOfTheDay() {
     const pageCount = Math.ceil(filteredSongs.length / pageSize);
     const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, question ? hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Your Song:"), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song Name: ", hasSongOfUser ? userSong[0].song.name : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "By: ", userSong[0].song.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, question ? hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("u", null, "Your Song ")), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "yoursong"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song Name: ", hasSongOfUser ? userSong[0].song.name : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "By: ", userSong[0].song.artist)), !cancelChange ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: handleChangeSong
-    }, "Change Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    }, "Change Song") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "cancel-change-button",
+      onClick: handleCancelSong
+    }, " Cancel Change ")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
       className: "playlist-add-songs-title"
     }, "Add Songs:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       className: "playlist-add-search",

@@ -72,8 +72,8 @@ function Vote() {
                   </div>
                 ))
               ) : (
-                <div className="voting-row"> <Link to={`/add`} >
-                Add Song
+                <div className="voting-row"> <Link to={`/yoursong`} >
+               Pick Song
               </Link></div>
               )
             ) : (

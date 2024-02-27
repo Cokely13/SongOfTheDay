@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import AnswerQuestion from './AnswerQuestion'
+import AnswerQuestion from './YourSongOfTheDay'
 import Vote from './Vote'
 
 /**

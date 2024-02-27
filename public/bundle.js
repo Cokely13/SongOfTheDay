@@ -2098,7 +2098,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/User */ "./client/components/User.js");
 /* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Profile */ "./client/components/Profile.js");
 /* harmony import */ var _components_UserDetailPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/UserDetailPage */ "./client/components/UserDetailPage.js");
-/* harmony import */ var _components_AnswerQuestion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/AnswerQuestion */ "./client/components/AnswerQuestion.js");
+/* harmony import */ var _components_YourSongOfTheDay__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/YourSongOfTheDay */ "./client/components/YourSongOfTheDay.js");
 /* harmony import */ var _components_Vote__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Vote */ "./client/components/Vote.js");
 /* harmony import */ var _components_WinningSongs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/WinningSongs */ "./client/components/WinningSongs.js");
 /* harmony import */ var _components_CreateQuestion__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/CreateQuestion */ "./client/components/CreateQuestion.js");
@@ -2156,8 +2156,8 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       component: _components_SongList__WEBPACK_IMPORTED_MODULE_5__["default"]
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
-      path: "/add",
-      component: _components_AnswerQuestion__WEBPACK_IMPORTED_MODULE_9__["default"]
+      path: "/yoursong",
+      component: _components_YourSongOfTheDay__WEBPACK_IMPORTED_MODULE_9__["default"]
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
       exact: true,
       path: "/vote",
@@ -2215,229 +2215,6 @@ const mapDispatch = dispatch => {
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
-
-/***/ }),
-
-/***/ "./client/components/AnswerQuestion.js":
-/*!*********************************************!*\
-  !*** ./client/components/AnswerQuestion.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
-/* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
-/* harmony import */ var _store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allVoteSongsStore */ "./client/store/allVoteSongsStore.js");
-/* harmony import */ var _store_singleVoteSongStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/singleVoteSongStore */ "./client/store/singleVoteSongStore.js");
-/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Pagination */ "./client/components/Pagination.js");
-
-
-
-;
-
-// import { deletePlaylist} from '../store/allPlaylistsStore'
-
-
-
-
-
-function AnswerQuestion() {
-  const {
-    playlistId
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useParams)();
-  const [searchText, setSearchText] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
-  const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs);
-  const votesSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allVoteSongs);
-  const currentUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
-  const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
-  const [selectedSong, setSelectedSong] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [changeSong, setChangeSong] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-  const pageSize = 20;
-  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
-  const [showDeletePopup, setShowDeletePopup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
-  const [selectedDate, setSelectedDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(tomorrowDateString);
-  // const [selectedDate, setSelectedDate] = useState("");
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__.fetchQuestions)());
-  }, [dispatch, selectedSong]); // Refetch playlist when selectedSong changes
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_2__.fetchSongs)());
-  }, [dispatch, selectedSong]); // Refetch songs when selectedSong changes
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchVoteSongs)());
-  }, [dispatch]); // Refetch songs when selectedSong changes
-
-  // const tomorrow = new Date();
-  // tomorrow.setDate(tomorrow.getDate() + 1);
-  // const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
-  const question = questions.find(question => question.date.slice(0, 10) === tomorrowDateString);
-  // const question = questions.find((question) => question.date.slice(0, 10) === selectedDate)
-
-  const activeQuestions = questions ? questions.filter(question => question.active) : [];
-  const songsIn = question ? question.voteSongs : [];
-  const songsOf = votesSongs ? votesSongs.filter(song => song.questionId === question?.id) : [];
-  const hasSongOfUser = songsIn ? songsIn.some(song => song.userId == user.id) : false;
-  const userSong = songsIn ? songsIn.filter(song => song.userId == user.id) : [];
-  const handleSelectSong = song => {
-    const songAlreadyPicked = songsIn.some(pickedSong => pickedSong.songId === song.id);
-    if (songAlreadyPicked) {
-      // Display an error message indicating that the song has already been selected
-      alert('This song has already been selected!');
-    } else {
-      const newSong = {
-        questionId: question.id,
-        userId: user.id,
-        songId: song.id
-      };
-      dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.createVoteSong)(newSong));
-      history.push('/vote');
-    }
-  };
-  const handleNewSong = song => {
-    const songAlreadyPicked = songsIn.some(pickedSong => pickedSong.songId === song.id);
-    const voteSongId = songsIn.find(song => song.userId === user.id)?.id;
-    if (songAlreadyPicked) {
-      // Display an error message indicating that the song has already been selected
-      alert('This song has already been selected!');
-    } else {
-      const newSong = {
-        id: voteSongId,
-        questionId: question.id,
-        userId: user.id,
-        songId: song.id
-      };
-      dispatch((0,_store_singleVoteSongStore__WEBPACK_IMPORTED_MODULE_5__.updateSingleVoteSong)(newSong));
-      history.push('/home');
-    }
-  };
-  const handleChangeSong = () => {
-    setSelectedSong(null);
-    setChangeSong(true); // Reset selectedSong state to null to allow the user to select a new song
-  };
-  const handleDateChange = event => {
-    setSelectedDate(event.target.value);
-  };
-  const handleSearchChange = event => {
-    setSearchText(event.target.value);
-  };
-  const handlePageChange = page => {
-    setCurrentPage(page);
-  };
-  const renderAddSongs = () => {
-    const songsToAdd = allSongs;
-    const filteredSongs = songsToAdd.filter(song => song.name.toLowerCase().includes(searchText.toLowerCase()) || song.artist.toLowerCase().includes(searchText.toLowerCase()));
-    const pageCount = Math.ceil(filteredSongs.length / pageSize);
-    const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
-    const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, question ? hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Your Song:"), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song Name: ", hasSongOfUser ? userSong[0].song.name : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "By: ", userSong[0].song.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: handleChangeSong
-    }, "Change Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
-      className: "playlist-add-songs-title"
-    }, "Add Songs:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-      className: "playlist-add-search",
-      type: "text",
-      placeholder: "Search songs...",
-      value: searchText,
-      onChange: handleSearchChange
-    }), filteredSongs.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Results"), filteredSongs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-      className: "playlist-add-songs-list"
-    }, paginatedSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      key: song.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "playlist-song-info"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "playlist-song-name"
-    }, song && song.name), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "playlist-song-artist"
-    }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "playlist-song-add",
-      onClick: () => handleSelectSong(song)
-    }, "Select Song"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "pagination"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, currentPage > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(1)
-    }, "First")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(currentPage - 1)
-    }, "Back"))), pageRange.map(page => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      key: page,
-      className: currentPage === page ? 'active' : ''
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(page)
-    }, page))).slice(currentPage - 1, currentPage + 4), currentPage < pageCount && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(currentPage + 1)
-    }, "Forward")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(pageCount)
-    }, "Last"))))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Question yet"), changeSong ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
-      className: "playlist-add-songs-title"
-    }, "Select Your Song of the Day:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-      className: "playlist-add-search",
-      type: "text",
-      placeholder: "Search songs...",
-      value: searchText,
-      onChange: handleSearchChange
-    }), filteredSongs.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Results"), filteredSongs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-      className: "playlist-add-songs-list"
-    }, paginatedSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      key: song.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "playlist-song-info"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "playlist-song-name"
-    }, song && song.name), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "playlist-song-artist"
-    }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "playlist-song-add",
-      onClick: () => handleNewSong(song)
-    }, "Select Song"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "pagination"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, currentPage > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(1)
-    }, "First")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(currentPage - 1)
-    }, "Back"))), pageRange.map(page => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      key: page,
-      className: currentPage === page ? 'active' : ''
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(page)
-    }, page))).slice(currentPage - 1, currentPage + 4), currentPage < pageCount && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(currentPage + 1)
-    }, "Forward")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: () => handlePageChange(pageCount)
-    }, "Last"))))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null));
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "playlist-details-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-    className: "playlist-details-created-by"
-  }, "Song of the Day for ", question ? question.date.slice(0, 10) : 'No User'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "playlist-details-stats"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-    className: "playlist-details-wins"
-  }, "# of Songs Selected: ", songsOf.length, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "user-song-container"
-  }, renderAddSongs()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-    to: `/vote`,
-    className: "go-vote-link"
-  }, "Go Vote!"));
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AnswerQuestion);
 
 /***/ }),
 
@@ -2792,7 +2569,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _AnswerQuestion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AnswerQuestion */ "./client/components/AnswerQuestion.js");
+/* harmony import */ var _YourSongOfTheDay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./YourSongOfTheDay */ "./client/components/YourSongOfTheDay.js");
 /* harmony import */ var _Vote__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Vote */ "./client/components/Vote.js");
 
 
@@ -2942,9 +2719,9 @@ const Navbar = ({
   to: "/vote",
   className: "navbar-link"
 }, "Vote"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/add",
+  to: "/yoursong",
   className: "navbar-link"
-}, "Answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+}, "YourSong"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
   to: "/winningsongs",
   className: "navbar-link"
 }, "WinningSongs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
@@ -3739,8 +3516,8 @@ function Vote() {
   }, "Vote"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "voting-row"
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-    to: `/add`
-  }, "Add Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted!!!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Check Back Tomorrow")));
+    to: `/yoursong`
+  }, "Pick Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted!!!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Check Back Tomorrow")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vote);
 
@@ -3862,6 +3639,228 @@ function WinningSongs() {
   }, "Selected By: ", user))))))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WinningSongs);
+
+/***/ }),
+
+/***/ "./client/components/YourSongOfTheDay.js":
+/*!***********************************************!*\
+  !*** ./client/components/YourSongOfTheDay.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
+/* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
+/* harmony import */ var _store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allVoteSongsStore */ "./client/store/allVoteSongsStore.js");
+/* harmony import */ var _store_singleVoteSongStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/singleVoteSongStore */ "./client/store/singleVoteSongStore.js");
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Pagination */ "./client/components/Pagination.js");
+
+
+
+;
+
+
+
+
+
+
+function YourSongOfTheDay() {
+  const {
+    playlistId
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useParams)();
+  const [searchText, setSearchText] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
+  const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs);
+  const votesSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allVoteSongs);
+  const currentUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
+  const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
+  const [selectedSong, setSelectedSong] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [changeSong, setChangeSong] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const pageSize = 20;
+  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
+  const [showDeletePopup, setShowDeletePopup] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
+  const [selectedDate, setSelectedDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(tomorrowDateString);
+  // const [selectedDate, setSelectedDate] = useState("");
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__.fetchQuestions)());
+  }, [dispatch, selectedSong]); // Refetch playlist when selectedSong changes
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_2__.fetchSongs)());
+  }, [dispatch, selectedSong]); // Refetch songs when selectedSong changes
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchVoteSongs)());
+  }, [dispatch]); // Refetch songs when selectedSong changes
+
+  // const tomorrow = new Date();
+  // tomorrow.setDate(tomorrow.getDate() + 1);
+  // const tomorrowDateString = tomorrow.toISOString().slice(0, 10);
+  const question = questions.find(question => question.date.slice(0, 10) === tomorrowDateString);
+  // const question = questions.find((question) => question.date.slice(0, 10) === selectedDate)
+
+  const activeQuestions = questions ? questions.filter(question => question.active) : [];
+  const songsIn = question ? question.voteSongs : [];
+  const songsOf = votesSongs ? votesSongs.filter(song => song.questionId === question?.id) : [];
+  const hasSongOfUser = songsIn ? songsIn.some(song => song.userId == user.id) : false;
+  const userSong = songsIn ? songsIn.filter(song => song.userId == user.id) : [];
+  const handleSelectSong = song => {
+    const songAlreadyPicked = songsIn.some(pickedSong => pickedSong.songId === song.id);
+    if (songAlreadyPicked) {
+      // Display an error message indicating that the song has already been selected
+      alert('This song has already been selected!');
+    } else {
+      const newSong = {
+        questionId: question.id,
+        userId: user.id,
+        songId: song.id
+      };
+      dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_4__.createVoteSong)(newSong));
+      history.push('/vote');
+    }
+  };
+  const handleNewSong = song => {
+    const songAlreadyPicked = songsIn.some(pickedSong => pickedSong.songId === song.id);
+    const voteSongId = songsIn.find(song => song.userId === user.id)?.id;
+    if (songAlreadyPicked) {
+      // Display an error message indicating that the song has already been selected
+      alert('This song has already been selected!');
+    } else {
+      const newSong = {
+        id: voteSongId,
+        questionId: question.id,
+        userId: user.id,
+        songId: song.id
+      };
+      dispatch((0,_store_singleVoteSongStore__WEBPACK_IMPORTED_MODULE_5__.updateSingleVoteSong)(newSong));
+      history.push('/home');
+    }
+  };
+  const handleChangeSong = () => {
+    setSelectedSong(null);
+    setChangeSong(true); // Reset selectedSong state to null to allow the user to select a new song
+  };
+  const handleDateChange = event => {
+    setSelectedDate(event.target.value);
+  };
+  const handleSearchChange = event => {
+    setSearchText(event.target.value);
+  };
+  const handlePageChange = page => {
+    setCurrentPage(page);
+  };
+  const renderAddSongs = () => {
+    const songsToAdd = allSongs;
+    const filteredSongs = songsToAdd.filter(song => song.name.toLowerCase().includes(searchText.toLowerCase()) || song.artist.toLowerCase().includes(searchText.toLowerCase()));
+    const pageCount = Math.ceil(filteredSongs.length / pageSize);
+    const pageRange = [...Array(pageCount).keys()].map(i => i + 1);
+    const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, question ? hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Your Song:"), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song Name: ", hasSongOfUser ? userSong[0].song.name : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "By: ", userSong[0].song.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: handleChangeSong
+    }, "Change Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+      className: "playlist-add-songs-title"
+    }, "Add Songs:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      className: "playlist-add-search",
+      type: "text",
+      placeholder: "Search songs...",
+      value: searchText,
+      onChange: handleSearchChange
+    }), filteredSongs.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Results"), filteredSongs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+      className: "playlist-add-songs-list"
+    }, paginatedSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: song.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "playlist-song-info"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      className: "playlist-song-name"
+    }, song && song.name), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      className: "playlist-song-artist"
+    }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "playlist-song-add",
+      onClick: () => handleSelectSong(song)
+    }, "Select Song"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "pagination"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, currentPage > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(1)
+    }, "First")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(currentPage - 1)
+    }, "Back"))), pageRange.map(page => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: page,
+      className: currentPage === page ? 'active' : ''
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(page)
+    }, page))).slice(currentPage - 1, currentPage + 4), currentPage < pageCount && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(currentPage + 1)
+    }, "Forward")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(pageCount)
+    }, "Last"))))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Question yet"), changeSong ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+      className: "playlist-add-songs-title"
+    }, "Select Your Song of the Day:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      className: "playlist-add-search",
+      type: "text",
+      placeholder: "Search songs...",
+      value: searchText,
+      onChange: handleSearchChange
+    }), filteredSongs.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Results"), filteredSongs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+      className: "playlist-add-songs-list"
+    }, paginatedSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: song.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "playlist-song-info"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      className: "playlist-song-name"
+    }, song && song.name), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      className: "playlist-song-artist"
+    }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "playlist-song-add",
+      onClick: () => handleNewSong(song)
+    }, "Select Song"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "pagination"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, currentPage > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(1)
+    }, "First")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(currentPage - 1)
+    }, "Back"))), pageRange.map(page => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: page,
+      className: currentPage === page ? 'active' : ''
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(page)
+    }, page))).slice(currentPage - 1, currentPage + 4), currentPage < pageCount && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(currentPage + 1)
+    }, "Forward")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: () => handlePageChange(pageCount)
+    }, "Last"))))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null));
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "playlist-details-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "playlist-details-created-by"
+  }, "Song of the Day for ", question ? question.date.slice(0, 10) : 'No User'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "playlist-details-stats"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "playlist-details-wins"
+  }, "# of Songs Selected: ", songsOf.length, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "user-song-container"
+  }, renderAddSongs()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+    to: `/vote`,
+    className: "go-vote-link"
+  }, "Go Vote!"));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (YourSongOfTheDay);
 
 /***/ }),
 

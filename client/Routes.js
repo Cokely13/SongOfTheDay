@@ -8,7 +8,7 @@ import SongList from './components/SongList';
 import UserPage from './components/User';
 import Profile from './components/Profile';
 import UserDetailPage from './components/UserDetailPage';
-import AnswerQuestion from './components/AnswerQuestion';
+import YourSongOfTheDay from './components/YourSongOfTheDay';
 import Vote from './components/Vote';
 import WinningSongs from './components/WinningSongs';
 import CreateQuestion from './components/CreateQuestion';
@@ -37,7 +37,7 @@ class Routes extends Component {
             <Route exact path="/users" component={UserPage} />
             <Route exact path="/users/:userId" component={UserDetailPage} />
             <Route exact path="/songs" component={SongList} />
-            <Route exact path="/add" component={AnswerQuestion} />
+            <Route exact path="/yoursong" component={YourSongOfTheDay} />
             <Route exact path="/vote" component={Vote} />
             <Route exact path="/winningsongs" component={WinningSongs} />
             <Route exact path="/create" component={CreateQuestion} />

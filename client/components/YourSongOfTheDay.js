@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';;
 import { fetchSongs } from '../store/allSongsStore';
-// import { deletePlaylist} from '../store/allPlaylistsStore'
 import { fetchQuestions} from '../store/allQuestionsStore'
 import { createMysong, createVoteSong } from '../store/allVoteSongsStore';
 import { fetchVoteSongs } from '../store/allVoteSongsStore';
 import { updateSingleVoteSong} from '../store/singleVoteSongStore'
 import Pagination from './Pagination'
 
-function AnswerQuestion() {
+function YourSongOfTheDay() {
   const { playlistId } = useParams();
   const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch();
@@ -281,5 +280,5 @@ function AnswerQuestion() {
   );
 }
 
-export default AnswerQuestion;
+export default YourSongOfTheDay;
 

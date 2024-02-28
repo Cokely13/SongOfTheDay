@@ -105,7 +105,9 @@ async function updateQuestions() {
         const todayDateOnly = today.toISOString().split('T')[0];
         const existingQuestion = await Question.findOne({ where: { date: tomorrowDateOnly } });
 
-
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayDateOnly = yesterday.toISOString().split('T')[0];
 
 
     // Check if there is already a question for yesterday
@@ -129,7 +131,7 @@ async function updateQuestions() {
     const previousQuestions = await Question.findAll({
       where: {
         date: {
-          [Sequelize.Op.lte]: todayDateOnly, // Questions with date up to today
+          [Sequelize.Op.lte]: yesterdayDateOnly, // Questions with date up to today
         },
         active: true,
       },

@@ -274,6 +274,7 @@ text-align: right;
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
+  gap: 20px; /* Add vertical spacing of 10px between child elements */
 }
 
 /* .user-detail-page {
@@ -309,9 +310,9 @@ text-align: right;
   margin-bottom: 30px;
 }
 
-.user-stat {
+/* .user-stat {
   margin: 0 20px;
-}
+} */
 
 .loading-message {
   font-size: 2rem;

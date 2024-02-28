@@ -191,8 +191,8 @@ function UserDetailPage() {
             <>
               <div className="user-test">
                 <h1 className="user-name">{user.username}</h1>
-                  <div className="user-stat" style={{ textAlign: 'center' }}>
-                    <strong>Number of Wins:</strong> {getNumberOfWins()}
+                  <div  style={{ textAlign: 'center' }}>
+                    <h2>Number of Wins: {getNumberOfWins()}</h2>
                   </div>
                   <div className="user-stat" style={{ textAlign: 'center' }}>
                   <button onClick={handleShowWins} style={{ display: 'block', margin: 'auto' }}>{showWins ? "Hide Wins" : "Show Wins"}</button>
@@ -208,11 +208,11 @@ function UserDetailPage() {
       {showWins && (
         <div className="winning-info" style={{ textAlign: 'center' }}>
           <h2>Winning Information:</h2>
-          <table style={{ margin: "auto", borderCollapse: "collapse" }}>
+          <table style={{ margin: "auto", borderCollapse: "collapse", borderRadius: "5px" }}>
             <thead>
               <tr>
-                <th style={{ padding: "10px", border: "1px solid black" }}>Date</th>
-                <th style={{ padding: "10px", border: "1px solid black" }}>Winning Song</th>
+                <th style={{ padding: "10px", border: "3px solid black", borderRadius: "10px" }}>Date</th>
+                <th style={{ padding: "10px", border: "3px solid black", borderRadius: "10px"  }}>Winning Song</th>
               </tr>
             </thead>
             <tbody>

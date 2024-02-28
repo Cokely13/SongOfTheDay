@@ -63,7 +63,7 @@ function Vote() {
             <h1>{picks.date}</h1>
             {!voted ? (
               hasUserVoted ? (
-                <div>VOTED</div>
+                <div>Vote is in, check back tomorrow for the results!!!</div>
               ) : currentSongs.length > 0 ? (
                 currentSongs.map((song) => (
                   <div key={song.id} className="voting-row">
@@ -77,7 +77,7 @@ function Vote() {
               </Link></div>
               )
             ) : (
-              <div>You have already voted!!!</div>
+              <div>Vote is in, check back tomorrow for the results!!!</div>
             )}
           </React.Fragment>
         ) : <div>Check Back Tomorrow</div>}

@@ -2349,18 +2349,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
+/* harmony import */ var _store_singleQuestionStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/singleQuestionStore */ "./client/store/singleQuestionStore.js");
+/* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
 
+
+ // Assuming there's a closeQuestion action
 
 
 function CloseQuestion() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
   const [selectedDate, setSelectedDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allUsers);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__.fetchQuestions)());
   }, [dispatch]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    dispatch((0,_store_allUsersStore__WEBPACK_IMPORTED_MODULE_4__.fetchUsers)());
+  }, [dispatch]);
   const handleDateChange = event => {
     setSelectedDate(event.target.value);
+  };
+  const handleCloseQuestion = async () => {
+    if (selectedDate) {
+      const questionToUpdate = activeQuestions.find(question => question.date.slice(0, 10) === selectedDate);
+      if (questionToUpdate) {
+        const voteCounts = {};
+        if (questionToUpdate.votes && questionToUpdate.votes.length > 0) {
+          questionToUpdate.votes.forEach(vote => {
+            const voteSongId = vote.voteSongId;
+            if (voteCounts[voteSongId]) {
+              voteCounts[voteSongId]++;
+            } else {
+              voteCounts[voteSongId] = 1;
+            }
+          });
+          let winningVoteSongId = null;
+          let maxVotes = 0;
+          for (const voteSongId in voteCounts) {
+            if (voteCounts[voteSongId] > maxVotes) {
+              maxVotes = voteCounts[voteSongId];
+              winningVoteSongId = voteSongId;
+            }
+          }
+          const winningSong = questionToUpdate.voteSongs.find(voteSong => voteSong.id === parseInt(winningVoteSongId));
+          if (winningSong) {
+            const winningUser = users.find(user => user.id === winningSong.userId);
+            if (winningUser) {
+              const updatedQuestion = {
+                ...questionToUpdate,
+                active: false,
+                winner: winningUser.id,
+                winningSongId: winningSong.songId
+              };
+              dispatch((0,_store_singleQuestionStore__WEBPACK_IMPORTED_MODULE_3__.updateSingleQuestion)(updatedQuestion));
+            }
+          }
+        }
+      }
+    }
   };
 
   // Filter out questions where active is true
@@ -2373,7 +2420,9 @@ function CloseQuestion() {
   }, "Select Date"), activeQuestions.map(question => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     key: question.id,
     value: question.date.slice(0, 10)
-  }, question.date))), selectedDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Selected Date: ", selectedDate)));
+  }, question.date))), selectedDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Selected Date: ", selectedDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: handleCloseQuestion
+  }, "Close Question")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CloseQuestion);
 
@@ -3390,11 +3439,10 @@ function UserDetailPage() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "user-name"
   }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "user-stat",
     style: {
       textAlign: 'center'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Number of Wins:"), " ", getNumberOfWins()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Number of Wins: ", getNumberOfWins())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "user-stat",
     style: {
       textAlign: 'center'
@@ -3415,17 +3463,20 @@ function UserDetailPage() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Information:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
     style: {
       margin: "auto",
-      borderCollapse: "collapse"
+      borderCollapse: "collapse",
+      borderRadius: "5px"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
     style: {
       padding: "10px",
-      border: "1px solid black"
+      border: "3px solid black",
+      borderRadius: "10px"
     }
   }, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
     style: {
       padding: "10px",
-      border: "1px solid black"
+      border: "3px solid black",
+      borderRadius: "10px"
     }
   }, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => question.winner === user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
     key: index
@@ -3505,7 +3556,7 @@ function Vote() {
     className: "voting"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "voting-block"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Vote"), picks ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, picks.date), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "VOTED") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Vote"), picks ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, picks.date), !voted ? hasUserVoted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Vote is in, check back tomorrow for the results!!!") : currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     key: song.id,
     className: "voting-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, song.song.name, " by ", song.song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -3517,7 +3568,7 @@ function Vote() {
     className: "voting-row"
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     to: `/yoursong`
-  }, "Pick Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "You have already voted!!!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Check Back Tomorrow")));
+  }, "Pick Song")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Vote is in, check back tomorrow for the results!!!")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Check Back Tomorrow")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Vote);
 

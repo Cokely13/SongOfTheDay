@@ -2359,6 +2359,9 @@ __webpack_require__.r(__webpack_exports__);
 function CloseQuestion() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
+  const {
+    admin
+  } = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const [selectedDate, setSelectedDate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allUsers);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -2375,6 +2378,7 @@ function CloseQuestion() {
       const questionToUpdate = activeQuestions.find(question => question.date.slice(0, 10) === selectedDate);
       if (questionToUpdate) {
         const voteCounts = {};
+        // Count votes if there are any
         if (questionToUpdate.votes && questionToUpdate.votes.length > 0) {
           questionToUpdate.votes.forEach(vote => {
             const voteSongId = vote.voteSongId;
@@ -2384,6 +2388,8 @@ function CloseQuestion() {
               voteCounts[voteSongId] = 1;
             }
           });
+
+          // Determine winning song if there are votes
           let winningVoteSongId = null;
           let maxVotes = 0;
           for (const voteSongId in voteCounts) {
@@ -2398,7 +2404,6 @@ function CloseQuestion() {
             if (winningUser) {
               const updatedQuestion = {
                 ...questionToUpdate,
-                active: false,
                 winner: winningUser.id,
                 winningSongId: winningSong.songId
               };
@@ -2406,13 +2411,19 @@ function CloseQuestion() {
             }
           }
         }
+        // Update active status regardless of votes
+        const updatedQuestion = {
+          ...questionToUpdate,
+          active: false
+        };
+        dispatch((0,_store_singleQuestionStore__WEBPACK_IMPORTED_MODULE_3__.updateSingleQuestion)(updatedQuestion));
       }
     }
   };
 
   // Filter out questions where active is true
   const activeQuestions = questions ? questions.filter(question => question.active) : [];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Close Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Close Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     value: selectedDate,
     onChange: handleDateChange
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
@@ -2422,7 +2433,7 @@ function CloseQuestion() {
     value: question.date.slice(0, 10)
   }, question.date))), selectedDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Selected Date: ", selectedDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleCloseQuestion
-  }, "Close Question")));
+  }, "Close Question"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Not Admin"));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CloseQuestion);
 
@@ -2737,15 +2748,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+// import React from 'react';
+// import { connect } from 'react-redux';
+// import { Link } from 'react-router-dom';
+// import { logout } from '../store';
+// // import '../../public/style.css'
+
+// const Navbar = ({ handleClick, isLoggedIn }) => (
+//   <div className="navbar-container">
+//     <h1 className="navbar-title">SongOfTheDay</h1>
+//     <nav>
+//       {isLoggedIn ? (
+//         <div className="navbar-links">
+//           <Link to="/home" className="navbar-link">Home</Link>
+//           <Link to="/profile" className="navbar-link">Profile</Link>
+//           <Link to="/users" className="navbar-link">Users</Link>
+//           <Link to="/songs" className="navbar-link">Songs</Link>
+//           <Link to="/vote" className="navbar-link">Vote</Link>
+//           <Link to="/yoursong" className="navbar-link">YourSong</Link>
+//           <Link to="/winningsongs" className="navbar-link">WinningSongs</Link>
+//           {/* <Link to="/winner" className="navbar-link">Winner</Link> */}
+//           <Link to="/past" className="navbar-link">Past</Link>
+//           <a href="#" onClick={handleClick} className="navbar-link">
+//             Logout
+//           </a>
+//         </div>
+//       ) : (
+//         <div className="navbar-links">
+//           <Link to="/login" className="navbar-link">Login</Link>
+//           <Link to="/signup" className="navbar-link">Sign Up</Link>
+//         </div>
+//       )}
+//     </nav>
+//     <hr className="navbar-hr" />
+//   </div>
+// );
+
+// /**
+//  * CONTAINER
+//  */
+// const mapState = (state) => {
+//   return {
+//     isLoggedIn: !!state.auth.id,
+//   };
+// };
+
+// const mapDispatch = (dispatch) => {
+//   return {
+//     handleClick() {
+//       dispatch(logout());
+//     },
+//   };
+// };
+
+// export default connect(mapState, mapDispatch)(Navbar);
 
 
 
 
-// import '../../public/style.css'
 
 const Navbar = ({
   handleClick,
-  isLoggedIn
+  isLoggedIn,
+  isAdmin
 }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
   className: "navbar-container"
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
@@ -2776,7 +2841,13 @@ const Navbar = ({
 }, "WinningSongs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
   to: "/past",
   className: "navbar-link"
-}, "Past"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+}, "Past"), isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  to: "/close",
+  className: "navbar-link"
+}, "Close"), isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  to: "/create",
+  className: "navbar-link"
+}, "Create"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
   href: "#",
   onClick: handleClick,
   className: "navbar-link"
@@ -2797,7 +2868,8 @@ const Navbar = ({
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    isAdmin: state.auth.admin === true // Assuming admin status is stored in state.auth.admin
   };
 };
 const mapDispatch = dispatch => {

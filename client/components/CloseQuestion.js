@@ -7,6 +7,7 @@ import { fetchUsers } from '../store/allUsersStore';
 function CloseQuestion() {
   const dispatch = useDispatch();
   const questions = useSelector(state => state.allQuestions);
+  const {admin} = useSelector((state) => state.auth);
   const [selectedDate, setSelectedDate] = useState('');
   const users = useSelector((state) => state.allUsers);
 
@@ -27,6 +28,7 @@ function CloseQuestion() {
       const questionToUpdate = activeQuestions.find(question => question.date.slice(0, 10) === selectedDate);
       if (questionToUpdate) {
         const voteCounts = {};
+        // Count votes if there are any
         if (questionToUpdate.votes && questionToUpdate.votes.length > 0) {
           questionToUpdate.votes.forEach(vote => {
             const voteSongId = vote.voteSongId;
@@ -37,6 +39,7 @@ function CloseQuestion() {
             }
           });
 
+          // Determine winning song if there are votes
           let winningVoteSongId = null;
           let maxVotes = 0;
           for (const voteSongId in voteCounts) {
@@ -50,11 +53,14 @@ function CloseQuestion() {
           if (winningSong) {
             const winningUser = users.find(user => user.id === winningSong.userId);
             if (winningUser) {
-              const updatedQuestion = { ...questionToUpdate, active: false, winner: winningUser.id, winningSongId: winningSong.songId };
+              const updatedQuestion = { ...questionToUpdate, winner: winningUser.id, winningSongId: winningSong.songId };
               dispatch(updateSingleQuestion(updatedQuestion));
             }
           }
         }
+        // Update active status regardless of votes
+        const updatedQuestion = { ...questionToUpdate, active: false };
+        dispatch(updateSingleQuestion(updatedQuestion));
       }
     }
   };
@@ -63,7 +69,9 @@ function CloseQuestion() {
   const activeQuestions = questions ? questions.filter(question => question.active) : [];
 
   return (
-    <div>
+     <div>
+      {admin ?
+      <div>
       <h1>Close Question</h1>
       <select value={selectedDate} onChange={handleDateChange}>
         <option value="">Select Date</option>
@@ -77,6 +85,7 @@ function CloseQuestion() {
           <button onClick={handleCloseQuestion}>Close Question</button>
         </div>
       )}
+      </div> : <div>Not Admin</div>}
     </div>
   );
 }

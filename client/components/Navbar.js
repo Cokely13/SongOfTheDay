@@ -74,6 +74,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
           <Link to="/past" className="navbar-link">Past</Link>
           {isAdmin && <Link to="/close" className="navbar-link">Close</Link>}
           {isAdmin && <Link to="/create" className="navbar-link">Create</Link>}
+          {isAdmin && <Link to="/old" className="navbar-link">OldVote</Link>}
 
           <a href="#" onClick={handleClick} className="navbar-link">Logout</a>
         </div>

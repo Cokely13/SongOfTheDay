@@ -15,6 +15,7 @@ import CreateQuestion from './components/CreateQuestion';
 import PastWinners from './components/PastWinners';
 import {me} from './store'
 import CloseQuestion from './components/CloseQuestion';
+import OldVote from './components/OldVote';
 
 
 /**
@@ -43,6 +44,7 @@ class Routes extends Component {
             <Route exact path="/create" component={CreateQuestion} />
             <Route exact path="/close" component={CloseQuestion} />
             <Route exact path="/past" component={PastWinners} />
+            <Route exact path="/old" component={OldVote} />
             <Redirect to="/home" />
           </Switch>
         ) : (

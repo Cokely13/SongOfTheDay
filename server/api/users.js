@@ -4,7 +4,7 @@ const { models: { User, VoteSong } } = require('../db');
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'username','email','admin'],
+      attributes: ['id', 'username','email','admin', 'image'],
       include: [VoteSong ]
     });
     res.json(users);
@@ -33,7 +33,7 @@ router.put('/:id', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id, {
-      attributes: ['id', 'username', 'email', 'admin', 'password']
+      attributes: ['id', 'username', 'email', 'admin', 'password', 'image']
     });
     res.json(user);
   } catch (err) {

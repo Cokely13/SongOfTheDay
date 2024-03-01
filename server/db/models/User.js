@@ -12,6 +12,10 @@ const User = db.define('user', {
     unique: true,
     allowNull: false
   },
+  image : {
+    type: Sequelize.TEXT,
+    // defaultValue: "client/Images/Finish Pic 2.JPG"
+  },
   password: {
     type: Sequelize.STRING,
   },

@@ -2499,6 +2499,121 @@ function CreateQuestion() {
 
 /***/ }),
 
+/***/ "./client/components/EditProfile.js":
+/*!******************************************!*\
+  !*** ./client/components/EditProfile.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/singleUserStore */ "./client/store/singleUserStore.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+
+
+
+
+
+function EditProfile({
+  user,
+  fetchUser,
+  setShowEdit
+}) {
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const [username, setUsername] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(user.username);
+  const [email, setEmail] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(user.email);
+  const [newpassword, setNewPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [confirmPassword, setConfirmPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
+  const handleUsernameChange = e => {
+    setUsername(e.target.value);
+  };
+  const handleEmailChange = e => {
+    setEmail(e.target.value);
+  };
+  const handlePasswordChange = e => {
+    setNewPassword(e.target.value);
+  };
+  const handleConfirmPasswordChange = e => {
+    setConfirmPassword(e.target.value);
+  };
+  const handleSubmit = async e => {
+    e.preventDefault();
+    if (newpassword !== confirmPassword) {
+      alert("Password and Confirm Password do not match!");
+      return;
+    }
+    const newUser = {
+      id: user.id,
+      password: newpassword,
+      username: username,
+      email: email
+    };
+    await dispatch((0,_store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__.updateSingleUser)(newUser));
+    await fetchUser(user.id);
+    setShowEdit(false);
+  };
+  const handleCancel = () => {
+    setShowEdit(false);
+    // onCancel();
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+    className: "edit-profile-form",
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("u", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Edit Profile"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "username"
+  }, "Username:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    id: "username",
+    value: username,
+    onChange: handleUsernameChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "email"
+  }, "Email:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "email",
+    id: "email",
+    value: email,
+    onChange: handleEmailChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "password"
+  }, "Password:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "password",
+    id: "password",
+    value: newpassword,
+    onChange: handlePasswordChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "confirmPassword"
+  }, "Confirm Password:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "password",
+    id: "confirmPassword",
+    value: confirmPassword,
+    onChange: handleConfirmPasswordChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "button-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit"
+  }, "Save Changes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    onClick: handleCancel
+  }, "Cancel")));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditProfile);
+
+/***/ }),
+
 /***/ "./client/components/Home.js":
 /*!***********************************!*\
   !*** ./client/components/Home.js ***!
@@ -3002,10 +3117,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/singleUserStore */ "./client/store/singleUserStore.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
+/* harmony import */ var _EditProfile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditProfile */ "./client/components/EditProfile.js");
+
 
 
 
@@ -3016,7 +3133,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Profile() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
+  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
   const userId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.singleUser);
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
@@ -3084,7 +3201,7 @@ function Profile() {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "playlists-container"
-  }, showEdit ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(EditProfile, {
+  }, showEdit ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EditProfile__WEBPACK_IMPORTED_MODULE_5__["default"], {
     setShowEdit: setShowEdit,
     user: user,
     fetchUser: _store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__.fetchSingleUser
@@ -3104,9 +3221,7 @@ function Profile() {
       border: '3px solid black'
     }
   }, " ")), newPhoto ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    style: {
-      margin: '20px 0'
-    }
+    className: "user-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "file",
     onChange: handleFileChange
@@ -3114,7 +3229,7 @@ function Profile() {
     className: "btn btn-success",
     onClick: handleUpload
   }, "Upload Photo"), previewUrl && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "change-photo-button-container"
+    className: "user-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: previewUrl,
     alt: "Preview",
@@ -3123,7 +3238,7 @@ function Profile() {
       height: 'auto'
     }
   }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "change-photo-button-container"
+    className: "user-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "btn btn-secondary",
     onClick: () => setNewPhoto(true)

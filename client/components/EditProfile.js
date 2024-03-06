@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateSingleUser } from '../store/singleUserStore';
+import { useHistory} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function EditProfile({ user, fetchUser, setShowEdit }) {
   const dispatch = useDispatch();
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [newpassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const history = useHistory();
 
 
 
@@ -20,7 +23,7 @@ function EditProfile({ user, fetchUser, setShowEdit }) {
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    setNewPassword(e.target.value);
   };
 
   const handleConfirmPasswordChange = (e) => {
@@ -30,13 +33,13 @@ function EditProfile({ user, fetchUser, setShowEdit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (newpassword !== confirmPassword) {
       alert("Password and Confirm Password do not match!");
       return;
     }
     const newUser = {
       id: user.id,
-      password: password,
+      password: newpassword,
       username: username,
       email: email
     }
@@ -46,23 +49,12 @@ function EditProfile({ user, fetchUser, setShowEdit }) {
     setShowEdit(false);
   };
 
-  // return (
-  //   <form className="edit-profile-form" onSubmit={handleSubmit}>
-  //     <h2>Edit Profile</h2>
-  //     <label htmlFor="username">Username:</label>
-  //     <input type="text" id="username" value={username} onChange={handleUsernameChange} />
+  const handleCancel = () => {
+    setShowEdit(false);
+    // onCancel();
+  };
 
-  //     <label htmlFor="email">Email:</label>
-  //     <input type="email" id="email" value={email} onChange={handleEmailChange} />
 
-  //     <label htmlFor="password">Password:</label>
-  //     <input type="password" id="password" value={password} onChange={handlePasswordChange} />
-
-  //     <label htmlFor="confirmPassword">Confirm Password:</label>
-  //     <input type="password" id="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordChange} />
-  //     <button type="submit">Save Changes</button>
-  //   </form>
-  // );
   return (
     <form className="edit-profile-form" onSubmit={handleSubmit}>
       <h1><u><b>Edit Profile</b></u></h1>
@@ -78,7 +70,7 @@ function EditProfile({ user, fetchUser, setShowEdit }) {
 
       <div className="input-group">
         <label htmlFor="password">Password:</label>
-        <input type="password" id="password" value={password} onChange={handlePasswordChange} />
+        <input type="password" id="password" value={newpassword} onChange={handlePasswordChange} />
       </div>
 
       <div className="input-group">
@@ -88,6 +80,7 @@ function EditProfile({ user, fetchUser, setShowEdit }) {
 
       <div className="button-wrapper">
         <button type="submit">Save Changes</button>
+        <button type="button" onClick={handleCancel}>Cancel</button>
       </div>
     </form>
   );

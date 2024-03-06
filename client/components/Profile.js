@@ -5,6 +5,7 @@ import { fetchSingleUser } from '../store/singleUserStore';
 import { fetchQuestions } from '../store/allQuestionsStore';
 import { fetchSongs } from '../store/allSongsStore';
 import { updateSingleUser } from '../store/singleUserStore'
+import EditProfile from './EditProfile'
 import { Link } from 'react-router-dom';
 
 function Profile() {
@@ -104,17 +105,17 @@ function Profile() {
             </div>
           )}
           {newPhoto ? (
-            <div style={{ margin: '20px 0' }}>
+            <div className="user-details">
               <input type="file" onChange={handleFileChange} />
               <button className="btn btn-success" onClick={handleUpload}>Upload Photo</button>
               {previewUrl && (
-                <div className="change-photo-button-container">
+                <div className="user-details">
                   <img src={previewUrl} alt="Preview" style={{ maxWidth: '20%', height: 'auto' }} />
                 </div>
               )}
             </div>
           ) : (
-            <div className="change-photo-button-container">
+            <div className="user-details">
               <button className="btn btn-secondary" onClick={() => setNewPhoto(true)}>Change Photo</button>
             </div>
           )}

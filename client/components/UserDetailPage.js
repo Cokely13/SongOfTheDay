@@ -183,6 +183,8 @@ function UserDetailPage() {
     setShowWins(!showWins);
   };
 
+  const imageUrl = user.image;
+
   return (
     <div className="user-detail-page">
       <div className="user-header">
@@ -191,6 +193,22 @@ function UserDetailPage() {
             <>
               <div className="user-test">
                 <h1 className="user-name">{user.username}</h1>
+
+          {user.image && (
+            <div>
+              <div className="user-image-container" style={{
+                width: '200px',
+                height: '200px',
+                borderRadius: '50%',
+                margin: 'auto',
+                backgroundImage: `url('${imageUrl}')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                border: '3px solid black'
+              }}> </div>
+            </div>
+          )}
                   <div  style={{ textAlign: 'center' }}>
                     <h2>Number of Wins: {getNumberOfWins()}</h2>
                   </div>

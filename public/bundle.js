@@ -3671,6 +3671,7 @@ function UserDetailPage() {
   const handleShowWins = () => {
     setShowWins(!showWins);
   };
+  const imageUrl = user.image;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "user-detail-page"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3681,7 +3682,20 @@ function UserDetailPage() {
     className: "user-test"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "user-name"
-  }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, user.username), user.image && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "user-image-container",
+    style: {
+      width: '200px',
+      height: '200px',
+      borderRadius: '50%',
+      margin: 'auto',
+      backgroundImage: `url('${imageUrl}')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      border: '3px solid black'
+    }
+  }, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
       textAlign: 'center'
     }

@@ -41,10 +41,8 @@ function Profile() {
 
   const imageUrl = user.image;
 
-  console.log("image", imageUrl)
 
   const handleFileChange = (event) => {
-    console.log("hey!")
     const file = event.target.files[0];
     if (file) {
       setSelectedFile(file);
@@ -122,7 +120,7 @@ function Profile() {
           {user ? (
             <div className="user-details">
               <div className="user-name">
-                <h1><u>{user.username}</u></h1>
+                <h1>{user.username}</h1>
                 <button onClick={() => setShowEdit(true)}>Edit Profile</button>
               </div>
               <h1 className="user-email">{user.email}</h1>

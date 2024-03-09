@@ -40,9 +40,9 @@ function Tomorrow() {
   return (
     <div className="voting">
       <div className="voting-block">
+      <h1>Songs for Tomorrow</h1>
         {picks ? (
           <div>
-            <h1>Songs for Tomorrow</h1>
             <h1>{picks.date}</h1>
             <div>
            {currentSongs.length > 0 ? (

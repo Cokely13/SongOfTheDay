@@ -3091,6 +3091,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function PastWinners() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
@@ -3916,6 +3917,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
 /* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-google-charts */ "./node_modules/react-google-charts/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
@@ -4012,7 +4014,11 @@ function WinningSongs() {
     key: index
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song: ", item.song), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, item.users.map((user, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     key: index
-  }, "Selected By: ", user))))))))));
+  }, "Selected By: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+    key: index,
+    to: `/users/${users.find(winner => winner.username === user)?.id}`,
+    className: "user-link"
+  }, user)))))))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WinningSongs);
 

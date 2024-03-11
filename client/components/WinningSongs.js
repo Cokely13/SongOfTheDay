@@ -4,6 +4,7 @@ import { fetchQuestions } from '../store/allQuestionsStore';
 import { fetchUsers } from '../store/allUsersStore';
 import { fetchSongs } from '../store/allSongsStore';
 import Chart from 'react-google-charts'; // Assuming you're using Google Charts library for the pie chart
+import { Link } from 'react-router-dom';
 
 function WinningSongs() {
   const dispatch = useDispatch();
@@ -112,7 +113,8 @@ function WinningSongs() {
                   <div>
                     <ul>
                       {item.users.map((user, index) => (
-                        <li key={index}>Selected By: {user}</li>
+                        <li key={index}>
+                        Selected By: <Link key={index} to={`/users/${users.find((winner) => winner.username === user)?.id }`} className="user-link">{user}</Link></li>
                       ))}
                     </ul>
                   </div>

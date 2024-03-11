@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchQuestions } from '../store/allQuestionsStore';
 import { fetchUsers } from '../store/allUsersStore';
 import { fetchSongs } from '../store/allSongsStore';
-import { Link } from 'react-router-dom';
+
 
 function PastWinners() {
   const dispatch = useDispatch();

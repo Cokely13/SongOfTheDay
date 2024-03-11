@@ -156,7 +156,7 @@ function YourSongOfTheDay() {
           </div>
         ) : (
           <div>
-            <h3 className="playlist-add-songs-title">Add Songs:</h3>
+            <h3 className="playlist-add-songs-title">Select Your Song of the Day:</h3>
             <input
               className="playlist-add-search"
               type="text"

@@ -3091,7 +3091,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 function PastWinners() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
@@ -4168,7 +4167,7 @@ function YourSongOfTheDay() {
       onClick: handleCancelSong
     }, " Cancel Change ")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
       className: "playlist-add-songs-title"
-    }, "Add Songs:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    }, "Select Your Song of the Day:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       className: "playlist-add-search",
       type: "text",
       placeholder: "Search songs...",

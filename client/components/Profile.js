@@ -83,6 +83,9 @@ function Profile() {
 
   return (
     <div className="playlists-container">
+      <div className="user-name">
+        <h1>{user.username}</h1>
+        </div>
       {showEdit ? (
         <EditProfile setShowEdit={setShowEdit} user={user} fetchUser={fetchSingleUser} />
       ) : (
@@ -119,10 +122,9 @@ function Profile() {
           )}
           {user ? (
             <div className="user-details">
-              <div className="user-name">
-                <h1>{user.username}</h1>
+
                 <button onClick={() => setShowEdit(true)}>Edit Profile</button>
-              </div>
+
               <h1 className="user-email">{user.email}</h1>
               {user.admin ? <h1>ADMIN</h1> : null}
               <div>Number of Wins: {getNumberOfWins()}</div>

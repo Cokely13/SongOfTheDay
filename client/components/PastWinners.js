@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchQuestions } from '../store/allQuestionsStore';
 import { fetchUsers } from '../store/allUsersStore';
 import { fetchSongs } from '../store/allSongsStore';
+import { Link } from 'react-router-dom';
 
 
 function PastWinners() {
@@ -33,7 +34,7 @@ function PastWinners() {
         {questions.map((question, index) => (
           <tr key={index}>
             <td>{question.date}</td>
-           <td>{users.find((user) => user.id === question.winner)?.username || ""}</td>
+            <td><Link key={index} to={`/users/${users.find((user) => user.id === question.winner)?.id }`} className="user-link">{users.find((user) => user.id === question.winner)?.username || ""}</Link></td>
             <td>
               {question.winningSongId ?
                 `${allSongs.find((song) => song.id === question.winningSongId)?.name} By ${allSongs.find((song) => song.id === question.winningSongId)?.artist}` :

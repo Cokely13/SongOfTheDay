@@ -3086,6 +3086,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -3107,7 +3109,11 @@ function PastWinners() {
     className: "custom-table"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Winner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
     key: index
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, users.find(user => user.id === question.winner)?.username || ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.winningSongId ? `${allSongs.find(song => song.id === question.winningSongId)?.name} By ${allSongs.find(song => song.id === question.winningSongId)?.artist}` : "")))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+    key: index,
+    to: `/users/${users.find(user => user.id === question.winner)?.id}`,
+    className: "user-link"
+  }, users.find(user => user.id === question.winner)?.username || "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.winningSongId ? `${allSongs.find(song => song.id === question.winningSongId)?.name} By ${allSongs.find(song => song.id === question.winningSongId)?.artist}` : "")))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PastWinners);
 

@@ -3536,7 +3536,20 @@ function UserPage() {
   }, users.map(user => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     key: user.id,
     className: "user-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  }, user.image && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "user-image-container",
+    style: {
+      width: '200px',
+      height: '200px',
+      borderRadius: '50%',
+      margin: 'auto',
+      backgroundImage: `url('${user.image}')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      border: '3px solid black'
+    }
+  }, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: `/users/${user.id}`,
     className: "user-link"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h2", {

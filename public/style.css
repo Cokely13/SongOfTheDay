@@ -931,10 +931,21 @@ button[type='submit']:hover {
   }
 
   .pagination {
-    /* Adjust pagination styles for smaller screens */
-    margin-top: 16px;
+    max-width: 400px; /* Adjust the maximum width for pagination */
+    margin-top: 20px; /* Increase margin for better separation */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pagination li {
+    margin: 0 1px; /* Adjust margin for smaller screens */
+  }
+  .pagination button {
+    padding: 2px 5px; /* Adjust padding for smaller screens */
+    font-size: 10px; /* Adjust font size for smaller screens */
   }
 }
+
 
 
 .playlist-details-header {
@@ -1291,6 +1302,15 @@ button[type='submit']:hover {
       max-width: 400px;
       margin: 0 auto;
       text-align: center;
+    }
+
+    .playlist-song-add {
+      /* Adjust button size for mobile */
+      width: 40px;
+      height: 40px;
+      font-size: 10px; /* Adjust font size for mobile */
+      padding: 4px 4px; /* Adjust padding for mobile */
+      /* Add other styling properties as needed */
     }
 
     .playlist-add-songs-list li {

@@ -143,7 +143,7 @@ function YourSongOfTheDay() {
           <div>
             <h1><u>Your Song </u></h1>
             {userSong && userSong.length > 0 ? (
-              <div className='yoursong' >
+              <div className='playlist-add-songs-container' >
                 <div  >
                   <h2>Song Name: {hasSongOfUser ? userSong[0].song.name : ''}</h2>
                   <h2>By: {userSong[0].song.artist}</h2>
@@ -217,7 +217,7 @@ function YourSongOfTheDay() {
         ) : <div>No Question yet</div>}
 
       {changeSong ? (
-        <div>
+        <div className='playlist-add-songs-container'>
           <h3 className="playlist-add-songs-title">Select Your Song of the Day:</h3>
           <input
             className="playlist-add-search"

@@ -2753,6 +2753,128 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+// // import React from 'react';
+// // import { connect } from 'react-redux';
+// // import { Link } from 'react-router-dom';
+// // import { logout } from '../store';
+
+// // const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
+// //   <div className="navbar-container">
+// //     <h1 className="navbar-title">SongOfTheDay</h1>
+// //     <nav>
+// //       {isLoggedIn ? (
+// //         <div className="navbar-links">
+// //           <Link to="/home" className="navbar-link">Home</Link>
+// //           <Link to="/profile" className="navbar-link">Profile</Link>
+// //           <Link to="/users" className="navbar-link">Users</Link>
+// //           <Link to="/songs" className="navbar-link">Songs</Link>
+// //           <Link to="/vote" className="navbar-link">Vote</Link>
+// //           <Link to="/yoursong" className="navbar-link">YourSong</Link>
+// //           <Link to="/winningsongs" className="navbar-link">WinningSongs</Link>
+// //           <Link to="/past" className="navbar-link">Past</Link>
+// //           <Link to="/tomorrow" className="navbar-link">Tomorrow</Link>
+// //           {isAdmin && <Link to="/close" className="navbar-link">Close</Link>}
+// //           {isAdmin && <Link to="/create" className="navbar-link">Create</Link>}
+// //           {isAdmin && <Link to="/old" className="navbar-link">OldVote</Link>}
+
+// //           <a href="#" onClick={handleClick} className="navbar-link">Logout</a>
+// //         </div>
+// //       ) : (
+// //         <div className="navbar-links">
+// //           <Link to="/login" className="navbar-link">Login</Link>
+// //           <Link to="/signup" className="navbar-link">Sign Up</Link>
+// //         </div>
+// //       )}
+// //     </nav>
+// //     <hr className="navbar-hr" />
+// //   </div>
+// // );
+
+// // /**
+// //  * CONTAINER
+// //  */
+// // const mapState = (state) => {
+// //   return {
+// //     isLoggedIn: !!state.auth.id,
+// //     isAdmin: state.auth.admin === true, // Assuming admin status is stored in state.auth.admin
+// //   };
+// // };
+
+// // const mapDispatch = (dispatch) => {
+// //   return {
+// //     handleClick() {
+// //       dispatch(logout());
+// //     },
+// //   };
+// // };
+
+// // export default connect(mapState, mapDispatch)(Navbar);
+
+// import React, { useState } from 'react';
+// import { connect } from 'react-redux';
+// import { Link } from 'react-router-dom';
+// import { logout } from '../store';
+
+// const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
+//   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
+//   const toggleNavbar = () => {
+//     setIsNavbarOpen(!isNavbarOpen);
+//   };
+
+//   return (
+//     <div className="navbar-container">
+//       <h1 className="navbar-title">SongOfTheDay</h1>
+//       <nav>
+//         <div className={`navbar-links ${isNavbarOpen ? 'active' : ''}`}>
+//           <Link to="/home" className="navbar-link">Home</Link>
+//           <Link to="/profile" className="navbar-link">Profile</Link>
+//           <Link to="/users" className="navbar-link">Users</Link>
+//           <Link to="/songs" className="navbar-link">Songs</Link>
+//           <Link to="/vote" className="navbar-link">Vote</Link>
+//           <Link to="/yoursong" className="navbar-link">YourSong</Link>
+//           <Link to="/winningsongs" className="navbar-link">WinningSongs</Link>
+//           <Link to="/past" className="navbar-link">Past</Link>
+//           <Link to="/tomorrow" className="navbar-link">Tomorrow</Link>
+//           {isAdmin && <Link to="/close" className="navbar-link">Close</Link>}
+//           {isAdmin && <Link to="/create" className="navbar-link">Create</Link>}
+//           {isAdmin && <Link to="/old" className="navbar-link">OldVote</Link>}
+//           {isLoggedIn ? (
+//             <a href="#" onClick={handleClick} className="navbar-link">Logout</a>
+//           ) : (
+//             <>
+//               <Link to="/login" className="navbar-link">Login</Link>
+//               <Link to="/signup" className="navbar-link">Sign Up</Link>
+//             </>
+//           )}
+//         </div>
+//       </nav>
+//       <hr className="navbar-hr" />
+//       {/* Toggle button only visible on mobile */}
+//       <button className="navbar-toggle" onClick={toggleNavbar}>
+//         {isNavbarOpen ? 'Close' : 'Menu'}
+//       </button>
+//     </div>
+//   );
+// };
+
+// const mapState = (state) => {
+//   return {
+//     isLoggedIn: !!state.auth.id,
+//     isAdmin: state.auth.admin === true,
+//   };
+// };
+
+// const mapDispatch = (dispatch) => {
+//   return {
+//     handleClick() {
+//       dispatch(logout());
+//     },
+//   };
+// };
+
+// export default connect(mapState, mapDispatch)(Navbar);
+
 
 
 
@@ -2761,63 +2883,91 @@ const Navbar = ({
   handleClick,
   isLoggedIn,
   isAdmin
-}) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-  className: "navbar-container"
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
-  className: "navbar-title"
-}, "SongOfTheDay"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-  className: "navbar-links"
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/home",
-  className: "navbar-link"
-}, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/profile",
-  className: "navbar-link"
-}, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/users",
-  className: "navbar-link"
-}, "Users"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/songs",
-  className: "navbar-link"
-}, "Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/vote",
-  className: "navbar-link"
-}, "Vote"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/yoursong",
-  className: "navbar-link"
-}, "YourSong"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/winningsongs",
-  className: "navbar-link"
-}, "WinningSongs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/past",
-  className: "navbar-link"
-}, "Past"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/tomorrow",
-  className: "navbar-link"
-}, "Tomorrow"), isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/close",
-  className: "navbar-link"
-}, "Close"), isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/create",
-  className: "navbar-link"
-}, "Create"), isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/old",
-  className: "navbar-link"
-}, "OldVote"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-  href: "#",
-  onClick: handleClick,
-  className: "navbar-link"
-}, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-  className: "navbar-links"
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/login",
-  className: "navbar-link"
-}, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/signup",
-  className: "navbar-link"
-}, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
-  className: "navbar-hr"
-}));
+}) => {
+  const [isMenuOpen, setIsMenuOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [isNavbarOpen, setIsNavbarOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const handleLinkClick = () => {
+    // setIsMenuOpen(false);
+    setIsNavbarOpen(!isNavbarOpen);
+  };
+  const toggleNavbar = () => {
+    setIsNavbarOpen(!isNavbarOpen);
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "navbar-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "navbar-title"
+  }, "SongOfTheDay"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: `navbar-links ${isNavbarOpen ? 'active' : ''}`
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/home",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/profile",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/users",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Users"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/songs",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/vote",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Vote"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/yoursong",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "YourSong"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/winningsongs",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "WinningSongs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/past",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Past"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/tomorrow",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Tomorrow"), isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/close",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Close"), isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/create",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Create"), isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/old",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "OldVote"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "#",
+    onClick: handleClick,
+    className: "navbar-link"
+  }, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "navbar-links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/login",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/signup",
+    className: "navbar-link",
+    onClick: handleLinkClick
+  }, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
+    className: "navbar-hr"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "navbar-toggle",
+    onClick: toggleNavbar
+  }, isNavbarOpen ? 'Close' : 'Menu'));
+};
 
 /**
  * CONTAINER

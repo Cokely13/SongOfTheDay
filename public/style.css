@@ -1220,27 +1220,36 @@ button[type='submit']:hover {
       margin: 10px 0;
     }
   } */
+  .navbar-toggle {
+    display: none; /* Initially hide the toggle button */
+  }
 
   @media screen and (max-width: 600px) {
     .navbar-container {
       flex-direction: column; /* Change flex direction to stack items vertically */
       align-items: center; /* Center items horizontally */
+      position: relative; /* Set position to relative to contain absolute positioning */
     }
 
     .navbar-links {
-      display: none; /* Hide the navbar links by default */
+      display: none;
       flex-direction: column; /* Stack links vertically */
       align-items: center; /* Center links horizontally */
       background-color: #2C3E50; /* Set background color */
       width: 100%; /* Take up full width */
       position: absolute; /* Position navbar links absolutely */
-      top: 70px; /* Adjust top position to leave space for navbar title */
+      top: calc(100% + 10px); /* Adjust top position to leave space for navbar title and add margin */
       left: 0;
       padding: 10px 0; /* Add padding */
+      z-index: 1; /* Ensure links appear above other content */
     }
 
     .navbar-links.active {
       display: flex; /* Show navbar links when active */
+    }
+
+    .navbar-toggle {
+      display: block; /* Show toggle button */
     }
 
     .navbar-link {

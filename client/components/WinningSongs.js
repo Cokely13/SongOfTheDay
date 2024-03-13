@@ -80,8 +80,8 @@ function WinningSongs() {
         <h2>Winning Song for {selectedDate}:</h2>
         {selectedDate ? (
           <div>
-            <div>Winner: {users.find((user) => user.id === questions.find((q) => q.date === selectedDate)?.winner)?.username}</div>
-            <div>Winning Song: {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.artist}</div>
+            <div><b>Winner:</b> {users.find((user) => user.id === questions.find((q) => q.date === selectedDate)?.winner)?.username}</div>
+            <div><b>Winning Song:</b> {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.artist}</div>
           </div>
         ) : (
           ""
@@ -109,12 +109,12 @@ function WinningSongs() {
               <h1>Selected Songs</h1>
               {listData.map((item, index) => (
                 <li key={index}>
-                  <div>Song: {item.song}</div>
+                  <div><b>Song:</b> {item.song}</div>
                   <div>
                     <ul>
                       {item.users.map((user, index) => (
                         <li key={index}>
-                        Selected By: <Link key={index} to={`/users/${users.find((winner) => winner.username === user)?.id }`} className="user-link">{user}</Link></li>
+                        <b>Selected By:</b> <Link key={index} to={`/users/${users.find((winner) => winner.username === user)?.id }`} className="user-link">{user}</Link></li>
                       ))}
                     </ul>
                   </div>

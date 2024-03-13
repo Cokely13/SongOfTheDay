@@ -1184,3 +1184,42 @@ button[type='submit']:hover {
     padding: 10px;
     border: 1px solid black;
   }
+
+
+   .navbar-title {
+    margin: 0;
+  }
+
+ .navbar-links {
+    display: flex;
+    margin: 10px 0;
+
+  }
+
+
+  /* Media query for mobile devices */
+  @media screen and (max-width: 600px) {
+    .navbar-links {
+      /* background-color: #f8f9fa; Example background color for mobile navigation */
+      padding: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* transform: translateY(0);
+      transition: transform 0.3s ease-in-out; */
+      display: flex;
+      /* z-index: 999; */
+      /* flex-direction: column;
+      align-items: center; */
+    }
+
+    .navbar-links.active {
+      transform: translateY(0);
+    }
+
+    .navbar-link {
+      margin: 10px 0; /* Increase the margin for more space */
+    }
+  }

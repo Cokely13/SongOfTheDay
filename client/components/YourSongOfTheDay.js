@@ -137,14 +137,14 @@ function YourSongOfTheDay() {
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     return (
-      <div>
+      <div  >
       {question ?
         hasSongOfUser ? (
           <div>
             <h1><u>Your Song </u></h1>
             {userSong && userSong.length > 0 ? (
               <div className='yoursong' >
-                <div>
+                <div  >
                   <h2>Song Name: {hasSongOfUser ? userSong[0].song.name : ''}</h2>
                   <h2>By: {userSong[0].song.artist}</h2>
                 </div>
@@ -156,6 +156,7 @@ function YourSongOfTheDay() {
           </div>
         ) : (
           <div>
+            <div className="playlist-add-songs-container">
             <h3 className="playlist-add-songs-title">Select Your Song of the Day:</h3>
             <input
               className="playlist-add-search"
@@ -164,10 +165,11 @@ function YourSongOfTheDay() {
               value={searchText}
               onChange={handleSearchChange}
             />
+            </div>
             {filteredSongs.length === 0 && <div>No Results</div>}
             {filteredSongs.length > 0 && (
               <div>
-                <ul className="playlist-add-songs-list">
+                <ul className="playlist-add-songs-list" >
                   {paginatedSongs.map((song) => (
                     <li key={song.id}>
                       <div className="playlist-song-info">

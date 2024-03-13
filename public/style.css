@@ -248,6 +248,13 @@ text-align: right;
 }
 
 .playlist-add-search{
+  width: 80%;
+  max-width: 400px; /* Adjust the max-width as needed */
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
   margin-bottom: 20px;
 }
 
@@ -888,6 +895,48 @@ button[type='submit']:hover {
 
 }
 
+@media screen and (max-width: 600px) {
+  .playlist-details-container {
+    /* Adjust layout for smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%; /* Adjust the width as needed */
+    max-width: 400px;
+  }
+
+  .user-song-container {
+    /* Adjust layout for smaller screens */
+    width: 100%; /* Take up full width */
+    max-width: 400px; /* Set a maximum width */
+  }
+
+  .yoursong {
+    /* Adjust layout for smaller screens */
+    width: 90%; /* Adjust the width as needed */
+    max-width: 400px; /* Set a maximum width */
+  }
+
+  .playlist-song-add {
+    /* Adjust button styles for smaller screens */
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .playlist-add-search {
+    /* Adjust input field styles for smaller screens */
+    width: 80%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .pagination {
+    /* Adjust pagination styles for smaller screens */
+    margin-top: 16px;
+  }
+}
+
+
 .playlist-details-header {
   display: flex;
   justify-content: space-between;
@@ -978,6 +1027,7 @@ button[type='submit']:hover {
 
 .playlist-song-info button.playlist-song-add {
   margin-left: auto;
+
 }
 
 .playlist-details-search-input {
@@ -1074,8 +1124,17 @@ button[type='submit']:hover {
 }
 
 .playlist-add-songs-title {
-  font-size: xx-large;
+  /* font-size: xx-large; */
+  font-size: 1.5rem;
 }
+
+.playlist-add-songs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 
 
 .playlist-details-add-songs-container{
@@ -1222,6 +1281,29 @@ button[type='submit']:hover {
   } */
   .navbar-toggle {
     display: none; /* Initially hide the toggle button */
+  }
+
+  @media screen and (max-width: 600px) {
+    .playlist-add-songs-list {
+      list-style: none;
+      padding: 0;
+      width: 80%;
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .playlist-add-songs-list li {
+      border: 5px solid #ced4da;
+      font-size: 2px;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90%; /* Adjust width to 90% */
+      margin-left: auto; /* Set left margin to auto */
+    margin-right: auto; /* Set right margin to auto */
+    }
   }
 
   @media screen and (max-width: 600px) {

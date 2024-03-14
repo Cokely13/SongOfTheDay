@@ -183,34 +183,35 @@ function YourSongOfTheDay() {
                   ))}
                 </ul>
                 <div className="pagination">
-                  <ul>
-                    {currentPage > 1 && (
-                      <>
-                        <li>
-                          <button onClick={() => handlePageChange(1)}>First</button>
-                        </li>
-                        <li>
-                          <button onClick={() => handlePageChange(currentPage - 1)}>Back</button>
-                        </li>
-                      </>
-                    )}
-                    {pageRange.map((page) => (
-                      <li key={page} className={currentPage === page ? 'active' : ''}>
-                        <button onClick={() => handlePageChange(page)}>{page}</button>
-                      </li>
-                    )).slice(currentPage - 1, currentPage + 4)}
-                    {currentPage < pageCount && (
-                      <>
-                        <li>
-                          <button onClick={() => handlePageChange(currentPage + 1)}>Forward</button>
-                        </li>
-                        <li>
-                          <button onClick={() => handlePageChange(pageCount)}>Last</button>
-                        </li>
-                      </>
-                    )}
-                  </ul>
-                </div>
+  <ul>
+    {currentPage > 1 && (
+      <>
+        <li>
+          <button onClick={() => handlePageChange(1)}>First</button>
+        </li>
+        <li>
+          <button onClick={() => handlePageChange(currentPage - 1)}>Back</button>
+        </li>
+      </>
+    )}
+    {/* {pageRange.map((page) => (
+      (page >= currentPage - 1 && page <= currentPage + 1) && // Display only three buttons around the current page
+      <li key={page} className={currentPage === page ? 'active' : ''}>
+        <button onClick={() => handlePageChange(page)}>{page}</button>
+      </li>
+    ))} */}
+    {currentPage < pageCount && (
+      <>
+        <li>
+          <button onClick={() => handlePageChange(currentPage + 1)}>Forward</button>
+        </li>
+        <li>
+          <button onClick={() => handlePageChange(pageCount)}>Last</button>
+        </li>
+      </>
+    )}
+  </ul>
+</div>
               </div>
             )}
           </div>
@@ -243,34 +244,35 @@ function YourSongOfTheDay() {
                 ))}
               </ul>
               <div className="pagination">
-                <ul>
-                  {currentPage > 1 && (
-                    <>
-                      <li>
-                        <button onClick={() => handlePageChange(1)}>First</button>
-                      </li>
-                      <li>
-                        <button onClick={() => handlePageChange(currentPage - 1)}>Back</button>
-                      </li>
-                    </>
-                  )}
-                  {pageRange.map((page) => (
-                    <li key={page} className={currentPage === page ? 'active' : ''}>
-                      <button onClick={() => handlePageChange(page)}>{page}</button>
-                    </li>
-                  )).slice(currentPage - 1, currentPage + 4)}
-                  {currentPage < pageCount && (
-                    <>
-                      <li>
-                        <button onClick={() => handlePageChange(currentPage + 1)}>Forward</button>
-                      </li>
-                      <li>
-                        <button onClick={() => handlePageChange(pageCount)}>Last</button>
-                      </li>
-                    </>
-                  )}
-                </ul>
-              </div>
+  <ul>
+    {currentPage > 1 && (
+      <>
+        <li>
+          <button onClick={() => handlePageChange(1)}>First</button>
+        </li>
+        <li>
+          <button onClick={() => handlePageChange(currentPage - 1)}>Back</button>
+        </li>
+      </>
+    )}
+    {pageRange.map((page) => (
+      (page >= currentPage - 1 && page <= currentPage + 1) && // Display only three buttons around the current page
+      <li key={page} className={currentPage === page ? 'active' : ''}>
+        <button onClick={() => handlePageChange(page)}>{page}</button>
+      </li>
+    ))}
+    {currentPage < pageCount && (
+      <>
+        <li>
+          <button onClick={() => handlePageChange(currentPage + 1)}>Forward</button>
+        </li>
+        <li>
+          <button onClick={() => handlePageChange(pageCount)}>Last</button>
+        </li>
+      </>
+    )}
+  </ul>
+</div>
             </div>
           )}
         </div>

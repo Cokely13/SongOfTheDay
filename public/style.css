@@ -931,17 +931,23 @@ button[type='submit']:hover {
   }
 
   .pagination {
-    max-width: 400px; /* Adjust the maximum width for pagination */
+    display: flex;
+    justify-content: center;
+    max-width: 100%; /* Adjust the maximum width for pagination */
     margin-top: 20px; /* Increase margin for better separation */
     margin-left: auto;
     margin-right: auto;
+    padding: 0; /* Remove default padding */
   }
 
+
   .pagination li {
-    margin: 0 1px; /* Adjust margin for smaller screens */
+    margin: 0 .2px; /* Adjust margin for smaller screens */
   }
+
   .pagination button {
-    padding: 2px 5px; /* Adjust padding for smaller screens */
+    padding: 2px 5px;
+    /* Adjust padding for smaller screens */
     font-size: 10px; /* Adjust font size for smaller screens */
   }
 }

@@ -224,13 +224,13 @@ function UserDetailPage() {
       </div>
       {/* Display winning information if showWins is true */}
       {showWins && (
-        <div className="winning-info" style={{ textAlign: 'center' }}>
+        <div className="past-winners-table" >
           <h2>Winning Information:</h2>
-          <table style={{ margin: "auto", borderCollapse: "collapse", borderRadius: "5px" }}>
+          <table className="custom-table">
             <thead>
               <tr>
-                <th style={{ padding: "10px", border: "3px solid black", borderRadius: "10px" }}>Date</th>
-                <th style={{ padding: "10px", border: "3px solid black", borderRadius: "10px"  }}>Winning Song</th>
+                <th >Date</th>
+                <th >Winning Song</th>
               </tr>
             </thead>
             <tbody>

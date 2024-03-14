@@ -124,26 +124,26 @@ function Profile() {
             <div className="user-details">
 
                 <button onClick={() => setShowEdit(true)}>Edit Profile</button>
-
+                {user.admin ? <h1>ADMIN</h1> : null}
               <h1 className="user-email">{user.email}</h1>
-              {user.admin ? <h1>ADMIN</h1> : null}
-              <div>Number of Wins: {getNumberOfWins()}</div>
-              <div style={{ textAlign: "center" }}>
+
+              <h2>Number of Wins: {getNumberOfWins()}</h2>
+              <div className="past-winners-table">
                 <h2>List of Wins:</h2>
                 {questions.some(question => question.winner === user.id) ? (
-                  <table style={{ margin: "auto", borderCollapse: "collapse" }}>
+                  <table className="custom-table">
                     <thead>
                       <tr>
-                        <th style={{ padding: "10px", border: "1px solid black" }}>Date</th>
-                        <th style={{ padding: "10px", border: "1px solid black" }}>Winning Song</th>
+                        <th >Date</th>
+                        <th >Winning Song</th>
                       </tr>
                     </thead>
                     <tbody>
                       {questions.map((question, index) => (
                         question.winner === user.id && (
                           <tr key={index}>
-                            <td style={{ padding: "10px", border: "1px solid black" }}>{question.date}</td>
-                            <td style={{ padding: "10px", border: "1px solid black" }}>
+                            <td>{question.date}</td>
+                            <td >
                               {allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown"} By {allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown"}
                             </td>
                           </tr>

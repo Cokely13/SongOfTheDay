@@ -161,6 +161,12 @@ align-items: center;
 text-align: center;
 }
 
+.close-question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .user-stats {
 display: flex;
 justify-content: center;

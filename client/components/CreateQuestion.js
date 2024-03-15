@@ -21,9 +21,9 @@ function CreateQuestion() {
   };
 
   return (
-    <div>
+    <div >
       {admin ?
-      <div>
+      <div className="close-question">
       <h2>Create Question</h2>
       <label>Date:</label>
       <input

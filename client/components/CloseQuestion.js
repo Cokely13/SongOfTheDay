@@ -71,21 +71,23 @@ function CloseQuestion() {
   return (
      <div>
       {admin ?
-      <div>
+      <div >
       <h1>Close Question</h1>
-      <select value={selectedDate} onChange={handleDateChange}>
+      <div  className="close-question">
+      <select  value={selectedDate} onChange={handleDateChange}>
         <option value="">Select Date</option>
         {activeQuestions.map(question => (
           <option key={question.id} value={question.date.slice(0, 10)}>{question.date}</option>
         ))}
       </select>
       {selectedDate && (
-        <div>
+        <div className="close-question">
           <h2>Selected Date: {selectedDate}</h2>
           <button onClick={handleCloseQuestion}>Close Question</button>
         </div>
       )}
-      </div> : <div>Not Admin</div>}
+      </div></div> : <div>Not Admin</div>}
+
     </div>
   );
 }

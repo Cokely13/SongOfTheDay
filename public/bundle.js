@@ -2435,7 +2435,9 @@ function CloseQuestion() {
 
   // Filter out questions where active is true
   const activeQuestions = questions ? questions.filter(question => question.active) : [];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Close Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Close Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "close-question"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     value: selectedDate,
     onChange: handleDateChange
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
@@ -2443,9 +2445,11 @@ function CloseQuestion() {
   }, "Select Date"), activeQuestions.map(question => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     key: question.id,
     value: question.date.slice(0, 10)
-  }, question.date))), selectedDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Selected Date: ", selectedDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, question.date))), selectedDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "close-question"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Selected Date: ", selectedDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleCloseQuestion
-  }, "Close Question"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Not Admin"));
+  }, "Close Question")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Not Admin"));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CloseQuestion);
 
@@ -2489,7 +2493,9 @@ function CreateQuestion() {
     setDate("");
     setName("");
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Create Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "close-question"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Create Question"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "date",
     value: date,
     onChange: e => setDate(e.target.value)

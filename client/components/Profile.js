@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { fetchSingleUser } from '../store/singleUserStore';
 import { fetchQuestions } from '../store/allQuestionsStore';
 import { fetchSongs } from '../store/allSongsStore';
+import { fetchVoteSongs } from '../store/allVoteSongsStore';
 import { updateSingleUser } from '../store/singleUserStore'
 import EditProfile from './EditProfile'
 import { Link } from 'react-router-dom';
@@ -15,6 +16,7 @@ function Profile() {
   const user = useSelector(state => state.singleUser);
   const questions = useSelector(state => state.allQuestions);
   const allSongs = useSelector(state => state.allSongs);
+  const voteSongs = useSelector(state => state.allVoteSongs);
   const [showEdit, setShowEdit] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -24,11 +26,22 @@ function Profile() {
     dispatch(fetchSingleUser(userId.id));
     dispatch(fetchQuestions());
     dispatch(fetchSongs());
+    dispatch(fetchVoteSongs());
   }, [dispatch, userId]);
 
   const handleEditProfile = () => {
     history.push('/edit-profile');
   };
+
+  const myVotesongs = voteSongs.filter((song)=> song.userId === user.id)
+
+  const sortedMyVoteSongs = myVotesongs.sort((a, b) => {
+    // Assuming the date is in a format that can be directly compared,
+    // such as 'YYYY-MM-DD'. If not, you may need to parse the dates.
+    return new Date(a.question.date) - new Date(b.question.date);
+  });
+
+
 
   const getNumberOfWins = () => {
     return questions.reduce((count, question) => {
@@ -149,6 +162,32 @@ function Profile() {
                           </tr>
                         )
                       ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <div>No Wins</div>
+                )}
+              </div>
+              <div className="past-winners-table">
+                <h2>List of My Songs:</h2>
+                {sortedMyVoteSongs  ? (
+                  <table className="custom-table">
+                    <thead>
+                      <tr>
+                        <th >Date</th>
+                        <th >My Song</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sortedMyVoteSongs .map((song, index) => (
+                          <tr key={index}>
+                            <td>{song.question.date }</td>
+                            <td ><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(song.song.name+ ' ' + song.song.artist)}`} target="_blank">
+                              {song.song.name} By {song.song.artist}</a>
+                            </td>
+                          </tr>
+                        )
+                      )}
                     </tbody>
                   </table>
                 ) : (

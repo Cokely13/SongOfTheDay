@@ -1,12 +1,12 @@
 const router = require('express').Router()
-const { models: { VoteSong, Song, User, Vote}} = require('../db');
+const { models: { VoteSong, Song, User, Vote, Question}} = require('../db');
 
 module.exports = router
 
 
 router.get('/', async (req, res, next) => {
   try {
-    const voteSongs = await VoteSong.findAll( {include: [User, Song, Vote]}
+    const voteSongs = await VoteSong.findAll( {include: [User, Song, Vote, Question]}
     );
     res.json(voteSongs);
   } catch (err) {

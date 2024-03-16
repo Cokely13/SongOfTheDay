@@ -3236,11 +3236,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/singleUserStore */ "./client/store/singleUserStore.js");
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
-/* harmony import */ var _EditProfile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditProfile */ "./client/components/EditProfile.js");
+/* harmony import */ var _store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/allVoteSongsStore */ "./client/store/allVoteSongsStore.js");
+/* harmony import */ var _EditProfile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EditProfile */ "./client/components/EditProfile.js");
+
 
 
 
@@ -3252,11 +3254,12 @@ __webpack_require__.r(__webpack_exports__);
 
 function Profile() {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
+  const history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
   const userId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.auth);
   const user = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.singleUser);
   const questions = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allQuestions);
   const allSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allSongs);
+  const voteSongs = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state.allVoteSongs);
   const [showEdit, setShowEdit] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [selectedFile, setSelectedFile] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [previewUrl, setPreviewUrl] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
@@ -3265,10 +3268,17 @@ function Profile() {
     dispatch((0,_store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__.fetchSingleUser)(userId.id));
     dispatch((0,_store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_3__.fetchQuestions)());
     dispatch((0,_store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__.fetchSongs)());
+    dispatch((0,_store_allVoteSongsStore__WEBPACK_IMPORTED_MODULE_5__.fetchVoteSongs)());
   }, [dispatch, userId]);
   const handleEditProfile = () => {
     history.push('/edit-profile');
   };
+  const myVotesongs = voteSongs.filter(song => song.userId === user.id);
+  const sortedMyVoteSongs = myVotesongs.sort((a, b) => {
+    // Assuming the date is in a format that can be directly compared,
+    // such as 'YYYY-MM-DD'. If not, you may need to parse the dates.
+    return new Date(a.question.date) - new Date(b.question.date);
+  });
   const getNumberOfWins = () => {
     return questions.reduce((count, question) => {
       if (question.winner === user.id) {
@@ -3320,7 +3330,7 @@ function Profile() {
     className: "playlists-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "user-name"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, user.username)), showEdit ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EditProfile__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, user.username)), showEdit ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EditProfile__WEBPACK_IMPORTED_MODULE_6__["default"], {
     setShowEdit: setShowEdit,
     user: user,
     fetchUser: _store_singleUserStore__WEBPACK_IMPORTED_MODULE_2__.fetchSingleUser
@@ -3376,7 +3386,16 @@ function Profile() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: `https://www.youtube.com/results?search_query=${encodeURIComponent(allSongs.find(song => song.id === question.winningSongId)?.name + ' ' + allSongs.find(song => song.id === question.winningSongId)?.artist)}`,
     target: "_blank"
-  }, allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown", " By ", allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown")))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Loading...")));
+  }, allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown", " By ", allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown")))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "past-winners-table"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "List of My Songs:"), sortedMyVoteSongs ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
+    className: "custom-table"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "My Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, sortedMyVoteSongs.map((song, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
+    key: index
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, song.question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: `https://www.youtube.com/results?search_query=${encodeURIComponent(song.song.name + ' ' + song.song.artist)}`,
+    target: "_blank"
+  }, song.song.name, " By ", song.song.artist)))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Loading...")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
 

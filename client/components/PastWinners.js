@@ -37,8 +37,11 @@ function PastWinners() {
             <td><Link key={index} to={`/users/${users.find((user) => user.id === question.winner)?.id }`} className="user-link">{users.find((user) => user.id === question.winner)?.username || ""}</Link></td>
             <td>
               {question.winningSongId ?
-                `${allSongs.find((song) => song.id === question.winningSongId)?.name} By ${allSongs.find((song) => song.id === question.winningSongId)?.artist}` :
+                <a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(allSongs.find((song) => song.id === question.winningSongId)?.name + ' ' + allSongs.find((song) => song.id === question.winningSongId)?.artist)}`} target="_blank">
+
+                {allSongs.find((song) => song.id === question.winningSongId)?.name} By {allSongs.find((song) => song.id === question.winningSongId)?.artist} </a>:
                 ""
+
               }
             </td>
           </tr>

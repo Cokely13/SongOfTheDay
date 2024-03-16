@@ -145,7 +145,7 @@ function YourSongOfTheDay() {
             {userSong && userSong.length > 0 ? (
               <div className='playlist-add-songs-container' >
                 <div  >
-                  <h2>Song Name: {hasSongOfUser ? userSong[0].song.name : ''}</h2>
+                  <h2>Song Name: {hasSongOfUser ?  <a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(userSong[0].song.name + ' ' + userSong[0].song.artist)}`} target="_blank">{userSong[0].song.name}</a> : ''}</h2>
                   <h2>By: {userSong[0].song.artist}</h2>
                 </div>
                {!cancelChange ? <button  onClick={handleChangeSong}>Change Song</button> : <button className="cancel-change-button"  onClick={handleCancelSong}> Cancel Change </button> }
@@ -173,7 +173,13 @@ function YourSongOfTheDay() {
                   {paginatedSongs.map((song) => (
                     <li key={song.id}>
                       <div className="playlist-song-info">
-                        <span className="playlist-song-name">{song && song.name}</span> by
+                      <span className="playlist-song-name">
+    {song && (
+      <a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(song.name + ' ' + song.artist)}`} target="_blank">
+        {song.name}
+      </a>
+    )}
+  </span> by
                         <span className="playlist-song-artist">{song.artist}</span>
                         <button className="playlist-song-add" onClick={() => handleSelectSong(song)}>
                           Select Song
@@ -234,7 +240,13 @@ function YourSongOfTheDay() {
                 {paginatedSongs.map((song) => (
                   <li key={song.id}>
                     <div className="playlist-song-info">
-                      <span className="playlist-song-name">{song && song.name}</span> by
+                    <span className="playlist-song-name">
+    {song && (
+      <a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(song.name + ' ' + song.artist)}`} target="_blank">
+        {song.name}
+      </a>
+    )}
+  </span> by
                       <span className="playlist-song-artist">{song.artist}</span>
                       <button className="playlist-song-add" onClick={() => handleNewSong(song)}>
                         Select Song

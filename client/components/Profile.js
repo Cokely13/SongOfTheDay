@@ -143,8 +143,8 @@ function Profile() {
                         question.winner === user.id && (
                           <tr key={index}>
                             <td>{question.date}</td>
-                            <td >
-                              {allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown"} By {allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown"}
+                            <td ><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(allSongs.find(song => song.id === question.winningSongId)?.name+ ' ' + allSongs.find(song => song.id === question.winningSongId)?.artist)}`} target="_blank">
+                              {allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown"} By {allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown"}</a>
                             </td>
                           </tr>
                         )

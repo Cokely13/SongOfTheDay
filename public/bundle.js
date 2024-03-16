@@ -3214,7 +3214,10 @@ function PastWinners() {
     key: index,
     to: `/users/${users.find(user => user.id === question.winner)?.id}`,
     className: "user-link"
-  }, users.find(user => user.id === question.winner)?.username || "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.winningSongId ? `${allSongs.find(song => song.id === question.winningSongId)?.name} By ${allSongs.find(song => song.id === question.winningSongId)?.artist}` : "")))))));
+  }, users.find(user => user.id === question.winner)?.username || "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.winningSongId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: `https://www.youtube.com/results?search_query=${encodeURIComponent(allSongs.find(song => song.id === question.winningSongId)?.name + ' ' + allSongs.find(song => song.id === question.winningSongId)?.artist)}`,
+    target: "_blank"
+  }, allSongs.find(song => song.id === question.winningSongId)?.name, " By ", allSongs.find(song => song.id === question.winningSongId)?.artist, " ") : "")))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PastWinners);
 
@@ -3370,7 +3373,10 @@ function Profile() {
     className: "custom-table"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Winning Song"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, questions.map((question, index) => question.winner === user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
     key: index
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown", " By ", allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown"))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Loading...")));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, question.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: `https://www.youtube.com/results?search_query=${encodeURIComponent(allSongs.find(song => song.id === question.winningSongId)?.name + ' ' + allSongs.find(song => song.id === question.winningSongId)?.artist)}`,
+    target: "_blank"
+  }, allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown", " By ", allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown")))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Wins"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Loading...")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
 
@@ -3496,7 +3502,10 @@ function SongList() {
   }, "Add Song")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, paginatedSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     key: song.id,
     className: "song-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("u", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, song.name)), " by ", song.artist))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: `https://www.youtube.com/results?search_query=${encodeURIComponent(song.name + ' ' + song.artist)}`,
+    target: "_blank"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("u", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, song.name)), " by ", song.artist)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "pagination"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, currentPage > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: () => handlePageChange(1)
@@ -3568,7 +3577,12 @@ function Tomorrow() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Songs for Tomorrow"), picks ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, picks.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, currentSongs.length > 0 ? currentSongs.map(song => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     key: song.id,
     className: "voting-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, song.song.name, " by ", song.song.artist))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "playlist-song-name"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: `https://www.youtube.com/results?search_query=${encodeURIComponent(song.song.name + ' ' + song.song.artist)}`,
+    target: "_blank"
+  }, song.song.name, " by ", song.song.artist)))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "voting-row"
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: `/yoursong`
@@ -3891,7 +3905,10 @@ function UserDetailPage() {
       padding: "10px",
       border: "1px solid black"
     }
-  }, allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown", " By ", allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown")))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: `https://www.youtube.com/results?search_query=${encodeURIComponent(allSongs.find(song => song.id === question.winningSongId)?.name + ' ' + allSongs.find(song => song.id === question.winningSongId)?.artist)}`,
+    target: "_blank"
+  }, allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown", " By ", allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown"))))))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserDetailPage);
 
@@ -3991,8 +4008,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allQuestionsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/allQuestionsStore */ "./client/store/allQuestionsStore.js");
 /* harmony import */ var _store_allUsersStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/allUsersStore */ "./client/store/allUsersStore.js");
 /* harmony import */ var _store_allSongsStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/allSongsStore */ "./client/store/allSongsStore.js");
-/* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-google-charts */ "./node_modules/react-google-charts/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-google-charts */ "./node_modules/react-google-charts/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
@@ -4070,7 +4087,12 @@ function WinningSongs() {
     value: question.date
   }, question.date))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleSeeStats
-  }, "See Stats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Song for ", selectedDate, ":"), selectedDate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Winner:"), " ", users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Winning Song:"), " ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name, " By ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist)) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, pieChartData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_google_charts__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "See Stats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Winning Song for ", selectedDate, ":"), selectedDate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Winner: "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+    to: `/users/${users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.id}`
+  }, users.find(user => user.id === questions.find(q => q.date === selectedDate)?.winner)?.username, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Winning Song: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: `https://www.youtube.com/results?search_query=${encodeURIComponent(allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name + ' ' + allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist)}`,
+    target: "_blank"
+  }, allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.name, " By ", allSongs.find(song => song.id === questions.find(q => q.date === selectedDate)?.winningSongId)?.artist))) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, pieChartData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_google_charts__WEBPACK_IMPORTED_MODULE_6__["default"], {
     style: {
       margin: '0 auto'
     },
@@ -4087,9 +4109,12 @@ function WinningSongs() {
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, listData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Selected Songs"), listData.map((item, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     key: index
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Song:"), " ", item.song), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, item.users.map((user, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Song:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: `https://www.youtube.com/results?search_query=${encodeURIComponent(item.song)}`,
+    target: "_blank"
+  }, " ", item.song)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, item.users.map((user, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     key: index
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Selected By:"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Selected By:"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
     key: index,
     to: `/users/${users.find(winner => winner.username === user)?.id}`,
     className: "user-link"
@@ -4236,7 +4261,10 @@ function YourSongOfTheDay() {
     const paginatedSongs = filteredSongs.slice((currentPage - 1) * pageSize, currentPage * pageSize);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, question ? hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("u", null, "Your Song ")), userSong && userSong.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "playlist-add-songs-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Song Name: ", hasSongOfUser ? userSong[0].song.name : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "By: ", userSong[0].song.artist)), !cancelChange ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Song Name: ", hasSongOfUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      href: `https://www.youtube.com/results?search_query=${encodeURIComponent(userSong[0].song.name + ' ' + userSong[0].song.artist)}`,
+      target: "_blank"
+    }, userSong[0].song.name) : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "By: ", userSong[0].song.artist)), !cancelChange ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: handleChangeSong
     }, "Change Song") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "cancel-change-button",
@@ -4259,7 +4287,10 @@ function YourSongOfTheDay() {
       className: "playlist-song-info"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "playlist-song-name"
-    }, song && song.name), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    }, song && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      href: `https://www.youtube.com/results?search_query=${encodeURIComponent(song.name + ' ' + song.artist)}`,
+      target: "_blank"
+    }, song.name)), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "playlist-song-artist"
     }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "playlist-song-add",
@@ -4292,7 +4323,10 @@ function YourSongOfTheDay() {
       className: "playlist-song-info"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "playlist-song-name"
-    }, song && song.name), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    }, song && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      href: `https://www.youtube.com/results?search_query=${encodeURIComponent(song.name + ' ' + song.artist)}`,
+      target: "_blank"
+    }, song.name)), " by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "playlist-song-artist"
     }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "playlist-song-add",

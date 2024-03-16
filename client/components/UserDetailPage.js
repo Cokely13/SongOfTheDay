@@ -238,8 +238,8 @@ function UserDetailPage() {
                 question.winner === user.id && (
                   <tr key={index}>
                     <td style={{ padding: "10px", border: "1px solid black" }}>{question.date}</td>
-                    <td style={{ padding: "10px", border: "1px solid black" }}>
-                      {allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown"} By {allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown"}
+                    <td style={{ padding: "10px", border: "1px solid black" }}><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(allSongs.find(song => song.id === question.winningSongId)?.name+ ' ' + allSongs.find(song => song.id === question.winningSongId)?.artist)}`} target="_blank">
+                      {allSongs.find(song => song.id === question.winningSongId)?.name || "Unknown"} By {allSongs.find(song => song.id === question.winningSongId)?.artist || "Unknown"}</a>
                     </td>
                   </tr>
                 )

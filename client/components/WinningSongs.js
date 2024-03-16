@@ -80,8 +80,9 @@ function WinningSongs() {
         <h2>Winning Song for {selectedDate}:</h2>
         {selectedDate ? (
           <div>
-            <div><b>Winner:</b> {users.find((user) => user.id === questions.find((q) => q.date === selectedDate)?.winner)?.username}</div>
-            <div><b>Winning Song:</b> {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.artist}</div>
+            <div><b>Winner: </b> <Link to={`/users/${users.find((user) => user.id === questions.find((q) => q.date === selectedDate)?.winner)?.id}`}>
+              {users.find((user) => user.id === questions.find((q) => q.date === selectedDate)?.winner)?.username} </Link></div>
+            <div><b>Winning Song: </b><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.name+ ' ' + allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.artist)}`} target="_blank">{allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.name} By {allSongs.find((song) => song.id === questions.find((q) => q.date === selectedDate)?.winningSongId)?.artist}</a></div>
           </div>
         ) : (
           ""
@@ -109,7 +110,7 @@ function WinningSongs() {
               <h1>Selected Songs</h1>
               {listData.map((item, index) => (
                 <li key={index}>
-                  <div><b>Song:</b> {item.song}</div>
+                  <div><b>Song:</b><a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(item.song)}`} target="_blank"> {item.song}</a></div>
                   <div>
                     <ul>
                       {item.users.map((user, index) => (

@@ -108,7 +108,8 @@ function SongList() {
           <ul>
             {paginatedSongs.map(song => (
               <li key={song.id} className="song-item">
-                <u><b>{song.name}</b></u> by {song.artist}
+                 <a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(song.name + ' ' + song.artist)}`} target="_blank">
+                <u><b>{song.name}</b></u> by {song.artist}</a>
               </li>
             ))}
           </ul>

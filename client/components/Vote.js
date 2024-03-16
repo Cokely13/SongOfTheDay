@@ -52,12 +52,6 @@ function Vote() {
     <div className="voting">
       <div className="voting-block">
         <h1>Vote</h1>
-        {/* <select value={selectedDate} onChange={handleDateChange}>
-          <option value="">Select Date</option>
-          {activeQuestions.map(question => (
-            <option key={question.id} value={question.date.slice(0, 10)}>{question.date}</option>
-          ))}
-        </select> */}
         {picks ? (
           <React.Fragment>
             <h1>{picks.date}</h1>

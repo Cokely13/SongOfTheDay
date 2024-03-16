@@ -105,7 +105,7 @@ function SongList() {
           <div className='add-song-button'>
             <button onClick={handleAddSongClick}>Add Song</button>
           </div>
-          <ul>
+          <ul className="playlist-add-songs-list">
             {paginatedSongs.map(song => (
               <li key={song.id} className="song-item">
                  <a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(song.name + ' ' + song.artist)}`} target="_blank">

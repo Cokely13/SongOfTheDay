@@ -61,7 +61,7 @@ function Vote() {
               ) : currentSongs.length > 0 ? (
                 currentSongs.map((song) => (
                   <div key={song.id} className="voting-row">
-                    <h2>{song.song.name} by {song.song.artist}</h2>
+                    <h2> <a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(song.song.name + ' ' + song.song.artist)}`} target="_blank">{song.song.name} by {song.song.artist}</a></h2>
                     <button style={{ marginLeft: '10px' }} onClick={() => handleVote(song.id)}>Vote</button>
                   </div>
                 ))

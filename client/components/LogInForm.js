@@ -9,7 +9,7 @@ const LoginForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className='close-question'>
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="username">

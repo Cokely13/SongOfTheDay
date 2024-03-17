@@ -25,7 +25,7 @@ const AuthForm = props => {
   }
 
   return (
-    <div>
+    <div className='close-question'>
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="username">

@@ -1390,7 +1390,9 @@ button[type='submit']:hover {
       display: none;
       flex-direction: column; /* Stack links vertically */
       align-items: center; /* Center links horizontally */
-      background-color: #2C3E50; /* Set background color */
+      border: 5px solid #2C3E50; /* Add border style and color */
+      border-radius: 10px;
+      background-color:#AED6F1; /* Set background color */
       width: 100%; /* Take up full width */
       position: absolute; /* Position navbar links absolutely */
       top: calc(100% + 10px); /* Adjust top position to leave space for navbar title and add margin */
@@ -1409,7 +1411,7 @@ button[type='submit']:hover {
 
     .navbar-link {
       margin: 10px 0; /* Add margin to separate links */
-      color: #F7DC6F; /* Set link color */
+      color:#2C3E50; /* Set link color */
       text-decoration: none; /* Remove underline */
     }
   }

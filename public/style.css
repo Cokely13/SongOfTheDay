@@ -1368,7 +1368,7 @@ button[type='submit']:hover {
 
     .playlist-add-songs-list li {
       border: 5px solid #ced4da;
-      font-size: 2px;
+      font-size: 10px;
       margin-bottom: 5px;
       display: flex;
       align-items: center;
